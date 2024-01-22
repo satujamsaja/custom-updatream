@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.standard_4_3
+  module:
+    - crop
+name: accelerator_landscape_crop_4_3
+label: 'Accelerator: Landscape crop 4:3'
+effects:
+  b0e8194e-d8c1-4a76-9418-1c76dec22c23:
+    uuid: b0e8194e-d8c1-4a76-9418-1c76dec22c23
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: standard_4_3
+      automatic_crop_provider: null
+pipeline: __default__

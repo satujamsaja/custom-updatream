@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.panoramic_4_1
+  module:
+    - crop
+name: accelerator_panoramic_crop_4_1
+label: 'Accelerator: Panoramic crop 4:1'
+effects:
+  5413bd7f-1399-487f-af63-00ca997bb910:
+    uuid: 5413bd7f-1399-487f-af63-00ca997bb910
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: panoramic_4_1
+      automatic_crop_provider: null
+pipeline: __default__

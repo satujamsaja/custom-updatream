@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.related_articles
+    - field.field.block_content.related_articles.field_display_recent_articles
+    - field.field.block_content.related_articles.field_title
+    - field.field.block_content.related_articles.field_view_all_link
+  module:
+    - link
+id: block_content.related_articles.default
+targetEntityType: block_content
+bundle: related_articles
+mode: default
+content:
+  field_display_recent_articles:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_view_all_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

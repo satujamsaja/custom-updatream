@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.item_entity.field_weight
+    - og_accelerator.item_entity_type.background_colour
+  module:
+    - weight
+id: item_entity.background_colour.field_weight
+field_name: field_weight
+entity_type: item_entity
+bundle: background_colour
+label: Weight
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  range: '20'
+field_type: weight

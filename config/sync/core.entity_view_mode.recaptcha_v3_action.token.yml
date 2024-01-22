@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - recaptcha_v3
+id: recaptcha_v3_action.token
+label: Token
+targetEntityType: recaptcha_v3_action
+cache: true

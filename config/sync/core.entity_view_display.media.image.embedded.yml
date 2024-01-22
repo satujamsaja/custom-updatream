@@ -1,0 +1,208 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.base_field_override.media.image.name
+    - core.entity_view_mode.media.embedded
+    - field.field.media.image.field_media_image
+    - field.field.media.image.field_media_in_library
+    - media.type.image
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - og_accelerator
+    - svg_image
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: bootstrap_one_column
+        layout_settings:
+          title_tag: h3
+          title_row_class: row
+          title_column_class: col-md-12
+          visibility_role:
+            anonymous: anonymous
+            authenticated: authenticated
+          background_colour: '-none-'
+          background_repeat: '-none-'
+          background_size: '-none-'
+          container_width: container
+          container_margin_top: '-none-'
+          container_margin_right: '-none-'
+          container_margin_bottom: '-none-'
+          container_margin_left: '-none-'
+          row_bootstrap: row
+          row_block_spacing: '-none-'
+          column_width: _100
+          context_mapping: {  }
+          background_image_position: '-none-'
+          title:
+            title_display: 0
+            title_text: ''
+            title_tag: h3
+            title_row_class: row
+            title_column_class: col-md-12
+            title_class: ''
+          visibility:
+            visibility_role:
+              anonymous: anonymous
+              authenticated: authenticated
+              administrator: 0
+              content_editor: 0
+              content_manager: 0
+          background:
+            background_colour: '-none-'
+            background_dark: 0
+            background_repeat: '-none-'
+            background_image: null
+            background_image_position: '-none-'
+            background_size: '-none-'
+            background_class: ''
+          container:
+            container_width: '-none-'
+            container_margin_top: '-none-'
+            container_margin_right: '-none-'
+            container_margin_bottom: '-none-'
+            container_margin_left: '-none-'
+            container_class: ''
+          row:
+            row_bootstrap: '-none-'
+            row_gutters: 0
+            row_block_spacing: '-none-'
+            row_class: ''
+          column:
+            column_width: _0
+            main_column_class: ''
+        components:
+          13340157-71b2-4512-99d1-996e1d4ebf23:
+            uuid: 13340157-71b2-4512-99d1-996e1d4ebf23
+            region: main
+            configuration:
+              id: 'field_block:media:image:field_media_image'
+              label: Image
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: image
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: accelerator_media_image_embedded
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: field
+                    destination:
+                      field: ''
+                      custom: ''
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 1
+            additional: {  }
+          e0403ca4-4738-4d9f-9dae-248bfe62316c:
+            uuid: e0403ca4-4738-4d9f-9dae-248bfe62316c
+            region: main
+            configuration:
+              id: 'field_block:media:image:name'
+              label: Name
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: 'custom_formatters:accelerator_media_title'
+                label: hidden
+                settings: {  }
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: custom
+                    destination:
+                      field:
+                        field: ''
+                        custom:
+                          custom: Array
+                      custom: Array
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 0
+            additional: {  }
+          00c20dc4-9e6d-4df0-b788-0b9690e5190f:
+            uuid: 00c20dc4-9e6d-4df0-b788-0b9690e5190f
+            region: content
+            configuration:
+              id: 'field_block:media:image:field_media_image'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: image
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: ''
+                  svg_attributes:
+                    width: null
+                    height: null
+                  svg_render_as_image: true
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      allowed_layouts:
+        - bootstrap_one_column
+        - bootstrap_two_column
+        - bootstrap_three_column
+        - bootstrap_four_column
+      blacklisted_blocks: {  }
+      whitelisted_blocks: {  }
+id: media.image.embedded
+targetEntityType: media
+bundle: image
+mode: embedded
+content:
+  field_media_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_in_library: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

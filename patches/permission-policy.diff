@@ -1,0 +1,13 @@
+diff --git a/src/EventSubscriber/SecKitEventSubscriber.php b/src/EventSubscriber/SecKitEventSubscriber.php
+index ab98f92e3..87d6d6776 100644
+--- a/src/EventSubscriber/SecKitEventSubscriber.php
++++ b/src/EventSubscriber/SecKitEventSubscriber.php
+@@ -500,7 +500,7 @@ public function seckitExpectCt() {
+   public function seckitFeaturePolicy() {
+     $header[] = $this->config->get('seckit_fp.feature_policy_policy');
+ 
+-    $this->response->headers->set('Feature-Policy', $header);
++    $this->response->headers->set('Permissions-Policy', $header);
+   }
+ 
+ }

@@ -1,0 +1,13 @@
+diff --git a/src/StackMiddleware/RemoveHttpHeadersMiddleware.php b/src/StackMiddleware/RemoveHttpHeadersMiddleware.php
+index 049409cd1..784dc9231 100644
+--- a/src/StackMiddleware/RemoveHttpHeadersMiddleware.php
++++ b/src/StackMiddleware/RemoveHttpHeadersMiddleware.php
+@@ -54,6 +54,8 @@ public function handle(Request $request, $type = self::MAIN_REQUEST, $catch = TR
+       foreach ($headersToRemove as $httpHeaderToRemove) {
+         $response->headers->remove($httpHeaderToRemove);
+       }
++      // Add back header after deplucation removal.
++      $response->headers->set('X-Content-Type-Options', 'nosniff', FALSE);
+     }
+ 
+     return $response;

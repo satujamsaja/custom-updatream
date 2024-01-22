@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.item_entity.field_color
+    - og_accelerator.item_entity_type.background_colour
+  module:
+    - color_field
+id: item_entity.background_colour.field_color
+field_name: field_color
+entity_type: item_entity
+bundle: background_colour
+label: Color
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

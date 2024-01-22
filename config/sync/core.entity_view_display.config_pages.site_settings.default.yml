@@ -1,0 +1,168 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.site_settings
+    - field.field.config_pages.site_settings.field_article_landing_page
+    - field.field.config_pages.site_settings.field_article_listing_no_result
+    - field.field.config_pages.site_settings.field_contactlabel
+    - field.field.config_pages.site_settings.field_default_share_image
+    - field.field.config_pages.site_settings.field_emaillabel
+    - field.field.config_pages.site_settings.field_gtm_snippet
+    - field.field.config_pages.site_settings.field_gtm_snippet_2
+    - field.field.config_pages.site_settings.field_mobilelabel
+    - field.field.config_pages.site_settings.field_organization_email
+    - field.field.config_pages.site_settings.field_organization_name
+    - field.field.config_pages.site_settings.field_organization_telephone
+    - field.field.config_pages.site_settings.field_organization_url
+    - field.field.config_pages.site_settings.field_phonelabel
+    - field.field.config_pages.site_settings.field_search_no_result_message
+    - field.field.config_pages.site_settings.field_search_placholder
+    - field.field.config_pages.site_settings.field_search_result_heading_text
+    - field.field.config_pages.site_settings.field_timeline_next_label
+    - field.field.config_pages.site_settings.field_timeline_previous_label
+    - field.field.config_pages.site_settings.field_weblabel
+id: config_pages.site_settings.default
+targetEntityType: config_pages
+bundle: site_settings
+mode: default
+content:
+  field_article_landing_page:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_article_listing_no_result:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_contactlabel:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_default_share_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_emaillabel:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_gtm_snippet:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_gtm_snippet_2:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_mobilelabel:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_organization_email:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_organization_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_organization_telephone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_organization_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_phonelabel:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_search_no_result_message:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_search_placholder:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_search_result_heading_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_weblabel:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+hidden:
+  field_timeline_next_label: true
+  field_timeline_previous_label: true
+  search_api_excerpt: true

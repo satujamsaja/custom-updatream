@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - imageapi_optimize_tinypng
+name: tinypng
+label: TinyPNG
+processors:
+  70ca3eef-8106-4233-902e-84f4a63cf5ff:
+    uuid: 70ca3eef-8106-4233-902e-84f4a63cf5ff
+    id: tinypng
+    weight: 1
+    data:
+      api_key: ynjHV7tnpHrvGh4s13MfWdbJCYx75HqM

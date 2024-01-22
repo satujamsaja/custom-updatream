@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  contextual:
+    mode: '0'
+id: accelerator_teaser_link_back_side
+label: 'Accelerator: Teaser link (Back side)'
+type: twig
+description: 'Custom formatter for rendering content link in ''teaser'' display mode (back side card).'
+field_types:
+  - integer
+data: "{% for item in items %}\r\n  <a href=\"{{ path('entity.node.canonical', {'node': item.value}) }}\" class=\"btn btn-primary\">{{ 'Read more'|t }}</a>\r\n{% endfor %}"

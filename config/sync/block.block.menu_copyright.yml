@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.copyright
+  module:
+    - system
+  theme:
+    - dna_whitesite
+third_party_settings:
+  block_class:
+    classes: null
+id: menu_copyright
+theme: dna_whitesite
+region: footer_bottom
+weight: 0
+provider: null
+plugin: 'system_menu_block:copyright'
+settings:
+  id: 'system_menu_block:copyright'
+  label: Copyright
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

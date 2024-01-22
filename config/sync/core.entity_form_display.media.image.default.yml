@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_media_image
+    - field.field.media.image.field_media_in_library
+    - image.style.thumbnail
+    - media.type.image
+  module:
+    - image_widget_crop
+id: media.image.default
+targetEntityType: media
+bundle: image
+mode: default
+content:
+  directory:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_media_image:
+    type: image_widget_crop
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+      crop_preview_image_style: crop_thumbnail
+      crop_list:
+        - portrait_9_16
+        - panoramic_4_1
+        - square_1_1
+        - standard_16_9
+        - standard_4_3
+      crop_types_required: {  }
+      warn_multiple_usages: false
+      show_crop_area: true
+      show_default_crop: true
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_in_library: true
+  name: true
+  path: true
+  status: true
+  uid: true

@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.standard_16_9
+  module:
+    - crop
+    - image_effects
+name: hero_mobile
+label: 'Hero: Mobile (Height: 350, 16:9)'
+effects:
+  815d27fd-2e71-4189-a758-805b9a59440c:
+    uuid: 815d27fd-2e71-4189-a758-805b9a59440c
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: standard_16_9
+      automatic_crop_provider: null
+  4fcd7052-dcc2-492f-ad75-eeb068c7ed05:
+    uuid: 4fcd7052-dcc2-492f-ad75-eeb068c7ed05
+    id: image_scale
+    weight: 2
+    data:
+      width: null
+      height: 350
+      upscale: false
+  0bdeb451-9423-4f3f-946d-92aadfd7b865:
+    uuid: 0bdeb451-9423-4f3f-946d-92aadfd7b865
+    id: image_effects_strip_metadata
+    weight: 3
+    data: {  }
+pipeline: __default__

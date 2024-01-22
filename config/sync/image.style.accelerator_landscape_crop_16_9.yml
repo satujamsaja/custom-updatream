@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.standard_16_9
+  module:
+    - crop
+name: accelerator_landscape_crop_16_9
+label: 'Accelerator: Landscape crop 16:9'
+effects:
+  f8568617-1dd6-441a-9900-44dce0c05a8a:
+    uuid: f8568617-1dd6-441a-9900-44dce0c05a8a
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: standard_16_9
+      automatic_crop_provider: null
+pipeline: __default__

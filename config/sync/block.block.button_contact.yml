@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - og_accelerator
+  theme:
+    - dna_whitesite
+third_party_settings:
+  block_class:
+    classes: contact-block
+id: button_contact
+theme: dna_whitesite
+region: navbar_right
+weight: 0
+provider: null
+plugin: og_accelerator
+settings:
+  id: og_accelerator
+  label: 'Contact block'
+  label_display: '0'
+  provider: og_accelerator
+  button_label: Contact
+  href_attribute: 'https://www.ogilvy.com.au/Contact-Us'
+visibility: {  }

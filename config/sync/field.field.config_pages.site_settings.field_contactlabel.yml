@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.site_settings
+    - field.storage.config_pages.field_contactlabel
+id: config_pages.site_settings.field_contactlabel
+field_name: field_contactlabel
+entity_type: config_pages
+bundle: site_settings
+label: Contact
+description: 'Default label for <em>Contact</em> in <em>Contact Card</em> '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

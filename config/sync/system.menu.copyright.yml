@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: copyright
+label: Copyright
+description: 'Other information links (e.g. Copyright, Terms & Condition)'
+locked: false
