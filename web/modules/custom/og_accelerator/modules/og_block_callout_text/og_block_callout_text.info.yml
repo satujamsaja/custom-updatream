@@ -1,0 +1,8 @@
+name: 'Block: Callout Text'
+description: 'Renders a callout text block.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - drupal:block_content

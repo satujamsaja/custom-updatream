@@ -1,0 +1,97 @@
+{# {{ attach_library('og_accelerator/contact') }} #}
+
+{% set classes = [
+  'block',
+  'block--contact',
+  'accelerator-block',
+  'accelerator-block--contact',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {# Prepare variables #}
+    {% set contact_address = content.field_contact_address[0] %}
+    {% set contact_addresslines = [] %}
+    {% set contact_addressline1 = content.field_contact_address[0].address_line1['#value'] %}
+    {% set contact_addressline2 = content.field_contact_address[0].address_line2['#value'] %}
+    {% if contact_addressline1|length %}
+      {% set contact_addresslines = contact_addresslines|merge([contact_addressline1])  %}
+    {% endif %}
+    {% if contact_addressline2|length %}
+      {% set contact_addresslines = contact_addresslines|merge([contact_addressline2])  %}
+    {% endif %}
+    {% set contact_image = content.field_contact_image[0]['#media'].field_media_image %}
+    {% set image_style = 'accelerator_square_crop' %}
+    {% set contact_title = content.field_contact_title[0] %}
+    {% set contact_name = content.field_contact_name[0] %}
+    {% set contact_phone = content.field_contact_phone[0] %}
+    {% set contact_mobile = content.field_contact_mobile[0] %}
+    {% set contact_email = content.field_contact_email[0] %}
+    {% set contact_web = content.field_contact_web[0] %}
+
+
+    <h3 property="name" class="contact-title" tabindex="-1" data-bs-toggle="collapse" data-bs-target="#{{ block_id }}-content" aria-controls="Card collapse" aria-expanded="false" aria-label="Toggle navigation">
+        {{ contact_title }}
+    </h3>
+    <div class="contact-content collapse" id="{{ block_id }}-content">
+      {# Image#}
+      {% if contact_image %}
+      {{ drupal_image(contact_image.entity.fileuri, image_style, { alt: contact_image.alt, class: 'contact-image' }) }}
+      {% endif %}
+      {# Address #}
+      {% if contact_addresslines %}
+      <p property="address" typeof="PostalAddress">
+        <span property="streetAddress">{{ contact_addresslines|join('\n')|nl2br }}</span>
+        <span property="addressLocality">{{ contact_address.locality['#value'] }}</span>
+        <span property="addressRegion">{{ contact_address.administrative_area['#value'] }}</span>
+        <span property="postalCode">{{ contact_address.postal_code['#value'] }}</span>
+        <span property="addressCountry">{{ contact_address.country['#value'] }}</span>
+      </p>
+      {% endif %}
+
+      {% if contact_name %}
+
+      <p property="employee" typeof="Person">
+        {{ content.field_contact_name['#title'] ~ ': ' }} <span property="name" class="contact-name">{{ contact_name }}</span>
+      </p>
+      {% endif %}
+
+      {% if contact_phone %}
+      <p class="contact-phone">
+        {{ content.field_contact_phone['#title'] ~ ': ' }}
+        <a property="telephone" data-type="phone" data-content="{{ contact_phone }}" href="tel:{{ contact_phone }}">{{ contact_phone }}</a>
+      </p>
+      {% endif %}
+
+      {% if contact_mobile %}
+      <p class="contact-mobile">
+        {{ content.field_contact_mobile['#title'] ~ ': ' }}
+        <a property="telephone" data-type="mobile" data-content="{{ contact_mobile }}" href="tel:{{ contact_mobile }}">{{ contact_mobile }}</a>
+      </p>
+      {% endif %}
+
+      {% if contact_email %}
+      <p class="contact-email">
+        {{ content.field_contact_email['#title'] ~ ': '}}
+        <a property="email" data-content="{{ contact_email }}" href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+      </p>
+      {% endif %}
+
+      {% if contact_web %}
+      <p class="contact-web">
+        {{ content.field_contact_web['#title'] ~ ': '}}
+        {{ contact_web }}
+      </p>
+      {% endif %}
+
+      {# https://www.drupal.org/node/2660002 #}
+      {{ {'#cache': content['#cache']}|render }}
+    </div>
+
+  {% endblock %}
+
+</div>

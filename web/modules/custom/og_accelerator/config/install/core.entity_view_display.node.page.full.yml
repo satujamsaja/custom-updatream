@@ -1,0 +1,185 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.base_field_override.node.page.title
+    - core.entity_view_mode.node.full
+    - field.field.node.page.body
+    - field.field.node.page.field_content_category
+    - field.field.node.page.field_content_image
+    - field.field.node.page.field_exclude_site_search
+    - field.field.node.page.field_exclude_sitemap
+    - field.field.node.page.field_hidden_page
+    - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_schemaorg_address
+    - field.field.node.page.layout_builder__layout
+    - field.field.node.page.layout_builder__translation
+    - node.type.page
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - system
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: bootstrap_one_column
+        layout_settings:
+          context_mapping: {  }
+          title_tag: h3
+          title_row_class: row
+          title_column_class: col-md-12
+          visibility_role:
+            anonymous: anonymous
+            authenticated: authenticated
+          background_colour: '-none-'
+          background_repeat: '-none-'
+          background_size: '-none-'
+          container_width: container
+          container_margin_top: '-none-'
+          container_margin_right: '-none-'
+          container_margin_bottom: '-none-'
+          container_margin_left: '-none-'
+          row_bootstrap: row
+          row_block_spacing: '-none-'
+          column_width: _100
+          background_image_position: '-none-'
+          title:
+            title_display: 0
+            title_text: ''
+            title_tag: h3
+            title_row_class: row
+            title_column_class: col-md-12
+            title_class: ''
+          visibility:
+            visibility_role:
+              anonymous: anonymous
+              authenticated: authenticated
+              administrator: 0
+              content_editor: 0
+              content_manager: 0
+          background:
+            background_colour: '-none-'
+            background_dark: 0
+            background_repeat: '-none-'
+            background_image: null
+            background_image_position: '-none-'
+            background_size: '-none-'
+            background_class: ''
+          container:
+            container_width: container
+            container_margin_top: '-none-'
+            container_margin_right: '-none-'
+            container_margin_bottom: pb-3
+            container_margin_left: '-none-'
+            container_class: ''
+          row:
+            row_bootstrap: row
+            row_gutters: 0
+            row_block_spacing: '-none-'
+            row_class: ''
+          column:
+            column_width: _100
+            main_column_class: ''
+        components:
+          ac5af92f-5088-4a17-92ee-44cc5ed12a7d:
+            uuid: ac5af92f-5088-4a17-92ee-44cc5ed12a7d
+            region: main
+            configuration:
+              id: 'field_block:node:page:title'
+              label: 'Page Title'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: 'custom_formatters:accelerator_main_page_title'
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          7d95fa0f-ed08-4d0c-8b34-aec5625159f0:
+            uuid: 7d95fa0f-ed08-4d0c-8b34-aec5625159f0
+            region: main
+            configuration:
+              id: system_breadcrumb_block
+              label: 'Breadcrumbs by admin at Fri, 08/05/2022 - 13:59'
+              label_display: ''
+              provider: system
+              context_mapping: {  }
+            weight: 4
+            additional: {  }
+          9afbc47d-da8a-42bc-8e09-f5e3252de392:
+            uuid: 9afbc47d-da8a-42bc-8e09-f5e3252de392
+            region: main
+            configuration:
+              id: 'field_block:node:page:body'
+              label: 'Body by admin at Mon, 08/15/2022 - 16:15'
+              label_display: ''
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: field
+                    destination:
+                      field: ''
+                      custom: ''
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 6
+            additional: {  }
+        third_party_settings: {  }
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      allowed_layouts:
+        - bootstrap_one_column
+        - bootstrap_two_column
+        - bootstrap_three_column
+        - bootstrap_four_column
+      blacklisted_blocks: {  }
+      whitelisted_blocks: {  }
+id: node.page.full
+targetEntityType: node
+bundle: page
+mode: full
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  content_moderation_control: true
+  field_content_category: true
+  field_content_image: true
+  field_exclude_site_search: true
+  field_exclude_sitemap: true
+  field_hidden_page: true
+  field_meta_tags: true
+  field_schemaorg_address: true
+  langcode: true
+  layout_builder__layout: true
+  layout_builder__translation: true
+  links: true
+  search_api_excerpt: true

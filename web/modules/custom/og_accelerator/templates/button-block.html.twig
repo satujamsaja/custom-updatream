@@ -1,0 +1,39 @@
+{#
+/**
+* @file
+* Template for a Block component.
+*
+* Available config:
+* - html_tag: The HTML tag for the block.
+* - utility_classes: An array of utility classes.
+*/
+#}
+{{ attach_library('og_accelerator/button_block') }}
+{% set classes = [
+  'nav-item'
+]|merge(utility_classes ? utility_classes : []) %}
+{% set html_tag = html_tag ?: 'li' %}
+{% if html_tag %}
+	<{{html_tag}}{{attributes|without('id').addClass(classes)}}>
+{% endif %}
+	{{ data.title_prefix }}
+	{% if data.label_display %}
+		{% block label %}
+			<h2{{data.title_attributes}}>{{ data.label }}</h2>
+		{% endblock %}
+	{% endif %}
+	{{ data.title_suffix }}
+	{% block content %}
+		{% if data %}
+			{% if '/node/' in data.href_attribute %}
+				<a class="nav-link p-0" href="{{ drupal_url(data.href_attribute) }}">
+      {% else %}
+        <a class="nav-link p-0" href="{{ data.href_attribute }}">
+        {% endif %}
+        <span class="btn button-block rounded-0">{{ data.button_label ?: data.label }}</span>
+      </a>
+		{% endif %}
+	{% endblock %}
+{% if html_tag %}
+  </{{html_tag}}>
+{% endif %}

@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_anchor_nav.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_anchor_nav_theme() {
+  return [
+    'block__og_block__anchor_navigation' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'anchor-nav',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function og_block_anchor_nav_preprocess_block__og_block__anchor_navigation(&$variables) {
+  $variables['#attached']['library'][] = 'og_block_anchor_nav/anchor_nav';
+}

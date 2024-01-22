@@ -1,0 +1,14 @@
+{% embed '@dna_whitesite/block/block.twig' with {
+	html_tag: 'div',
+} %}
+	{% block content %}
+		{% include '@dna_whitesite/navbar/navbar-brand.twig' with {
+			text: site_name,
+			image: site_logo,
+			width: 124,
+			height: 49,
+			path: theme_link,
+			alt: theme_logo_alt,
+		} %}
+	{% endblock %}
+{% endembed %}

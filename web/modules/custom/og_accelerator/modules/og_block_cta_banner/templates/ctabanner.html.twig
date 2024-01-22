@@ -1,0 +1,59 @@
+{{ attach_library('og_block_cta_banner/cta_banner') }}
+
+{% set classes = [
+  'block',
+  'block--cta-banner',
+  'accelerator-block',
+  'accelerator-block--cta-banner ',
+  cta_image_url ? '' : 'no-image',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% set cta_link_attrs = create_attribute({
+    'class': ['cta-banner-block', cta_alignment_class_name, cta_height_class_name],
+    'aria-label': cta_link_text,
+    'href': cta_link_url
+  }) %}
+
+  {% set cta_img_attrs_mobile = create_attribute({
+    'class': ['cta-banner-background bg-lazy d-block d-md-none', cta_image_alignment_class_name],
+    'data-bgimage': cta_image_url_mobile
+  }) %}
+
+  {%
+    set cta_img_attrs_desktop = create_attribute({
+    'class': ['cta-banner-background bg-lazy d-none d-md-block', cta_image_alignment_class_name],
+    'data-bgimage': cta_image_url_desktop
+  }) %}
+
+  {% block content %}
+    <a{{ cta_link_attrs }}>
+      <div{{ cta_img_attrs_mobile }}></div>
+      <div{{ cta_img_attrs_desktop }}></div>
+      <div class="container px-2">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="cta-banner-content-wrapper">
+                      {% if cta_signpost_label %}
+                        <p class="title-tag">{{ cta_signpost_label }}</p>
+                      {% endif %}
+                      <h2>{{ cta_title }}</h2>
+                      {% if cta_summary %}
+                        <h3>{{ cta_summary }}</h3>
+                      {% endif %}
+                      <div class="cta-banner-arrow"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </a>
+  {% endblock %}
+
+</div>

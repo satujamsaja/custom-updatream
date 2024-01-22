@@ -1,0 +1,13 @@
+name: 'Block: Overlapping Story'
+description: 'Renders overlapping story block for storytelling.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - crop:crop
+  - drupal:block_content
+  - drupal:media
+  - drupal:options
+  - drupal:text
+  - entity_browser:entity_browser

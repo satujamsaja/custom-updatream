@@ -1,0 +1,31 @@
+// Base
+// -----------------------------------------------------------------------------
+@import "bootstrap";
+
+// Library
+// ----------------------------------------------------------------------------
+@import "~slick-carousel/slick/slick";
+@import "lib/slick-theme";
+
+// Accelerator
+// ----------------------------------------------------------------------------
+@import "base/accelerator";
+@import "base/animation";
+
+// Layout
+// -----------------------------------------------------------------------------
+@import "layout/page.header";
+@import "layout/page.content";
+@import "layout/page.footer";
+
+// Component
+// -----------------------------------------------------------------------------
+// @import "../../contrib/radix/src/components/navbar/navbar";
+// @import "../../contrib/radix/src/components/forum/forum";
+// @import "../../contrib/radix/src/components/offcanvas/offcanvas";
+
+// Other
+// -----------------------------------------------------------------------------
+@import "content/node.page";
+@import "content/node.article";
+

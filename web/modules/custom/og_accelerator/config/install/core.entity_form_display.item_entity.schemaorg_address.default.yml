@@ -1,0 +1,83 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.item_entity.schemaorg_address.field_city_suburb
+    - field.field.item_entity.schemaorg_address.field_country
+    - field.field.item_entity.schemaorg_address.field_office_email
+    - field.field.item_entity.schemaorg_address.field_office_telephone
+    - field.field.item_entity.schemaorg_address.field_post_code
+    - field.field.item_entity.schemaorg_address.field_state
+    - field.field.item_entity.schemaorg_address.field_street_address
+    - og_accelerator.item_entity_type.schemaorg_address
+id: item_entity.schemaorg_address.default
+targetEntityType: item_entity
+bundle: schemaorg_address
+mode: default
+content:
+  field_city_suburb:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_country:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_office_email:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_office_telephone:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_post_code:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_state:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_street_address:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden:
+  name: true
+  user_id: true

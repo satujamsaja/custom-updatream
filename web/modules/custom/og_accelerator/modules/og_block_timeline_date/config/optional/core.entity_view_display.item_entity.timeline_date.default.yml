@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.item_entity.timeline_date.field_date
+    - field.field.item_entity.timeline_date.field_description
+    - field.field.item_entity.timeline_date.field_image
+    - field.field.item_entity.timeline_date.field_link
+    - field.field.item_entity.timeline_date.field_quote
+    - field.field.item_entity.timeline_date.field_timeline_date_category
+    - field.field.item_entity.timeline_date.field_timeline_date_type
+    - field.field.item_entity.timeline_date.field_title
+    - og_accelerator.item_entity_type.timeline_date
+  module:
+    - datetime
+    - link
+    - user
+id: item_entity.timeline_date.default
+targetEntityType: item_entity
+bundle: timeline_date
+mode: default
+content:
+  field_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_description:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_quote:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_timeline_date_category:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_timeline_date_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  user_id:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

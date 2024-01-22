@@ -1,0 +1,7 @@
+contact:
+  version: '1.0.0'
+  css:
+    theme:
+      css/contact.css: {}
+  js:
+    js/contact.js: {}

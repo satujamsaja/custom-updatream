@@ -1,0 +1,35 @@
+.block--contact .contact-title {
+  text-decoration: none;
+}
+.block--contact .contact-image {
+  margin-bottom: 2rem;
+}
+.block--contact .contact-name {
+  display: inline-block;
+}
+.block--contact .contact-title:focus,
+.block--contact .contact-title:hover {
+  text-decoration: none;
+}
+.block--contact .contact-title  {
+  background-repeat: no-repeat;
+  background-position: right;
+  color: #000;
+  font-size: 1.5rem;
+}
+.block--contact .contact-title[aria-expanded="false"] {
+  background-image: url("../images/chevron-down-black.svg");
+}
+@media (min-width: 768px) {
+  .block--contact .contact-title[aria-expanded="false"]  {
+    background-image: none;
+  }
+}
+.block--contact .contact-title[aria-expanded="true"]  {
+  background-image: url("../images/chevron-up-black.svg");
+}
+@media (min-width: 768px) {
+  .block--contact .contact-title[aria-expanded="true"]  {
+    background-image: none;
+  }
+}

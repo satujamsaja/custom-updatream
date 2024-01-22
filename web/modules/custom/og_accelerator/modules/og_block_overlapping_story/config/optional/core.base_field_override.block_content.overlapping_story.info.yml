@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.overlapping_story
+id: block_content.overlapping_story.info
+field_name: info
+entity_type: block_content
+bundle: overlapping_story
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

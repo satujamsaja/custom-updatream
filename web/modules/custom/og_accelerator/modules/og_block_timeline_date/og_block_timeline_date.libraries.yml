@@ -1,0 +1,7 @@
+timeline_date:
+  version: '1.0.0'
+  css:
+    theme:
+      css/timeline-date.css: {}
+  js:
+    js/timeline-date.js: {}

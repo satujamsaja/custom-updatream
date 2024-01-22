@@ -1,0 +1,83 @@
+.block-overlap{
+  position:relative
+}
+.block-overlap .media-image-video{
+  min-height:600px;
+  position:relative
+}
+@media (max-width:1199.98px){
+  .block-overlap .media-image-video{
+      min-height:542px
+  }
+}
+@media (max-width:767.98px){
+  .block-overlap .media-image-video{
+      aspect-ratio:16/9;
+      margin-bottom:0;
+      min-height:auto;
+      width:100%;
+  }
+  @supports not (aspect-ratio: 16 / 9) {
+    .block-overlap .media-image-video{
+      height: 225px;
+      margin-bottom: 10px;
+    }
+  }
+}
+.block-overlap .media-image-video img{
+  bottom:-60px;
+  margin-bottom:1.5rem;
+  -o-object-fit:cover;
+  object-fit:cover;
+  position:absolute
+}
+@media (max-width:767.98px){
+  .block-overlap .media-image-video img{
+      bottom:auto;
+      height:100%;
+      position:static;
+      width:100%
+  }
+}
+.block-overlap .rich-text-block{
+  padding-bottom:3rem;
+  padding-top: 6rem;
+}
+@media (max-width:767.98px){
+  .block-overlap .rich-text-block{
+    padding-top: 3rem;
+  }
+}
+.article--full .article-title .bg-dark .block-overlap .h1,.article--full .article-title .bg-dark .block-overlap h1,.article--full .article-title .text-white .block-overlap .h1,.article--full .article-title .text-white .block-overlap h1,.bg-dark .block-overlap .article--full .article-title .h1,.bg-dark .block-overlap .article--full .article-title h1,.bg-dark .block-overlap .h2,.bg-dark .block-overlap h2,.text-white .block-overlap .article--full .article-title .h1,.text-white .block-overlap .article--full .article-title h1,.text-white .block-overlap .h2,.text-white .block-overlap h2{
+  font-size:5.2rem;
+  font-weight:300;
+  line-height:6rem;
+  margin-bottom:3rem
+}
+.article--full .article-title .bg-dark .block-overlap .h1 .accent,.article--full .article-title .bg-dark .block-overlap h1 .accent,.article--full .article-title .text-white .block-overlap .h1 .accent,.article--full .article-title .text-white .block-overlap h1 .accent,.bg-dark .block-overlap .article--full .article-title .h1 .accent,.bg-dark .block-overlap .article--full .article-title h1 .accent,.bg-dark .block-overlap .h2 .accent,.bg-dark .block-overlap h2 .accent,.text-white .block-overlap .article--full .article-title .h1 .accent,.text-white .block-overlap .article--full .article-title h1 .accent,.text-white .block-overlap .h2 .accent,.text-white .block-overlap h2 .accent{
+  color:#b30404
+}
+@media (max-width:991.98px){
+  .article--full .article-title .bg-dark .block-overlap .h1,.article--full .article-title .bg-dark .block-overlap h1,.article--full .article-title .text-white .block-overlap .h1,.article--full .article-title .text-white .block-overlap h1,.bg-dark .block-overlap .article--full .article-title .h1,.bg-dark .block-overlap .article--full .article-title h1,.bg-dark .block-overlap .h2,.bg-dark .block-overlap h2,.text-white .block-overlap .article--full .article-title .h1,.text-white .block-overlap .article--full .article-title h1,.text-white .block-overlap .h2,.text-white .block-overlap h2{
+      font-size:3.6rem;
+      line-height:4.2rem
+  }
+}
+.bg-dark .block-overlap p,.text-white .block-overlap p{
+  font-size:1.6rem;
+  font-weight:400;
+  line-height:2.2rem;
+  margin-bottom:2.2rem
+}
+.bg-dark .block-overlap .title-tag,.text-white .block-overlap .title-tag{
+  margin-bottom:3rem;
+  text-transform:uppercase
+}
+.bg-dark .block-overlap .button-wrapper .btn,.text-white .block-overlap .button-wrapper .btn{
+  color:#fff;
+  padding:11px 30px
+}
+.block-overlap.no-overlap .media-image-video img{
+  bottom: 0 !important;
+  position:relative !important;
+}

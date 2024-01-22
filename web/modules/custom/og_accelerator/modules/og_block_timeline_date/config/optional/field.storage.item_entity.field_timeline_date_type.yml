@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - og_accelerator
+    - taxonomy
+id: item_entity.field_timeline_date_type
+field_name: field_timeline_date_type
+entity_type: item_entity
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

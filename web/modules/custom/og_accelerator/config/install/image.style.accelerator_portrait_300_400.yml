@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.portrait_9_16
+  module:
+    - crop
+name: accelerator_portrait_300_400
+label: 'Accelerator: Portrait (300x400)'
+effects:
+  dc6f5f47-032a-40bb-96ac-e9a7a7835035:
+    uuid: dc6f5f47-032a-40bb-96ac-e9a7a7835035
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: portrait_9_16
+      automatic_crop_provider: null
+  0acb9901-6c16-47c4-b4ac-742e0b8e6c52:
+    uuid: 0acb9901-6c16-47c4-b4ac-742e0b8e6c52
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 300
+      height: 400
+      anchor: center-center
+pipeline: __default__

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.item_entity.field_open_by_default
+    - og_accelerator.item_entity_type.accordion_item
+id: item_entity.accordion_item.field_open_by_default
+field_name: field_open_by_default
+entity_type: item_entity
+bundle: accordion_item
+label: 'Open by default'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

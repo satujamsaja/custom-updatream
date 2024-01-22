@@ -1,0 +1,82 @@
+.related-article-wrapper,
+.related-article-wrapper .related-article-heading {
+  margin-bottom: 20px;
+}
+
+.related-article-wrapper .related-article-items .view-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item {
+  padding: 1em;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item:first-child {
+  padding-left: 0;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item:last-child {
+  padding-right: 0;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a {
+  color: #000;
+  display: block;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a:hover {
+  text-decoration: none;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a .related-image {
+  overflow: hidden;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a .related-image img {
+  object-fit: cover;
+  max-height: 340px;
+  transform: scale(1);
+  transition: all .5s ease-in-out;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a:hover .related-image img,
+.related-article-wrapper .related-article-items .view-content .related-article-item a:focus .related-image img {
+  transform: scale(1.1);
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a .related-title {
+  margin-top: 20px;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a .related-date p {
+  line-height: 1.5;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a:hover .related-title h3 {
+  color: #eb3f43;
+}
+
+.related-article-wrapper .related-article-items .view-content .related-article-item a .related-summary p {
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+@media (max-width:991.98px) {
+  .related-article-wrapper .related-article-items .view-content {
+    grid-template-columns: 1fr;
+  }
+
+  .related-article-wrapper .related-article-items .view-content .related-article-item:first-child {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+
+  .related-article-wrapper .related-article-items .view-content .related-article-item:last-child {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+}

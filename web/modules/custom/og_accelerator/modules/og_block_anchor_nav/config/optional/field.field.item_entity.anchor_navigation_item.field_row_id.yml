@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.item_entity.field_row_id
+    - og_accelerator.item_entity_type.anchor_navigation_item
+id: item_entity.anchor_navigation_item.field_row_id
+field_name: field_row_id
+entity_type: item_entity
+bundle: anchor_navigation_item
+label: 'Row ID'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

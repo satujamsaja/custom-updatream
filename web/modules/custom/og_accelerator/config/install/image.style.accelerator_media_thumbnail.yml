@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+name: accelerator_media_thumbnail
+label: 'Accelerator: Media thumbnail'
+effects:
+  d4702531-89a1-4d00-b73b-1db8b7193d40:
+    uuid: d4702531-89a1-4d00-b73b-1db8b7193d40
+    id: image_effects_scale_and_smart_crop
+    weight: 3
+    data:
+      width: '500'
+      height: '500'
+      upscale: false
+      simulate: false
+      algorithm: entropy_slice

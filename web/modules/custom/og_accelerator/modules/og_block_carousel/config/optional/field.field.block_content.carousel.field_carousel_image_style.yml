@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel
+    - field.storage.block_content.field_carousel_image_style
+id: block_content.carousel.field_carousel_image_style
+field_name: field_carousel_image_style
+entity_type: block_content
+bundle: carousel
+label: 'Image style'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:image_style'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

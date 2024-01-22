@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.extra_wide_landscape
+label: 'Extra wide landscape'
+targetEntityType: media
+cache: true

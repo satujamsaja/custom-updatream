@@ -1,0 +1,64 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.featured_card
+    - field.field.block_content.featured_card.field_feature_summary_text
+    - field.field.block_content.featured_card.field_featured_image
+    - field.field.block_content.featured_card.field_featured_link
+    - field.field.block_content.featured_card.field_featured_style
+    - field.field.block_content.featured_card.field_featured_title
+  module:
+    - link
+    - options
+id: block_content.featured_card.default
+targetEntityType: block_content
+bundle: featured_card
+mode: default
+content:
+  field_feature_summary_text:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_featured_link:
+    type: link_separate
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_featured_style:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_featured_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

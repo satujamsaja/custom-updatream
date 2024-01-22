@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: anchor_navigation
+label: 'Anchor Navigation'
+revision: 1
+description: 'Generates a list of anchor navigation in the layout builder.'

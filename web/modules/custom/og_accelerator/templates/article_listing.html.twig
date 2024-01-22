@@ -1,0 +1,28 @@
+{{ attach_library('og_accelerator/article_listing') }}
+{% set classes = [
+'block',
+'block--article-listing',
+'accelerator-block',
+'accelerator-block--article-listing',
+] %}
+<div {{ attributes.addClass(classes) }}>
+	{{ title_prefix }}
+	{% if label %}
+		<h3{{title_attributes}}>{{ label }}</h3>
+	{% endif %}
+	{{ title_suffix }}
+	{% block content %}
+		{% set article_title_raw = content.field_article_title[0]['#context']['value'] %}
+		{% set article_heading_raw = content.field_article_heading[0]['#context']['value'] %}
+		<div class="article-card--listing" data-title="{{ article_title_raw }}" data-heading="{{ article_heading_raw }}" data-url="{{ categories_json }}">
+			{% if article_heading_raw %}
+				<div class="row">
+					<div class="col-lg-12" id='filter-article-heading'>
+						<h1>{{ article_heading }}</h1>
+					</div>
+				</div>
+			{% endif %}
+			{{ drupal_view('article_listing', 'block_article_listing', allowed_categories) }}
+		</div>
+	{% endblock %}
+</div>

@@ -1,0 +1,7 @@
+callout_text:
+  version: '1.0.0'
+  css:
+    theme:
+      css/callout-text.css: {}
+  js:
+    js/callout-text.js: {}

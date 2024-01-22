@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.timeline
+    - field.field.block_content.timeline.field_orientation
+    - field.field.block_content.timeline.field_timeline_date_filter
+    - field.field.block_content.timeline.field_timeline_date_type
+    - field.field.block_content.timeline.field_timeline_title
+  module:
+    - options
+id: block_content.timeline.default
+targetEntityType: block_content
+bundle: timeline
+mode: default
+content:
+  field_orientation:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_timeline_date_filter:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_timeline_date_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_timeline_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

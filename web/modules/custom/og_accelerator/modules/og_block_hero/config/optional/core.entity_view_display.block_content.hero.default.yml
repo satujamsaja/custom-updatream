@@ -1,0 +1,90 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero
+    - field.field.block_content.hero.field_display_page_title
+    - field.field.block_content.hero.field_large_background_image
+    - field.field.block_content.hero.field_large_image_alignment
+    - field.field.block_content.hero.field_mobile_background_image
+    - field.field.block_content.hero.field_mobile_image_alignment
+    - field.field.block_content.hero.field_wide_background_image
+    - field.field.block_content.hero.field_wide_image_alignment
+    - field.field.block_content.hero.field_youtube_url
+  module:
+    - options
+id: block_content.hero.default
+targetEntityType: block_content
+bundle: hero
+mode: default
+content:
+  field_display_page_title:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_large_background_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_large_image_alignment:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_mobile_background_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_mobile_image_alignment:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_wide_background_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_wide_image_alignment:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_youtube_url:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

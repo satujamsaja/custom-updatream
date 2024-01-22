@@ -1,0 +1,7 @@
+cta_banner:
+  version: '1.0.0'
+  css:
+    theme:
+      css/cta_banner.css: {}
+  js:
+    js/cta_banner.js: {}

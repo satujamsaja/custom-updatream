@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: site_settings
+label: 'Site Settings'
+token: false
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: /admin/content/site-settings
+  weight: 0
+  description: ''

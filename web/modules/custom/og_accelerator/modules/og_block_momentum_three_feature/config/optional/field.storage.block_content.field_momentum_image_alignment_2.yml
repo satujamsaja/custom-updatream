@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - options
+id: block_content.field_momentum_image_alignment_2
+field_name: field_momentum_image_alignment_2
+entity_type: block_content
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: cc
+      label: Centre
+    -
+      value: tl
+      label: 'Top Left'
+    -
+      value: tc
+      label: 'Top Middle'
+    -
+      value: tr
+      label: 'Top Right'
+    -
+      value: cl
+      label: 'Middle Left'
+    -
+      value: cr
+      label: 'Middle Right'
+    -
+      value: bl
+      label: 'Bottom Left'
+    -
+      value: bc
+      label: 'Bottom Middle'
+    -
+      value: br
+      label: 'Bottom Right'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

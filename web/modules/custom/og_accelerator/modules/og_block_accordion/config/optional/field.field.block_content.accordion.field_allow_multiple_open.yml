@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.accordion
+    - field.storage.block_content.field_allow_multiple_open
+id: block_content.accordion.field_allow_multiple_open
+field_name: field_allow_multiple_open
+entity_type: block_content
+bundle: accordion
+label: 'Allow multiple section to open'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

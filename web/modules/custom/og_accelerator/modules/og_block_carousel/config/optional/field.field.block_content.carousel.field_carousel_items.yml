@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel
+    - field.storage.block_content.field_carousel_items
+    - og_accelerator.item_entity_type.image_text_link
+  module:
+    - entity_reference_revisions
+id: block_content.carousel.field_carousel_items
+field_name: field_carousel_items
+entity_type: block_content
+bundle: carousel
+label: Items
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:item_entity'
+  handler_settings:
+    target_bundles:
+      image_text_link: image_text_link
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions

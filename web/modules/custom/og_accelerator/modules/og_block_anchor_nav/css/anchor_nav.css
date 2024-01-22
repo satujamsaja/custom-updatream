@@ -1,0 +1,32 @@
+.anchor-nav li a {
+  position: relative;
+  padding: 1rem 0;
+  margin: 0 1rem;
+  color: #000;
+}
+
+.anchor-nav li a:hover,
+.anchor-nav li a:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.anchor-nav li a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  margin: 5px 0 0;
+  transition: all .1s ease-in-out;
+  transition-duration: .5s;
+  opacity: 0;
+  background-color: #545659;
+  left: 0;
+  z-index: 3;
+}
+
+.anchor-nav li:hover a:after {
+  opacity: 1;
+  width: 100%;
+}

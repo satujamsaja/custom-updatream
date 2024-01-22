@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.timeline
+    - field.storage.block_content.field_timeline_date_type
+    - taxonomy.vocabulary.timeline_date_type
+id: block_content.timeline.field_timeline_date_type
+field_name: field_timeline_date_type
+entity_type: block_content
+bundle: timeline
+label: 'Timeline date type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      timeline_date_type: timeline_date_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

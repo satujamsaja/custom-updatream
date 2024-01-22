@@ -1,0 +1,26 @@
+{{ attach_library('og_block_callout_text/callout_text') }}
+
+{% set classes = [
+  'block',
+  'block--callout-text',
+  'accelerator-block',
+  'accelerator-callout--text',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+  {% if data.blockquote %}
+      <blockquote class="call-out-text">
+        <p>{{ data.blockquote }}</p>
+      </blockquote>
+    {% endif %}
+  {% endblock %}
+</div>
+
+

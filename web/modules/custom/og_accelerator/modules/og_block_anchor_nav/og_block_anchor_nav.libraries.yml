@@ -1,0 +1,7 @@
+anchor_nav:
+  version: '1.0.0'
+  css:
+    theme:
+      css/anchor_nav.css: {}
+  js:
+    js/anchor_nav.js: {}

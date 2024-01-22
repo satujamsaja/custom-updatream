@@ -1,0 +1,65 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel
+    - field.field.block_content.carousel.field_autoplay
+    - field.field.block_content.carousel.field_autoplay_interval
+    - field.field.block_content.carousel.field_carousel_image_style
+    - field.field.block_content.carousel.field_carousel_items
+    - field.field.block_content.carousel.field_enable_pause_btn
+  module:
+    - entity_reference_revisions
+id: block_content.carousel.default
+targetEntityType: block_content
+bundle: carousel
+mode: default
+content:
+  field_autoplay:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_autoplay_interval:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_carousel_image_style:
+    type: entity_reference_entity_id
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_carousel_items:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_enable_pause_btn:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

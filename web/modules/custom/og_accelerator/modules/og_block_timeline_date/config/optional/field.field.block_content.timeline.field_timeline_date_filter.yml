@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.timeline
+    - field.storage.block_content.field_timeline_date_filter
+    - taxonomy.vocabulary.timeline_date_category
+id: block_content.timeline.field_timeline_date_filter
+field_name: field_timeline_date_filter
+entity_type: block_content
+bundle: timeline
+label: 'Timeline date year filter'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      timeline_date_category: timeline_date_category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

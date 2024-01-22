@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.item_entity.field_class
+    - og_accelerator.item_entity_type.background_colour
+id: item_entity.background_colour.field_class
+field_name: field_class
+entity_type: item_entity
+bundle: background_colour
+label: Class
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

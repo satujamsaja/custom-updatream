@@ -1,0 +1,115 @@
+.icon-card-block{
+    margin:0 auto;
+    max-width:320px;
+    padding:15px;
+    position:relative
+  }
+  @media (max-width:991.98px){
+      .icon-card-block{
+          padding-bottom:25px
+      }
+  }
+  .icon-card-block .icon-card-icon-wrapper{
+      margin-bottom:10px;
+      text-align:center
+  }
+  .icon-card-block .icon-card-icon-wrapper .material-icons,.icon-card-block .icon-card-icon-wrapper .material-icons-outlined,.icon-card-block .icon-card-icon-wrapper .material-icons-round{
+      color:#42628b;
+      font-size:54px;
+      line-height:54px
+  }
+  .icon-card-block .icon-card-title-wrapper{
+      margin:0 auto;
+      max-width:285px;
+      text-align:center
+  }
+  .icon-card-block .icon-card-title-wrapper .h3,.icon-card-block .icon-card-title-wrapper h3{
+      color:#42628b;
+      margin-bottom:1rem;
+      font-weight:400;
+      transition:all .3s ease
+  }
+  .icon-card-block .icon-card-title-wrapper .h3 .accent,.icon-card-block .icon-card-title-wrapper h3 .accent{
+      color:#42628b;
+      font-weight:600;
+      transition:all .3s ease
+  }
+  .icon-card-block .icon-card-description-wrapper{
+      margin:0 auto;
+      max-width:295px;
+      text-align:center
+  }
+  .icon-card-block .icon-card-arrow{
+      background-image:url('../images/arrow-right.svg');
+      background-position:100%;
+      background-repeat:no-repeat;
+      background-size:contain;
+      filter:brightness(0) invert(10%) sepia(38%) saturate(1476%) hue-rotate(180deg) brightness(90%) contrast(97%);
+      height:15px;
+      margin:0 auto;
+      transition:all .3s ease;
+      transition-delay:0s;
+      width:22px
+  }
+  .icon-card-block .icon-card-arrow:hover{
+    cursor: pointer;
+    transform: translateX(10px);
+  }
+  @media (max-width:767.98px){
+      .icon-card-block .icon-card-arrow{
+          margin-top:-10px
+      }
+  }
+  .icon-card-block .icon-card-link{
+      height:100%;
+      left:0;
+      position:absolute;
+      top:0;
+      width:100%;
+      z-index: 99
+  }
+  .icon-card-block .icon-card-link:focus~.icon-card-arrow,.icon-card-block .icon-card-link:hover~.icon-card-arrow{
+      width:40px
+  }
+  .icon-card-block .icon-card-link:focus~.icon-card-title-wrapper .h3,.icon-card-block .icon-card-link:focus~.icon-card-title-wrapper .h3 .accent,.icon-card-block .icon-card-link:focus~.icon-card-title-wrapper h3,.icon-card-block .icon-card-link:focus~.icon-card-title-wrapper h3 .accent,.icon-card-block .icon-card-link:hover~.icon-card-title-wrapper .h3,.icon-card-block .icon-card-link:hover~.icon-card-title-wrapper .h3 .accent,.icon-card-block .icon-card-link:hover~.icon-card-title-wrapper h3,.icon-card-block .icon-card-link:hover~.icon-card-title-wrapper h3 .accent{
+      color:#eb3f43
+  }
+  .icon-card-block.statistic{
+      border-top:4px solid #eb3f43
+  }
+  .icon-card-block.statistic .icon-card-icon-wrapper{
+      margin-top:20px
+  }
+  .icon-card-block.statistic .icon-card-title-wrapper .h3,.icon-card-block.statistic .icon-card-title-wrapper h3{
+      color:inherit;
+      font-size:4.7rem;
+      line-height:5rem;
+      font-weight: 400;
+      margin-bottom:2.5rem
+  }
+  @media (max-width:991.98px){
+      .icon-card-block.statistic .icon-card-title-wrapper .h3,.icon-card-block.statistic .icon-card-title-wrapper h3{
+          font-size:4.7rem;
+          line-height:6rem
+      }
+  }
+  .icon-card-block.statistic .icon-card-title-wrapper .h3 .accent,.icon-card-block.statistic .icon-card-title-wrapper h3 .accent{
+      color:inherit;
+      font-size:5rem;
+      font-weight:600
+  }
+  @media (max-width:991.98px){
+      .icon-card-block.statistic .icon-card-title-wrapper .h3 .accent,.icon-card-block.statistic .icon-card-title-wrapper h3 .accent{
+          font-size:4.5rem;
+          line-height:6rem
+      }
+  }
+  .bg-dark .icon-card-block .icon-card-icon-wrapper .material-icons,.text-white .icon-card-block .icon-card-icon-wrapper .material-icons{
+      color:#acc1dc
+  }
+  .bg-dark .icon-card-block .icon-card-title-wrapper .h3,.bg-dark .icon-card-block .icon-card-title-wrapper .h3 .accent,.bg-dark .icon-card-block .icon-card-title-wrapper h3,.bg-dark .icon-card-block .icon-card-title-wrapper h3 .accent,.text-white .icon-card-block .icon-card-title-wrapper .h3,.text-white .icon-card-block .icon-card-title-wrapper .h3 .accent,.text-white .icon-card-block .icon-card-title-wrapper h3,.text-white .icon-card-block .icon-card-title-wrapper h3 .accent{
+      color:#fff
+  }
+  .bg-dark .icon-card-block .icon-card-arrow,.text-white .icon-card-block .icon-card-arrow{
+      filter:brightness(1000%)
+  }

@@ -1,0 +1,85 @@
+blockquote,q{
+    color:#0d1e36;
+    display:inline-block;
+    font-size:2.4rem;
+    font-weight:300;
+    line-height:3.6rem;
+    margin:0 0 3rem;
+    padding:30px 0 0 !important;
+    width:auto !important;
+}
+@media (max-width:575.98px){
+    blockquote,q{
+        font-size:2.4rem;
+        line-height:3rem
+    }
+}
+blockquote p,q p{
+    color:#0d1e36;
+    font-size:2.4rem;
+    font-weight:300;
+    line-height:3.6rem
+}
+@media (max-width:575.98px){
+    blockquote p,q p{
+        font-size:2.4rem;
+        line-height:3rem
+    }
+}
+blockquote p:before,q p:before{
+    content:"“"
+}
+blockquote p:after,q p:after{
+    content:"”"
+}
+blockquote.call-out-text,q.call-out-text{
+    color:#000;
+    font-size:3.6rem;
+    line-height:6rem
+}
+@media (max-width:575.98px){
+    blockquote.call-out-text,q.call-out-text{
+        font-size:3rem;
+        line-height:3.4rem
+    }
+}
+blockquote.call-out-text p,q.call-out-text p{
+    color:#000;
+    font-size:3.6rem;
+    line-height:6rem;
+    margin-bottom:0;
+    max-width:950px
+}
+@media (max-width:991.98px){
+    blockquote.call-out-text p,q.call-out-text p{
+        font-size:2.8rem;
+        line-height:3.4rem;
+    }
+}
+@media (max-width:575.98px){
+    blockquote.call-out-text p,q.call-out-text p{
+        font-size:3rem;
+        line-height:3.4rem
+    }
+}
+blockquote.call-out-text p:after,blockquote.call-out-text p:before,q.call-out-text p:after,q.call-out-text p:before{
+    content:""
+}
+blockquote.call-out-text p .accent,q.call-out-text p .accent{
+    color:#b30404
+}
+blockquote:before,q:before{
+    background-color:#eb3f43;
+    background-image:none !important;
+    height:4px !important;
+    left:0;
+    position:absolute;
+    top:0;
+    width:84px !important;
+}
+.bg-dark blockquote.call-out-text p,.text-white blockquote.call-out-text p{
+    color:#fff
+}
+.og_bg__black blockquote.call-out-text p{
+    color: #fff;
+}

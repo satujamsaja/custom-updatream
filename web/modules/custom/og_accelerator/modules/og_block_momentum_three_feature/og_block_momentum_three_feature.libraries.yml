@@ -1,0 +1,7 @@
+momentum:
+  version: '1.0.0'
+  css:
+    theme:
+      css/momentum.css: {}
+  js:
+    js/momentum.js: {}

@@ -1,0 +1,16 @@
+{% embed '@dna_whitesite/block/block.twig' with {
+  html_tag: 'li',
+} %}
+	{% block content %}
+		<ul>
+			<li class="nav-search-form__wrapper">
+				<div class="collapse" id="nav-search-form-container">{{ content }}</div>
+			</li>
+			<li class="nav-search-icon__wrapper">
+				<a tabindex="-1" class="toggle-search-form" href="#" aria-label="Search" aria-expanded="false" data-target="#nav-search-form-container">
+					<button class="nav-search-icon" aria-label="Open the search box"></button>
+				</a>
+			</li>
+		</ul>
+	{% endblock %}
+{% endembed %}

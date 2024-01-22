@@ -1,0 +1,13 @@
+name: 'Block: Contact Card'
+description: 'Renders a contact card block.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - address:address
+  - drupal:block_content
+  - drupal:link
+  - drupal:media
+  - drupal:media_library
+  - media_library_edit:media_library_edit

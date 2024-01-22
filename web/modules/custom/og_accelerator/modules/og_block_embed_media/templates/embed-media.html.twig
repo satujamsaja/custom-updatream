@@ -1,0 +1,66 @@
+{{ attach_library('og_block_embed_media/figure') }}
+
+{% set classes = [
+  'block',
+  'block--embed-media',
+  'accelerator-block',
+  'accelerator-block--embed-media ',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+    {% set title = content.field_video_title[0]['#context'].value %}
+    {% set image = content.field_image[0]['#media'].field_media_image %}
+
+    {% if content.field_video[0]['#media'].field_media_oembed_video.value %}
+
+      {# render image+video WITH play button #}
+      <div class="media-image-video">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal-{{ block_id }}" aria-label="Play {{ title }} video">
+          <i class="play-icon"></i>
+          {% if image %}
+            {{ drupal_image(image.entity.fileuri, image_style, { alt: image.alt,  class: 'img-fluid', width: image.0.width, height: image.0.height }) }}
+          {% endif %}
+        </a>
+      </div>
+
+      {# Modal Video #}
+      <div class="modal fade modal-video" id="videoModal-{{ block_id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="videoModalLabel-{{ block_id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content border-0"> 
+            <div class="modal-header border-0">
+              <button id="close-modal-media" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close video player"></button>
+            </div>
+            <div class="modal-body">
+              <div class="ratio ratio-16x9">
+                <iframe src="{{ embed_video }}" title="{{ title }}" allow="autoplay" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </div>  
+          <span tabindex="0" onfocus="document.getElementById('close-modal-media').focus();"></span>
+          </div>
+        </div>
+      </div>
+      {# End Modal Video #}
+
+    {% else %}
+
+      {# render image WITHOUT play button #}
+      <div class="media-image-video">
+        {# render WITHOUT play button #}
+        {% if image %}
+          {{ drupal_image(image.entity.fileuri, image_style, { alt: image.alt,  class: 'img-fluid', width: image.0.width, height: image.0.height }) }}
+        {% endif %}
+      </div>
+
+    {% endif %}
+
+  {% endblock %}
+
+</div>

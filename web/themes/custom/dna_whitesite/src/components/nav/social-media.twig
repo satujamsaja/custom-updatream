@@ -1,0 +1,55 @@
+{#
+/**
+* @file
+* Template for a Nav component.
+*
+* Available config:
+* - alignment: left | right | center | vertical.
+* - style: tabs | pills
+* - fill: fill | justify
+* - utility_classes: An array of utility classes.
+*/
+#}
+{% import _self as menus %}
+{% if alignment == 'right' %}
+	{% set alignment = 'justify-content-end' %}
+{% elseif alignment == 'center' %}
+	{% set alignment = 'justify-content-center' %}
+{% elseif alignment == 'vertical' %}
+	{% set alignment = 'flex-column' %}
+{% else %}
+	{% set alignment = '' %}
+{% endif %}
+{% set style = style ? 'nav-' ~ style : '' %}
+{% set fill = fill ? 'nav-' ~ fill : '' %}
+{% set nav_classes = [ 'nav', 'justify-content-start', 'justify-content-md-end', style, alignment, fill]|merge(utility_classes ? utility_classes : []) %}
+{% if items %}
+	<div class="col-md-3 py-2">
+		<ul{{attributes.addClass(nav_classes)}}>
+			{% block items %}
+				{% for item in items %}
+					{% set nav_item_classes = [
+						'nav-item',
+						item.in_active_trail ? 'active',
+						item.is_expanded and item.below ? 'dropdown has-megamenu'
+					] %}
+					{% set nav_link_classes = ['nav-link', 'px-1'] %}
+					{% if item.url.options.attributes.class is iterable %}
+						{% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+					{% elseif item.url.options.attributes.class %}
+						{% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+					{% endif %}
+					{% set remove_class = ['navbar-text'] %}
+					{{ item.attributes.removeClass(remove_class)}}
+					<li{{item.attributes.addClass(nav_item_classes)}}>
+						{% set nav_link_attribute = create_attribute(item.url.getOption('attributes'))
+										.setAttribute('href', item.url.toString()) %}
+						<a{{nav_link_attribute.addClass(nav_link_classes)}}>
+							{{ item.entity.field_social_media_icon.entity.field_media_image|view }}
+						</a>
+					</li>
+				{% endfor %}
+			{% endblock %}
+		</ul>
+	</div>
+{% endif %}

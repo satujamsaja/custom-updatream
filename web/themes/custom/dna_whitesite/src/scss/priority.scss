@@ -1,0 +1,49 @@
+$is_priority: true;
+$exclude_desktop: false;
+
+#toolbar-administration {
+  opacity: 0;
+}
+
+// Base (priority)
+// -----------------------------------------------------------------------------
+@import "bootstrap-priority";
+
+.sr-only:not(.skip-to-main) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+div > * {
+  vertical-align: middle;
+}
+
+body:not(.area--admin) {
+  .container.display-tabs:not(.ready) {
+  }
+
+  .tab__placeholders {
+    height: 61px;
+    margin-bottom: 20px;
+
+    @media (max-width: 991px) {
+      height: 50px;
+    }
+
+    & + div {
+      .section-title {
+        display: none;
+      }
+    }
+  }
+}
+
+// Accelerator (priority)
+// -----------------------------------------------------------------------------
+@import "base/accelerator-priority";

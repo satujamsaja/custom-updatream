@@ -1,0 +1,186 @@
+.layout-builder__region {
+  padding-bottom: 5px;
+}
+
+/** Set button width accordingly */
+#drupal-off-canvas
+  .layout-builder-configure-section
+  input[type="submit"].button--primary {
+  width: auto;
+}
+
+/** Increase font-size */
+#drupal-off-canvas .layout-selection li a,
+#drupal-off-canvas .layout-builder-configure-section .form-control {
+  font-size: 1.3rem;
+}
+
+/** Adjust spacing and font-size */
+#drupal-off-canvas .layout-builder-configure-section label {
+  margin: 0 0 15px 0;
+  display: inline-block;
+  font-size: 1.5rem;
+}
+
+.js-off-canvas-dialog-open .ui-widget.ui-dialog.ui-dialog-off-canvas {
+  width: 25vw !important;
+}
+
+.toolbar-fixed .sticky-top #mainNav.navbar-shrink {
+  /* padding-top: 39px; */
+  padding-top: 0px;
+}
+.toolbar-fixed.toolbar-tray-open .sticky-top #mainNav.navbar-shrink {
+  /* padding-top: 79px; */
+  padding-top: 0px;
+}
+
+body.toolbar-tray-open {
+  padding-top: 79px !important;
+}
+
+body .sticky-top {
+  top: 39px;
+}
+body.toolbar-tray-open .sticky-top {
+  top: 80px;
+}
+
+/* add margin right to error element to fix overlapping border (OGIDRUHEA-191) */
+.form-element.error {
+  margin-right: 10px;
+}
+
+/* fix overlapping moderation button */
+.ui-dialog-off-canvas #drupal-off-canvas .moderation-sidebar-link {
+  box-sizing: border-box;
+  border-radius: 0px !important;
+  padding: 10px 16px !important;
+}
+
+#layout-builder .layout-builder__link--add {
+  padding: 0.75rem 3rem !important;
+  background-position: 8px center;
+}
+
+/* Fix font size */
+#drupal-off-canvas summary,
+#drupal-off-canvas-wrapper input,
+#drupal-off-canvas-wrapper textarea,
+.js-off-canvas-dialog-open .ui-widget.ui-dialog.ui-dialog-off-canvas,
+.js-off-canvas-dialog-open
+  .ui-widget.ui-dialog.ui-dialog-off-canvas
+  .ui-dialog-title {
+  font-size: 1.5rem !important;
+}
+
+/* style remove edit button media */
+.media-library-item__remove {
+  background-color: white !important;
+  border-radius: 20px !important;
+}
+.media-library-item__attributes {
+  padding: 2px !important;
+  width: 100%;
+  background-color: transparent !important; 
+  bottom: 0.4rem !important;
+}
+#drupal-modal
+  .media-library-view
+  .media-library-views-form__rows
+  .media-library-item--grid
+  .media-library-item__preview {
+  background-color: transparent;
+}
+#drupal-modal .media-library-view .media-library-views-form__rows .media-library-item--grid{
+  overflow: hidden;
+}
+#drupal-modal.ui-dialog-content .media-library-content{
+  padding: 1rem;
+}
+.layout-builder-discard-changes.confirmation.needs-validation{
+  padding: 3rem;
+}
+
+/* adjust field title font size edit article label */
+.fieldset__label {
+  font-size: 16px;
+}
+.entity-meta__header .form-item {
+  font-size: 18px;
+}
+.claro-details__summary--accordion-item {
+  font-size: 18px;
+}
+.textfield_counter_counter {
+  padding-top: 8px;
+  font-size: 14px;
+}
+.form-item {
+  font-size: 16px;
+}
+
+/* style form action layout builder */
+.form-actions {
+  display: block !important;
+}
+
+#drupal-off-canvas-wrapper *:focus {
+  outline: none;
+}
+#drupal-off-canvas .layout-builder-configure-section .form-control {
+  display: block;
+  padding-right: 18px;
+  width: 100%;
+}
+#drupal-off-canvas-wrapper .description {
+  font-size: 1.2rem;
+}
+#drupal-off-canvas-wrapper .card-body {
+  padding: 1rem !important;
+}
+#drupal-off-canvas details {
+  padding: 0 27px;
+}
+
+#drupal-modal .media-library-view--widget .views-exposed-form .js-form-wrapper.form-wrapper {
+  display: flex;
+  align-items: center;
+}
+.media-library-view--widget .view-filters .js-form-item { 
+  margin-inline: 0 0.6rem;
+}
+.ui-dialog .media-library-view--widget label,
+.ui-dialog .media-library-add-form__input-wrapper label{
+  font-size: 14.224px;
+}
+.ui-dialog #views-exposed-form-media-library-widget select{
+  font-size: 14px;
+  padding: 11px 31px 10px 15px;
+  line-height: 1.5;
+}
+.ui-dialog #views-exposed-form-media-library-widget .form-item{
+  padding-bottom: 0px;
+}
+.ui-dialog #views-exposed-form-media-library-widget .js-form-type-textfield input{
+  height: 43px;
+} 
+.ui-dialog #views-exposed-form-media-library-widget .btn-primary{
+  height: 43px;
+  margin-top: 15px;
+}
+.media-library-item__attributes .media-library-item__name{
+  font-size: 14px;  
+}
+#drupal-modal .media-library-view .view-header .views-display-link-widget{
+  font-size: 15px;
+}
+#drupal-modal .media-library-view .view-header .views-display-link-widget_table{
+  font-size: 15px;
+} 
+.pagination .page-item .page-link{
+  font-size: 15px;
+}
+.ui-dialog .ui-dialog-buttonpane button{
+  font-size: 15px;
+}

@@ -1,0 +1,20 @@
+<ul{{create_attribute({'class':['dropdown-menu','dropdown-single-list'],'aria-labelledby':id})}}>
+	{% for item in items %}
+		{% set nav_link_classes = [item.in_active_trail ? 'active'] %}
+		{% if item.url.options.attributes.class is iterable %}
+			{% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+		{% elseif item.url.options.attributes.class %}
+			{% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+		{% endif %}
+		{% if item.title != '---' %}
+			<li>
+				{% if item.url.toString is empty and item.entity.field_menu_main_rich_text %}
+					<h2 class="h3">{{ item.title }}</h2>
+					{{ item.entity.field_menu_main_rich_text|view }}
+				{% else %}
+					{{ link(item.title, item.url, { 'class': nav_link_classes }) }}
+				{% endif %}
+			</li>
+		{% endif %}
+	{% endfor %}
+</ul>

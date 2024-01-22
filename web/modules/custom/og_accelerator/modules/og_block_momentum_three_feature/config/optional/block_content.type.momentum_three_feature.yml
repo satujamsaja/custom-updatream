@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: momentum_three_feature
+label: 'Momentum Three Feature'
+revision: 1
+description: 'Renders 3-feature-cards block stylised for the homepage and key landing pages.'

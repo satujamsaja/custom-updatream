@@ -1,0 +1,11 @@
+og_jsonapi_image_style.image_style:
+  path: '/jsonapi/image/{media}/{image_style}'
+  defaults:
+    _controller: '\Drupal\og_jsonapi_image_style\Controller\ImageStyleController::content'
+    image_style: ''
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      media:
+        type: entity:media

@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: carousel
+label: Carousel
+revision: 1
+description: 'Renders an image carousel block.'

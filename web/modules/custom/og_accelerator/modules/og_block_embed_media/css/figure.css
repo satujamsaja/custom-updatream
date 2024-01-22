@@ -1,0 +1,40 @@
+.embed-media-caption {
+  caption-side: bottom;
+  display: table-caption;
+  max-width: none;
+}
+
+.media-image-video a {
+  position: relative;
+}
+
+.media-image-video i.play-icon {
+  width: 66px;
+  height: 66px;
+  display: inline-block;
+  background: url("../images/play.svg") no-repeat;
+  background-color: rgba(75,75,75,.6);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border: 1px solid #fff;
+  border-radius: 50%;
+  transition: all .5s ease-in-out;
+}
+
+.media-image-video i.play-icon:hover {
+  background-color: #000;
+  width: 70px;
+  height: 70px;
+}
+
+.modal.modal-video {
+  z-index: 1200;
+}
+
+@media (max-width: 767.98px) {
+  .media-image-video {
+    margin-bottom: 3rem;
+  }
+}

@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.panoramic_4_1
+  module:
+    - crop
+    - image_effects
+name: hero_desktop
+label: 'Hero: Desktop (Height: 600, 4:1)'
+effects:
+  6f262212-fde3-4766-9aa5-0a89f342e033:
+    uuid: 6f262212-fde3-4766-9aa5-0a89f342e033
+    id: crop_crop
+    weight: -10
+    data:
+      crop_type: panoramic_4_1
+      automatic_crop_provider: null
+  e416f786-74d5-4292-a7c6-9dc66e1ef69c:
+    uuid: e416f786-74d5-4292-a7c6-9dc66e1ef69c
+    id: image_effects_strip_metadata
+    weight: -8
+    data: {  }
+  502973c1-0005-4dfc-8032-0b4210deec29:
+    uuid: 502973c1-0005-4dfc-8032-0b4210deec29
+    id: image_scale
+    weight: -9
+    data:
+      width: null
+      height: 600
+      upscale: false
+pipeline: __default__

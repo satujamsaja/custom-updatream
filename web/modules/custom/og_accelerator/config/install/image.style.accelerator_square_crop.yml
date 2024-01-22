@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.square_1_1
+  module:
+    - crop
+name: accelerator_square_crop
+label: 'Accelerator: Square crop'
+effects:
+  cdf6d52d-b36b-4cdc-8a1c-5ea1395c75fc:
+    uuid: cdf6d52d-b36b-4cdc-8a1c-5ea1395c75fc
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: square_1_1

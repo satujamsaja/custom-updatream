@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.callout_text
+    - field.storage.block_content.field_callout_text_accent
+id: block_content.callout_text.field_callout_text_accent
+field_name: field_callout_text_accent
+entity_type: block_content
+bundle: callout_text
+label: 'Callout text accent'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

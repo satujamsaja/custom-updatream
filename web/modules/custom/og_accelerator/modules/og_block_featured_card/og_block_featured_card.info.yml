@@ -1,0 +1,13 @@
+name: 'Block: Featured Card'
+description: 'Renders a featured card block.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - drupal:block_content
+  - drupal:link
+  - drupal:media
+  - drupal:media_library
+  - drupal:options
+  - media_library_edit:media_library_edit

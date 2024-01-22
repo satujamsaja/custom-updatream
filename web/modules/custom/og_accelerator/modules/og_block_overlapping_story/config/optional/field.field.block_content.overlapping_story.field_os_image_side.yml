@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.overlapping_story
+    - field.storage.block_content.field_os_image_side
+  module:
+    - options
+id: block_content.overlapping_story.field_os_image_side
+field_name: field_os_image_side
+entity_type: block_content
+bundle: overlapping_story
+label: 'Image side'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

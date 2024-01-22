@@ -1,0 +1,59 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and
+// $modal-content-box-shadow-xs.
+
+// To customize
+// - Copy paste the variable from node_modules/bootstrap/scss/_variables.scss.
+// - Change the value and remove the !default flag.
+//
+// e.g.
+// $body-bg: #000;
+// $body-color: $gray-100;
+
+$red: #eb3f43;
+$black: #000000;
+$white: #ffffff;
+$lightgray: #f0f0f0;
+$gray: #a6a6a8;
+$darkborder: #545659;
+$darkred: #b30404;
+
+
+$offwhite: #f0f0f0;
+$lightgrey: #a6a6a8;
+$darkgrey: #545659;
+$darkred: #b30404;
+$lightrose: #fbcece;
+$darkrose: #f58e8f;
+
+
+$midblue: #42628b;
+$lightblue: #acc1dc;
+$midred: #aa1734;
+$lightred: #ff8ea2;
+$navyblue: #0d1e36;
+
+$bgcolor-white: $white;
+$bgcolor-black: $black;
+$bgcolor-red: $red;
+$bgcolor-yellow: #ffff00;
+
+$font-family-sans-serif: "Ogilvy Sans", Arial, sans-serif;
+$h1-font-size: 4.8rem;
+$h2-font-size: 3.6rem;
+$h3-font-size: 2.4rem;
+$font-size-base: 1.6rem;
+
+// change navbar-theme-variables
+$navbar-dark-color: $white;
+$navbar-dark-hover-color: $white;
+
+$font-weight-normal: normal;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+$enable-smooth-scroll: false;

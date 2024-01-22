@@ -1,0 +1,198 @@
+.layout-builder-form {
+  background-color: #FFF;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.80);
+  border: 3px solid #2F91DA;
+  font-size: .8em;
+  left: -620px;
+  padding: 15px 30px 15px 15px;
+  position: fixed;
+  text-align: left;
+  top: 50%;
+  transform: translate(0%, -50%);
+  transition: all 300ms;
+  width: 650px;
+  z-index: 1200;
+}
+
+.layout-builder-form:hover {
+  left: -3px;
+}
+
+.layout-builder-form:before {
+  content: "💾";
+  display: block;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.layout-builder-form .form-check {
+  margin: 0;
+  padding: 0;
+}
+
+.layout-builder-form .form-check input {
+  margin: 0 10px 0 0;
+  position: relative;
+}
+
+.layout-builder-form .form-check label {
+  display: inline-block;
+  font-size: .9em;
+}
+
+.layout-builder__section .layout-builder-block {
+  background-color: transparent;
+  padding: 0;
+}
+
+#drupal-off-canvas .layout-builder-configure-section span.select2-container--default {
+  background-color: white;
+  color: #000;
+  display: block;
+  width: 100% !important;
+}
+
+#drupal-off-canvas .layout-builder-configure-section input[type=text] {
+  background: white;
+  color: black;
+  max-width: 100%;
+  padding: 5px;
+}
+
+#drupal-off-canvas .layout-builder-configure-section span.select2-selection__rendered {
+  background: #fff;
+  display: block;
+  height: 34px;
+  margin-top: 6px;
+  padding: 5px;
+  width: 100%;
+}
+
+.node-page-layout-builder-form input.button[type="submit"] {
+  display: inline-flex;
+  background-image: none;
+  padding-right: 1em;
+}
+
+.node-page-layout-builder-form input.button[type="submit"]:hover {
+  background-image: none;
+}
+
+div#edit-preview-toggle {
+  padding-top: 0.5em;
+}
+
+.ui-widget.ui-widget-content {
+  z-index: 1021;
+}
+
+#drupal-off-canvas input[type="submit"].button--primary {
+  width: 100%;
+  padding: 10px 16px;
+}
+
+#drupal-off-canvas .form-check {
+  padding-left: 0px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  background-image: url("/themes/custom/the_accelerator/assets/images/accelerator/tag-close-white.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-color: white;
+  border: 0px;
+}
+
+.js-media-library-views-form.media-library-views-form .media-library-views-form__rows {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dialog-off-canvas-main-canvas {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
+#drupal-off-canvas input[type="submit"].button--primary {
+  width: 100%;
+}
+
+.related-article-items .view-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.related-article-items .view-content .related-article-item {
+  padding: 1em;
+}
+
+.related-article-items .view-content .related-article-item:first-child {
+  padding-left: 0;
+}
+
+.related-article-items .view-content .related-article-item:last-child {
+  padding-right: 0;
+}
+
+.related-article-items .view-content .related-article-item a {
+  color: #000;
+}
+
+.related-article-items .view-content .related-article-item a .related-image img {
+  max-height: 340px;
+}
+
+.related-article-items .view-content .related-article-item a .related-title {
+  margin-top: 20px;
+}
+
+.related-article-items .view-content .related-article-item a .related-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.form-label {
+  margin-bottom: 0.3rem !important;
+}
+
+.layout-builder-block [tabindex="-1"] {
+  pointer-events: auto;
+}
+
+.ui-menu .ui-menu-item-wrapper {
+  display: block;
+}
+
+.entities-list .item-container>input {
+  display: inline-block !important;
+}
+
+.layout-builder-block .modal-video {
+  display: none;
+}
+
+.media-library-widget-modal .media-library-item--grid {
+  width: 100% !important;
+}
+
+
+#layout-builder .layout-builder__link--configure {
+  font-size: 1.6rem !important;
+}
+
+#drupal-off-canvas .layout-selection li a {
+  text-decoration: none;
+
+}
+
+#drupal-off-canvas .layout-selection li a:focus div, #drupal-off-canvas .layout-selection li a:hover div {
+  text-decoration: underline;
+}

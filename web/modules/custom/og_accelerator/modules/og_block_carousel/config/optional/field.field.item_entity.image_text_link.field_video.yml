@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.item_entity.field_video
+    - media.type.remote_video
+    - og_accelerator.item_entity_type.image_text_link
+id: item_entity.image_text_link.field_video
+field_name: field_video
+entity_type: item_entity
+bundle: image_text_link
+label: Video
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      remote_video: remote_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,27 @@
+{% set classes = [
+  'block',
+  'block--anchor-nav',
+  'accelerator-block',
+  'accelerator-block--anchor-nav',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+   <ul class="anchor-nav nav justify-content-center border-bottom d-none d-md-flex">
+   {% for index in content.field_anchor_navigation_items['#items']|keys %}
+        {% set anchor_nav_item = content.field_anchor_navigation_items[index]['#item_entity'] %}
+        <li class="nav-item">
+          <a class="nav-link" href="#{{ anchor_nav_item.field_row_id.value }}" aria-label="Scroll to {{ anchor_nav_item.label }} section">{{ anchor_nav_item.label }}</a>
+        </li>
+   {% endfor %}
+    </ul>
+  {% endblock %}
+
+</div>

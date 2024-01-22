@@ -1,0 +1,7 @@
+figure:
+  version: '1.0.0'
+  css:
+    theme:
+      css/figure.css: {}
+  js:
+    js/figure.js: {}

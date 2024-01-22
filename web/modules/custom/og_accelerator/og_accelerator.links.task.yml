@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=http://json-schema.org/draft-07/schema#
+
+entity.item_entity.canonical:
+  route_name: entity.item_entity.canonical
+  base_route: entity.item_entity.canonical
+  title: 'View'
+
+entity.item_entity.edit_form:
+  route_name: entity.item_entity.edit_form
+  base_route: entity.item_entity.canonical
+  title: 'Edit'
+
+entity.item_entity.version_history:
+  route_name: entity.item_entity.version_history
+  base_route: entity.item_entity.canonical
+  title: 'Revisions'
+
+entity.item_entity.delete_form:
+  route_name: entity.item_entity.delete_form
+  base_route:  entity.item_entity.canonical
+  title: 'Delete'
+  weight: 10

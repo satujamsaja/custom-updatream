@@ -1,0 +1,6 @@
+name: 'Accelerator JSON: API Image Style'
+description: 'Provide json api for image style, because we need to generate the image style before giving the url'
+package: Accelerator
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0

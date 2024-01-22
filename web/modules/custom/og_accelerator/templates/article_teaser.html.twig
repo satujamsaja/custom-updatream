@@ -1,0 +1,10 @@
+<a href="{{ article_url }}" property="itemListElement" typeof="NewsArticle" class="article-card">
+	<div class="article-card-img">
+		<img src="{{ image_url }}" alt="{{ image_alt }}" class="img-fluid" width="{{ image_width }}" height="{{ image_height }}">
+	</div>
+	<h2 property="name" class="article-card-title">{{ title }}</h2>
+	<p property="datePublished">{{ date }}</p>
+	<div class="article-card-description">
+		<p>{{ summary }}</p>
+	</div>
+</a>

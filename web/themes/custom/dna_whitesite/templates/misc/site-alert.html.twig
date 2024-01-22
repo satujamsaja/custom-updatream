@@ -1,0 +1,11 @@
+{% if alert.severity == 'high' %}
+	{% set class = 'danger' %}
+{% elseif alert.severity == 'medium' %}
+	{% set class = 'warning' %}
+{% else %}
+	{% set class = 'info' %}
+{% endif %}
+<div class="alert alert-{{ class }} alert-dismissible site-alert-item fade show d-none" role="alert" data-alert-id="{{ alert.label|slug }}">
+	{{ alert.message }}
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Dismiss alert message"></button>
+</div>

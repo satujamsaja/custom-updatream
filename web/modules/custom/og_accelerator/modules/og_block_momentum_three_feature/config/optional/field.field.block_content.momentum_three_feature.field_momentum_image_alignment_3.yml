@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.momentum_three_feature
+    - field.storage.block_content.field_momentum_image_alignment_3
+  module:
+    - options
+id: block_content.momentum_three_feature.field_momentum_image_alignment_3
+field_name: field_momentum_image_alignment_3
+entity_type: block_content
+bundle: momentum_three_feature
+label: 'Image alignment'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: cl
+default_value_callback: ''
+settings: {  }
+field_type: list_string

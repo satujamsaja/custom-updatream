@@ -1,0 +1,114 @@
+{% set classes = [
+  'block',
+  'block--featured-card',
+  'accelerator-block',
+  'accelerator-block--featured-card',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+   {% set style = content.field_featured_style[0]['#markup'] %}
+   {% set featured_title = content.field_featured_title[0]['#context']['value'] %}
+   {% set featured_image = content.field_featured_image[0]['#media'].field_media_image %}
+   {% set featured_summary_text = content.field_feature_summary_text[0]['#context']['value'] %}
+   {% set featured_link_title = content.field_featured_link[0]['#title'] %}
+   {% set featured_link_url = content.field_featured_link[0]['#url'] %}
+   {% set featured_link_url_tittle = content.field_featured_link[0]['#url_title'] %}
+   {% if style == 'Style 1' %}
+   {% set image_style = 'accelerator_landscape_crop_16_9' %}
+   {% if featured_link_url and featured_link_title is empty %}
+   <a href="{{ featured_link_url }}" aria-label="Learn more about {{ featured_title }}">
+   {% endif %}
+    <div class="feature-card {{ style|clean_class }}">
+      {% if featured_image %}
+      <div class="feature-card-img">
+        {{ drupal_image(featured_image.entity.fileuri, image_style, { alt: featured_image.alt, class: 'img-fluid' }) }}
+      </div>
+      {% endif %}
+      <div class="feature-card-text">
+        {% if featured_title %}
+        <div class="feature-card-title">
+          <h3>{{ featured_title }}</h3>
+        </div>
+        {% endif %}
+        {% if featured_summary_text %}
+        <div class="feature-card-description">
+          <p>{{ featured_summary_text }}</p>
+        </div>
+        {% endif %}
+        {% if featured_link_url and featured_link_title and featured_link_url_tittle is not empty %}
+        <div class="feature-card-cta">
+          <a href="{{ featured_link_url }}" aria-label="Learn more about {{ featured_title }}">{{ featured_link_title }}</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+   {% if featured_link_url and featured_link_title is empty %}
+   </a>
+   {% endif %}
+   {% endif %}
+   {% if style == 'Style 2' %}
+   {% set image_style = 'accelerator_portrait_4_5' %}
+   {% if featured_link_url and featured_link_title is empty %}
+   <a href="{{ featured_link_url }}" aria-label="Learn more about {{ featured_title }}">
+   {% endif %}
+   <div class="feature-card only-title {{ style|clean_class }}">
+      {% if featured_image %}
+      <div class="feature-card-img">
+        {{ drupal_image(featured_image.entity.fileuri, image_style, { alt: featured_image.alt, class: 'img-fluid' }) }}
+      </div>
+      {% endif %}
+      <div class="feature-card-text">
+        {% if featured_title %}
+        <div class="feature-card-title">
+          <h3>{{ featured_title }}</h3>
+        </div>
+        {% endif %}
+        {% if featured_link_url and featured_link_title and featured_link_url_tittle is not empty %}
+        <div class="feature-card-cta">
+          <a href="{{ featured_link_url }}" aria-label="Learn more about {{ featured_title }}">{{ featured_link_title }}</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+   {% if featured_link_url and featured_link_title is empty %}
+   </a>
+   {% endif %}
+   {% endif %}
+   {% if style == 'Style 3' %}
+   {% set image_style = 'accelerator_landscape_crop_16_9' %}
+   {% if featured_link_url and featured_link_title is empty %}
+   <a href="{{ featured_link_url }}" aria-label="Learn more about {{ featured_title }}">
+   {% endif %}
+   <div class="feature-card only-title {{ style|clean_class }}">
+     {% if featured_image %}
+      <div class="feature-card-img">
+        {{ drupal_image(featured_image.entity.fileuri, image_style, { alt: featured_image.alt, class: 'img-fluid' }) }}
+      </div>
+      {% endif %}
+      <div class="feature-card-text">
+        {% if featured_title %}
+        <div class="feature-card-title">
+          <h3>{{ featured_title }}</h3>
+        </div>
+        {% endif %}
+        {% if featured_link_url and featured_link_title and featured_link_url_tittle is not empty %}
+        <div class="feature-card-cta">
+          <a href="{{ featured_link_url }}" aria-label="Learn more about {{ featured_title }}">{{ featured_link_title }}</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% if featured_link_url and featured_link_title is empty %}
+    </a>
+    {% endif %}
+   {% endif %}
+  {% endblock %}
+</div>

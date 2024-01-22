@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.site_settings
+    - field.storage.config_pages.field_default_share_image
+    - media.type.image
+id: config_pages.site_settings.field_default_share_image
+field_name: field_default_share_image
+entity_type: config_pages
+bundle: site_settings
+label: 'Default share image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

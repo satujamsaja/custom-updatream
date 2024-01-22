@@ -1,0 +1,9 @@
+services:
+  og_accelerator.route_subscriber:
+    class: Drupal\og_accelerator\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+  og_accelerator.twig_extensions:
+    class: Drupal\og_accelerator\HelperTwigExtensions
+    tags:
+      - { name: twig.extension }

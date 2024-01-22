@@ -1,0 +1,9 @@
+{% embed '@dna_whitesite/block/block.twig' with {
+  html_tag: 'li',
+} %}
+  {% block content %}
+    <ul>
+    {{ content }}
+    </ul>
+  {% endblock %}
+{% endembed %}

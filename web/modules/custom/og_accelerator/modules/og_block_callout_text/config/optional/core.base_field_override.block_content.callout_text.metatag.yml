@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.callout_text
+id: block_content.callout_text.metatag
+field_name: metatag
+entity_type: block_content
+bundle: callout_text
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

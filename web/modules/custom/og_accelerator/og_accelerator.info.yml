@@ -1,0 +1,55 @@
+name: 'Accelerator Core'
+description: 'The core module for the Drupal Next Accelerator ecosystem. Includes standard content types, custom entity bundle (Item), and Bootstrap layout.'
+package: Accelerator
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - admin_toolbar:admin_toolbar_search
+  - better_exposed_filters:better_exposed_filters
+  - color_field:color_field
+  - config_pages:config_pages
+  - crop:crop
+  - drupal:block_content
+  - drupal:ckeditor5
+  - drupal:content_moderation
+  - drupal:contextual
+  - drupal:datetime
+  - drupal:editor
+  - drupal:file
+  - drupal:filter
+  - drupal:image
+  - drupal:layout_builder
+  - drupal:link
+  - drupal:media
+  - drupal:media_library
+  - drupal:menu_ui
+  - drupal:node
+  - drupal:path
+  - drupal:system
+  - drupal:taxonomy
+  - drupal:text
+  - drupal:toolbar
+  - drupal:user
+  - drupal:views
+  - entity_browser:entity_browser
+  - field_group:field_group
+  - image_effects:image_effects
+  - image_widget_crop:image_widget_crop
+  - imageapi_optimize_tinypng:imageapi_optimize_tinypng
+  - inline_entity_form:inline_entity_form
+  - layout_builder_restrictions:layout_builder_restrictions
+  - layout_builder_st:layout_builder_st
+  - linkit:linkit
+  - media_directories:media_directories
+  - media_directories:media_directories_ui
+  - media_library_edit:media_library_edit
+  - menu_admin_per_menu:menu_admin_per_menu
+  - metatag:metatag
+  - node_title_help_text:node_title_help_text
+  - search_api:search_api_db
+  - site_alert:site_alert
+  - svg_image:svg_image
+  - views_infinite_scroll:views_infinite_scroll
+  - webform:webform
+  - weight:weight

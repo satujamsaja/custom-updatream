@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  contextual:
+    mode: '0'
+id: accelerator_search_result_title
+label: 'Accelerator: Search result title'
+type: twig
+description: 'Custom formatter for rendering content title in search results.'
+field_types:
+  - string
+data: "{% for item in items %}\r\n  <h3 class=\"pb-1\">{{ item.value }}</h3>\r\n{% endfor %}"

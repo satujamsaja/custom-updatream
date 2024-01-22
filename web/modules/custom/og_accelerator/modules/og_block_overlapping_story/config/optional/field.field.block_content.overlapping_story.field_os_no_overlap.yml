@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.overlapping_story
+    - field.storage.block_content.field_os_no_overlap
+id: block_content.overlapping_story.field_os_no_overlap
+field_name: field_os_no_overlap
+entity_type: block_content
+bundle: overlapping_story
+label: 'No overlap'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

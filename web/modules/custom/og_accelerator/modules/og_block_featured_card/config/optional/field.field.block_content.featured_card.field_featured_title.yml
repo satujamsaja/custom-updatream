@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.featured_card
+    - field.storage.block_content.field_featured_title
+id: block_content.featured_card.field_featured_title
+field_name: field_featured_title
+entity_type: block_content
+bundle: featured_card
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,114 @@
+{% set classes = [
+  'block',
+  'block--carousel',
+  'accelerator-block',
+  'accelerator-block--carousel',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+  
+  {% block content %}
+
+    {% set carousel_image_style = content.field_carousel_image_style[0]['#plain_text'] %}
+    {% if carousel_image_style is empty %}
+      {% set carousel_image_style = content.field_carousel_image_style['#cache']['tags'][0]|replace({'config:image.style.': ''}) %}
+    {% endif %}
+
+    {% if autoplay %}
+      {% if enable_pause_btn %}  
+      <a href="#" class="btn-play sr-only" aria-label="Pause content carousel movement">Pause</a>
+      {% endif %}
+    {% endif %}
+    <p class="sr-only visually-hidden">
+      Carousel: clicking the "Previous" or "Next" button changes the content between the buttons.
+    </p>
+    <div id="{{ block_id }}" class="carousel-slide" data-ride="slide-carousel" data-slick='{{ carousel_settings }}'>
+      {#
+      <ol class="item-entities item-entities-carousel-head carousel-indicators">
+        {% for index in content.field_carousel_items['#items']|keys %}
+          <li data-target="#{{ block_id }}" data-slide-to="{{ index }}" class="{% if index == 0 %}active{% endif %}"></li>
+        {% endfor %}
+      </ol>
+      <div class="item-entities item-entities-carousel-body carousel-inner">
+      #}
+        {% for index in content.field_carousel_items['#items']|keys %}
+          {% set carousel_item = content.field_carousel_items[index]['#item_entity'] %}
+          {% set carousel_image = carousel_item.field_image.entity.field_media_image %}
+          {% set carousel_video = carousel_item.field_video.entity.field_media_oembed_video.value %}
+
+          {# IF NOT VIDEO AND URL IS POPULATED #}
+          {% if carousel_item.field_link[0].url and not carousel_video %}
+            <a href="{{ carousel_item.field_link[0].url }}" aria-label="Learn more about {{ carousel_item.label }}">
+          {% endif %}
+              <div class="carousels-item {% if index == 0 %}active{% endif %}">
+                {% if carousel_image.entity.fileuri %}
+                  {{ drupal_image(carousel_image.entity.fileuri, carousel_image_style, { alt: carousel_image.alt,  class: 'd-block w-100' }) }}
+                {% endif %}
+
+                {% if carousel_video %}
+                  <div class="carousel-play-video-wrapper">
+                    <a href="#" class="carousel-play-video" data-video="{{ carousel_video|embed_video_url }}" data-bs-toggle="modal" data-bs-target="#carouselVideoModal" aria-label="Watch {{ carousel_item.label }} video in a lightbox overlay">
+                      <span class="visually-hidden">Play</span>
+                    </a>
+                  </div>
+                {% endif %}
+
+                <div class="py-2 px-2 carousel-caption rounded bg-dark opacity-4h5">
+                  <h3>{{ carousel_item.label }}</h3>
+                  {# HIDE CAROUSEL TEXT, NOT IN THE ACCEPTANCE CRITERIA OF ACCELERATOR
+                    <div>
+                    {% set carousel_text = {
+                      '#type': 'processed_text',
+                      '#text': carousel_item.field_text.value,
+                      '#format': carousel_item.field_text.format,
+                    } %}
+                    {{ carousel_text }}
+                  </div> #}
+                </div>
+              </div>
+          {# CLOSE TAG OF IF NOT VIDEO AND URL IS POPULATED #}
+          {% if carousel_item.field_link[0].url and not carousel_video %}
+            </a>
+          {% endif %}
+
+        {% endfor %}
+      {#
+      </div>
+      <a class="carousel-control-prev" href="#{{ block_id }}" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#{{ block_id }}" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      #}
+    </div>
+
+    {# Modal Video #}
+    <div class="modal fade modal-video" id="carouselVideoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="videoVideoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content border-0">  
+          <div class="modal-header border-0">
+            <button id="close-modal-video" type="button" class="btn-close carousel-close-video" data-bs-dismiss="modal" aria-label="Close video player"></button>
+          </div>
+          <div class="modal-body">
+            <div class="ratio ratio-16x9">
+              <iframe src="" title="" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>  
+          <span tabindex="0" onfocus="document.getElementById('close-modal-video').focus();"></span>
+        </div>
+      </div>
+    </div>
+    {# End Modal Video #}
+
+  {% endblock %}
+
+</div>

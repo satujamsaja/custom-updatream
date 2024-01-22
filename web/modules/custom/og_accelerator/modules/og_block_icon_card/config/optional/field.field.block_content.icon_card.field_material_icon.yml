@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_card
+    - field.storage.block_content.field_material_icon
+  module:
+    - material_icons
+id: block_content.icon_card.field_material_icon
+field_name: field_material_icon
+entity_type: block_content
+bundle: icon_card
+label: 'Material icon'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: material_icons

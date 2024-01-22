@@ -1,0 +1,849 @@
+<?php
+
+/**
+ * @file
+ * Contains og_accelerator.module.
+ */
+
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Field\FieldFilteredMarkup;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\config_pages\Entity\ConfigPages;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\layout_builder\SectionStorageInterface;
+use Drupal\node\Entity\Node;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+use Drupal\views_infinite_scroll\Plugin\views\pager\InfiniteScroll;
+
+/**
+ * Implements hook_form_alter().
+ */
+function og_accelerator_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  if (in_array($form['#id'], ['node-page-form', 'node-article-form', 'node-page-edit-form', 'node-article-edit-form'])) {
+    $form['#validate'][] = '_og_accelerator_field_body_summary__validate';
+  }
+}
+function og_accelerator_inline_entity_form_entity_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  if ($form['#bundle'] === 'accordion_item') {
+    $form['name']['widget'][0]['value']['#title'] = new TranslatableMarkup('Heading');
+  }
+}
+
+function _og_accelerator_field_body_summary__validate($form, FormStateInterface $form_state)
+{
+  $summary = $form_state->getValue('body')[0]['summary'];
+  $trimmed_summary = trim(preg_replace('/\s+/', ' ', $summary));
+  if (strlen($trimmed_summary) > 180) {
+    $form_state->setErrorByName('body][0][summary', t('The summary must not be greater than 180 characters.'));
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function og_accelerator_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  if ($form['#id'] === 'views-exposed-form-search-page') {
+    _og_accelerator_form_views_exposed_form_search_page_alter($form, $form_state, $form_id);
+  } elseif ($form['#id'] === 'views-exposed-form-article-listing-block-article-listing') {
+    _og_accelerator_form_views_exposed_form_article_listing_block_article_listing_alter($form, $form_state, $form_id);
+  }
+}
+
+function _og_accelerator_form_views_exposed_form_search_page_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $site_settings = ConfigPages::config('site_settings');
+  if (isset($site_settings->field_search_placholder->value) && !empty($site_settings->field_search_placholder->value)) {
+    $form['keywords']['#attributes']['placeholder'] = $site_settings->field_search_placholder->value;
+  }
+  $form['keywords']['#attributes']['aria-label'] = t('Search the website by keyword');
+  $form['keywords']['#attributes']['id'] = 'edit-search-keywords';
+  $form['actions']['submit']['#attributes']['aria-label'] = t('Submit search');
+  $form['actions']['submit']['#attributes']['id'] = 'edit-search-submit';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function og_accelerator_form_layout_builder_add_block_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $block_type = $form['settings']['admin_label']['#plain_text'];
+  $username = \Drupal::currentUser()->getAccountName();
+  $timestamp = \Drupal::time()->getCurrentTime();
+  $date = \Drupal::service('date.formatter')->format($timestamp, 'fallback');
+  $form['settings']['label']['#default_value'] = t('@block_type by @username at @date', [
+    '@block_type' => $block_type,
+    '@username' => $username,
+    '@date' => $date,
+  ]);
+  $form['settings']['label_display']['#default_value'] = FALSE;
+  $form['settings']['label']['#type'] = 'value';
+  $form['settings']['label_display']['#type'] = 'value';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function og_accelerator_form_layout_builder_update_block_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['settings']['label']['#type'] = 'value';
+  $form['settings']['label_display']['#type'] = 'value';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function og_accelerator_form_menu_link_content_main_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['title']['widget'][0]['value']['#description'] = FieldFilteredMarkup::create($form['title']['widget'][0]['value']['#description'] . t(' Use --- for separator.'));
+  $form['link']['widget'][0]['uri']['#description']['#items'][] = t('Use <em>&lt;nolink&gt;</em> to show the Rich Text field.');
+  $form['field_child_item_list_type']['#states'] =  [
+    'visible' => [
+      ':input[name="menu_parent"]' => [
+        'value' => 'main:',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function og_accelerator_theme_suggestions_alter(
+  array &$suggestions,
+  array &$variables,
+  $hook
+) {
+  if ($hook === 'block') {
+    if (isset($variables['elements']['content']['#block_content'])) {
+      /** @var \Drupal\block_content\Entity\BlockContent $block_content */
+      $block_content = $variables['elements']['content']['#block_content'];
+      if ($block_content) {
+        $bundle = str_replace('-', '_', $block_content->bundle());
+        $suggestions[] = 'block__og_block__' . $bundle;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function og_accelerator_preprocess_page(array &$variables)
+{
+  $layout_builder_mode = _og_accelerator_route_layout_builder_mode();
+  if ($layout_builder_mode == 'edit') {
+    $variables['#attached']['library'][] = 'og_accelerator/layout_builder';
+  }
+  $variables['layout_builder_mode'] = $layout_builder_mode;
+  $current_path = \Drupal::service('path.current')->getPath();
+  if ($current_path == '/search') {
+    $site_settings = ConfigPages::config('site_settings');
+    if (isset($site_settings->field_search_no_result_message->value) && !empty($site_settings->field_search_no_result_message->value) && isset($site_settings->field_search_result_heading_text->value) && !empty($site_settings->field_search_result_heading_text->value)) {
+      $variables['#attached']['drupalSettings'] = [
+        'result-message' => [
+          'no-result' => $site_settings->field_search_no_result_message->value,
+          'heading' => $site_settings->field_search_result_heading_text->value,
+        ],
+      ];
+    }
+  }
+}
+function _og_accelerator_route_layout_builder_mode()
+{
+  $route_match = \Drupal::routeMatch();
+  /**
+   * Checking if an instance of SectionStorageInterface is available in the
+   * route parameter. If yes, we're definitely in layout builder editing mode.
+   */
+  $section_storage = $route_match->getParameter('section_storage');
+  if (!empty($section_storage) && $section_storage instanceof SectionStorageInterface) {
+    return 'edit';
+  }
+  /**
+   * Checking if current route has an instance of ContentEntityInterface, has
+   * a full template page, and has layout building view mode enabled.
+   */
+  $parameters = $route_match->getParameters();
+  foreach ($parameters as $name => $object) {
+    if (!is_object($object)) {
+      /**
+       * If the object in the route is a scalar (e.g. entity ID), we might be
+       * dealing with an entity revision ID.
+       */
+      if (\Drupal::entityTypeManager()->hasDefinition($name)) {
+        $object = \Drupal::entityTypeManager()->getStorage($name)->load($object);
+      } else {
+        continue;
+      }
+    }
+    if ($object instanceof ContentEntityInterface && $object->hasLinkTemplate('canonical')) {
+      /**
+       * TODO: Currently we can only assume the layout building view only apply
+       * to an entity with "full" view mode. Find a better way to determine the
+       * view mode name?
+       */
+      $entity_view_mode = $object->getEntityTypeId() . '.' . $object->bundle() . '.full';
+      $view_display = EntityViewDisplay::load($entity_view_mode);
+      if (!empty($view_display)) {
+        $layout_builder_enabled = $view_display->getThirdPartySetting('layout_builder', 'enabled');
+        if ($layout_builder_enabled) {
+          return 'view';
+        }
+      }
+    }
+  }
+  return false;
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function og_accelerator_page_attachments_alter(array &$attachments)
+{
+  if (empty($attachments['#attached']['html_head'])) {
+    return;
+  }
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $addresses = [];
+  $items = [];
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    $siteconfig = ConfigPages::config('site_settings');
+    if ($siteconfig) {
+      $items = array_filter([
+        '@context'  => 'https://schema.org',
+        '@type'     => 'Organization',
+        'url'       => $siteconfig->field_organization_url->value,
+        'name'      => $siteconfig->field_organization_name->value,
+        'telephone' => $siteconfig->field_organization_telephone->value,
+        'email'     => $siteconfig->field_organization_email->value,
+      ]);
+    }
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      if ($node->field_schemaorg_address->count()) {
+        $entity_ids = $node->field_schemaorg_address->getValue();
+        $entity_ids = array_column($entity_ids, 'target_id');
+        $entities = \Drupal::entityTypeManager()->getStorage('item_entity')->loadMultiple($entity_ids);
+        $addresses = array_map(function ($object) {
+          $entity = [
+            '@type'           => 'PostalAddress',
+            'telephone'       => $object->field_office_telephone->value,
+            'email'           => $object->field_office_email->value,
+            'streetAddress'   => $object->field_street_address->value,
+            'addressLocality' => $object->field_city_suburb->value,
+            'addressRegion'   => $object->field_state->value,
+            'postalCode'      => $object->field_post_code->value,
+            'addressCountry'  => $object->field_country->value,
+          ];
+          return array_filter($entity);
+        }, array_values($entities));
+
+        if ($addresses) {
+          $items['address'] = $addresses;
+        }
+      }
+    }
+  }
+  $schema_metatag_manager = \Drupal::service('schema_metatag.schema_metatag_manager');
+  if (count($items) > 0) {
+    $jsonld = $schema_metatag_manager->encodeJsonld($items);
+    if (!empty($jsonld)) {
+      $attachments['#attached']['html_head'][] = [
+        [
+          '#type' => 'html_tag',
+          '#tag' => 'script',
+          '#value' => $jsonld,
+          '#attributes' => ['type' => 'application/ld+json'],
+        ],
+        'schema_metatag',
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_simple_sitemap_links_alter().
+ */
+function og_accelerator_simple_sitemap_links_alter(array &$links, $sitemap_variant)
+{
+  $query = \Drupal::entityQuery('node')->accessCheck(FALSE);
+  $condition = $query->orConditionGroup();
+  $condition->condition('field_hidden_page', 1);
+  $condition->condition('field_exclude_sitemap', 1);
+  $query->condition($condition)->condition('status', 1);
+  $nids = $query->execute();
+  foreach ($links as $key => $link) {
+    if (isset($link['meta']['entity_info']['id']) && in_array($link['meta']['entity_info']['id'], $nids)) {
+      unset($links[$key]);
+    }
+  }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function og_accelerator_token_info()
+{
+  $info = [];
+  $info['types']['og_accelerator'] = [
+    'name' => t('DNA'),
+    'description' => t('Custom tokens provided by Drupal Next Accelerator.'),
+  ];
+  $info['tokens']['og_accelerator']['share_image'] = [
+    'name' => t('Share image'),
+    'description' => t('Display image URL based on page image, or default page image.')
+  ];
+  $info['tokens']['og_accelerator']['title_postfix'] = [
+    'name' => t('Title Tag Postfix'),
+    'description' => t('Display title tag postfix in title.')
+  ];
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function og_accelerator_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata)
+{
+  $replacements = [];
+  if ($type == 'og_accelerator') {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'share_image':
+          $newtext = '';
+          if (isset($data['node'])) {
+            /** @var \Drupal\node\NodeInterface $node */
+            $node = $data['node'];
+            $field_content_image = NULL;
+            if (!$node->get('field_content_image')->isEmpty()) {
+              /** @var \Drupal\Core\Field\EntityReferenceFieldItemList $node_field_content_image */
+              $node_field_content_image = $node->get('field_content_image');
+              $field_content_image = $node_field_content_image->referencedEntities();
+            } else {
+              /** @var \Drupal\Core\Config\Entity\ConfigEntityInterface $siteconfig */
+              $siteconfig = ConfigPages::config('site_settings');
+              if (!$siteconfig->get('field_default_share_image')->isEmpty()) {
+                $field_content_image = $siteconfig->get('field_default_share_image')->referencedEntities();
+              }
+            }
+            if (!is_null($field_content_image)) {
+              if (isset($field_content_image[0]) && $field_content_image[0] && !$field_content_image[0]->get('field_media_image')->isEmpty()) {
+                $content_image = $field_content_image[0];
+                $field_media_image = $content_image->get('field_media_image')->referencedEntities();
+                /** @var \Drupal\file\Entity\File $image_file */
+                $image_file = $field_media_image[0];
+                $image_style = 'accelerator_social_media';
+                if (strpos($image_file->filemime->value, 'image/svg') === 0) {
+                  $image_style = '';
+                }
+                if (!empty($image_style)) {
+                  $file_uri = $image_file->getFileUri();
+                  $img_style = ImageStyle::load($image_style);
+                  if ($img_style) {
+                    $image = $img_style->buildUrl($file_uri);
+                  } else {
+                    $image = $image_file->createFileUrl();
+                  }
+                } else {
+                  $image = $image_file->createFileUrl();
+                }
+                $newtext = $image;
+              }
+            }
+          }
+          $replacements[$original] = $newtext;
+          break;
+        case 'title_postfix': 
+          $site_settings = ConfigPages::config('site_settings');
+          if (isset($site_settings->field_title_tag_posfix->value) && !empty($site_settings->field_title_tag_posfix->value)) {
+            $replacements[$original] = \Drupal::token()->replace($site_settings->field_title_tag_posfix->value);
+          }
+          else {
+            $replacements[$original] = \Drupal::token()->replace('| [site:name]');
+          }
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function og_accelerator_entity_presave(EntityInterface $entity)
+{
+  /** @var \Drupal\taxonomy\Entity\Term $entity */
+  if ($entity->getEntityTypeId() === 'taxonomy_term') {
+    if ($entity->hasField('field_clean_url')) {
+      $name = $entity->label();
+      $clean_string = \Drupal::service('pathauto.alias_cleaner')->cleanString($name);
+      if ($entity->get('field_clean_url')->isEmpty()) {
+        $entity->set('field_clean_url', $clean_string);
+        \Drupal::messenger()->addStatus(t('Clean url generated: @format', ['@format' => $clean_string]));
+      } else {
+        $value = $entity->get('field_clean_url')->value;
+        $clean_value = \Drupal::service('pathauto.alias_cleaner')->cleanString($value);
+        if ($value !== $clean_value) {
+          $entity->set('field_clean_url', $clean_value);
+          \Drupal::messenger()->addStatus(t('Clean url is updated to use correct format: @format', ['@format' => $clean_value]));
+        }
+      }
+    }
+  }
+
+  // Add sitemap exclude flag to metatags data so it can be viewed in jsonapi.
+  if ($entity->getEntityTypeId() == 'node') {
+    if ($entity->hasField('field_exclude_sitemap')) {
+      $sitemap_exclude = $entity->field_exclude_sitemap->value;
+      if ($entity->hasField('field_meta_tags')) {
+        $metatag_default = $entity->field_meta_tags->value;
+        if (!empty($metatag_default)) {
+          $metatag_serialized = unserialize($metatag_default);
+          if (isset($metatag_serialized['robots']) && !empty($metatag_serialized['robots'])) {
+            $robots = $metatag_serialized['robots'];
+            $robots_clean = explode(",", str_replace(" ", "", $robots));
+            if ($sitemap_exclude == '1') {
+              if (!in_array('noindex', $robots_clean) || !in_array('nofollow', $robots_clean)) {
+                if (!in_array('noindex', $robots_clean)) {
+                  array_push($robots_clean, 'noindex');
+                }
+                if (!in_array('nofollow', $robots_clean)) {
+                  array_push($robots_clean, 'nofollow');
+                }
+              }
+            }
+            if ($sitemap_exclude == '0') {
+              if (in_array('noindex', $robots_clean) || in_array('nofollow', $robots_clean)) {
+                if (in_array('noindex', $robots_clean)) {
+                  $key = array_search('noindex', $robots_clean);
+                  unset($robots_clean[$key]);
+                }
+                if (in_array('nofollow', $robots_clean)) {
+                  $key = array_search('nofollow', $robots_clean);
+                  unset($robots_clean[$key]);
+                }
+              }
+            }
+            $metatag_serialized['robots'] =  implode(", ", $robots_clean);
+            $entity->set('field_meta_tags', serialize($metatag_serialized));
+          }
+          else {
+            if ($sitemap_exclude == '1') {
+              $metatag_serialized['robots'] =  'noindex, nofollow';
+              $entity->set('field_meta_tags', serialize($metatag_serialized));
+            }
+          }
+        }
+      }
+    }  
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function og_accelerator_preprocess_views_view__search__page(&$variables)
+{
+  $site_settings = ConfigPages::config('site_settings');
+  if (isset($site_settings->field_search_result_heading_text->value) && !empty($site_settings->field_search_result_heading_text->value)) {
+    $variables['result_text'] = Markup::create($site_settings->field_search_result_heading_text->value);
+  }
+  $variables['#attached']['library'][] = 'og_accelerator/search_results';
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function og_accelerator_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
+{
+  if ($view->id() == 'search') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    if ($current_path == '/search') {
+      $keywords = \Drupal::request()->query->get('keywords');
+      if (empty($keywords)) {
+        unset($view->sort['search_api_relevance']);
+      }
+    }
+  } else if ($view->id() == 'related_articles' && $view->current_display == 'block_related_article' || $view->current_display == 'block_related_article_all') {
+    /* ### Migrated from og_block_related_article module. */
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node && $node->getType() == 'article') {
+      $featured_id = $node->id();
+      $article_cat = ($node->get('field_content_category')->getValue()) ? $node->get('field_content_category')->getValue()[0]['target_id'] : 0;
+      if (isset($featured_id) && !empty($featured_id)) {
+        foreach ($query->where as &$condition_group) {
+          foreach ($condition_group['conditions'] as &$condition) {
+            if ($condition['field'] == 'node_field_data.nid') {
+              $condition = [
+                'field' => 'node_field_data.nid',
+                'value' => $featured_id,
+                'operator' => '!=',
+              ];
+            }
+            if ($view->current_display == 'block_related_article') {
+              if ($condition['field'] == 'node__field_content_category.field_content_category_target_id = :node__field_content_category_field_content_category_target_id') {
+                $condition = [
+                  'field' => 'node__field_content_category.field_content_category_target_id = :node__field_content_category_field_content_category_target_id',
+                  'value' => [':node__field_content_category_field_content_category_target_id' => $article_cat],
+                  'operator' => 'formula',
+                ];
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Migrated module functions
+
+/**
+ * Implements hook_theme().
+ * ### Migrated from og_block_article_listing, og_block_related_article, and og_entity_item module.
+ */
+function og_accelerator_theme()
+{
+  $theme = [];
+  $theme['block__inline_block__article_listing'] = [
+    'base hook' => 'block',
+    'render element' => 'elements',
+    'template' => 'article_listing',
+  ];
+  $theme['block__og_block__related_articles'] = [
+    'base hook' => 'block',
+    'render element' => 'elements',
+    'template' => 'related_articles',
+  ];
+  $theme['button_block'] = [
+    'variables' => [
+      'data' => [],
+    ],
+  ];
+  $theme['item_entity'] = [
+    'render element' => 'elements',
+    'file' => 'item_entity.page.inc',
+    'template' => 'item_entity',
+  ];
+  $theme['item_entity_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'item_entity.page.inc',
+  ];
+  $theme['node__article__teaser'] = [
+    'base hook' => 'node',
+    'render element' => 'elements',
+    'template' => 'article_teaser',
+  ];
+  $theme['site_branding'] = [
+    'variables' => [
+      'text' => '',
+      'image' => '',
+      'width' => 124,
+      'height' => 49,
+      'path' => '/',
+      'alt' => '',
+    ],
+  ];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * ### Migrated from og_block_article_listing module.
+ */
+function _og_accelerator_form_views_exposed_form_article_listing_block_article_listing_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $request = \Drupal::request();
+  if (is_null($request->get('field_content_category_target_id'))) {
+    $input = $form_state->getUserInput();
+    $path = \Drupal::request()->getpathInfo();
+    $last_path = basename($path);
+    $categories = [];
+    foreach (\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['vid' => 'article_tags']) as $taxonomy) {
+      $categories[$taxonomy->field_clean_url->value] = $taxonomy->tid->value;
+    }
+    if (isset($categories[$last_path]) && !empty($categories[$last_path])) {
+      $input['field_content_category_target_id'] = $categories[$last_path];
+    }
+    $form_state->setUserInput($input);
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ * ### Migrated from og_block_article_listing module.
+ */
+function og_accelerator_preprocess_block(&$variables)
+{
+  if ($variables['elements']['#plugin_id'] == 'inline_block:article_listing') {
+    $block_id = 'articlelisting-' . $variables['elements']['#configuration']['block_revision_id'];
+    $variables['block_id'] = $block_id;
+    $path = \Drupal::request()->getpathInfo();
+    $last_path = basename($path);
+    $categories = [];
+    foreach (\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['vid' => 'article_tags']) as $taxonomy) {
+      $categories[$taxonomy->field_clean_url->value] = $taxonomy->name->value;
+    }
+    if (isset($categories[$last_path]) && !empty($categories[$last_path])) {
+      $variables['article_heading'] = str_replace('[filter-name]', $categories[$last_path], $variables['content']['#block_content']->field_article_heading->value);
+    } else {
+      $siteSettings = ConfigPages::config('site_settings');
+      $node = \Drupal::routeMatch()->getParameter('node');
+      if ($siteSettings && $node instanceof \Drupal\node\NodeInterface) {
+        if ($siteSettings->field_article_landing_page->target_id === $node->id()) {
+          $variables['article_heading'] = str_replace('[filter-name]', ' ', $variables['content']['#block_content']->field_article_heading->value);
+        }
+      }
+    }
+    $variables['categories_json'] = json_encode(array_flip($categories));
+  }
+}
+
+/**
+ * Implements hook_tokens_alter().
+ * ### Migrated from og_block_article_listing module.
+ */
+function og_accelerator_tokens_alter(&$replacements, $context, BubbleableMetadata $bubbleable_metadata)
+{
+  $siteSettings = ConfigPages::config('site_settings');
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($siteSettings && $node instanceof \Drupal\node\NodeInterface) {
+    if ($siteSettings->field_article_landing_page->target_id === $node->id()) {
+      $block = null;
+      foreach ($node->layout_builder__layout as $section) {
+        foreach ($section->section->getComponents() as $block) {
+          if ($block->getPluginId() === 'inline_block:article_listing') {
+            $block = \Drupal::entityTypeManager()->getStorage('block_content')->loadRevision($block->toArray()['configuration']['block_revision_id']);
+            break 2;
+          }
+        }
+      }
+      if (!empty($block) && $block instanceof \Drupal\block_content\Entity\BlockContent) {
+        $replacements['[node:title]'] = str_replace('[filter-name]', ' ', $block->field_article_title->value);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ * ### Migrated from og_block_article_listing module.
+ */
+function og_accelerator_preprocess_views_view(&$vars)
+{
+  $view = $vars['view'];
+  if ($view->getDisplay()->isPagerEnabled() && !empty($vars['rows'])) {
+    $pager = $view->getPager();
+    if ($pager && $pager instanceof InfiniteScroll && $view->id() === 'article_listing' && $view->getDisplay()->display['id'] === 'block_article_listing') {
+      if (!isset($vars['rows']['#theme_wrappers'])) {
+        $vars['rows']['#theme_wrappers'] = [];
+      }
+      $vars['rows']['#theme_wrappers']['container']['#attributes']['data-drupal-views-infinite-scroll-content-wrapper'] = TRUE;
+      $vars['rows']['#theme_wrappers']['container']['#attributes']['class'][]  = 'views-infinite-scroll-content-wrapper';
+      $vars['rows']['#theme_wrappers']['container']['#attributes']['class'][]  = 'clearfix';
+      $vars['rows']['#theme_wrappers']['container']['#attributes']['class'][]  = 'row';
+      $vars['rows']['#theme_wrappers']['container']['#attributes']['vocab'][]  = 'https://schema.org/';
+      $vars['rows']['#theme_wrappers']['container']['#attributes']['typeof'][] = 'ItemList';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ * ### Migrated from og_block_related_article module.
+ */
+function og_accelerator_preprocess_block__og_block__related_articles(&$variables)
+{
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $current_uri = \Drupal::request()->getRequestUri();
+  $nid = 0;
+  if (preg_match('/overrides/', $current_uri)) {
+    preg_match_all('!\d+!', $current_uri, $matches);
+    $node_id = array_shift($matches);
+    if (isset($node_id[0])) {
+      $nid = $node_id[0];
+      $node_object = \Drupal::service('entity_type.manager')->getStorage('node')->load($node_id[0]);
+      if ($node_object) {
+        $node = $node_object;
+      }
+    }
+  }
+  if ($node) {
+    $article_cat = ($node->get('field_content_category')->getValue()) ? $node->get('field_content_category')->getValue()[0]['target_id'] : 0;
+    $variables['content']['category'] = $article_cat;
+    $nid = $node->id();
+    $query = \Drupal::entityQuery('node')->accessCheck(TRUE)
+    ->condition('type', 'article')
+    ->condition('nid', $nid, "<>")
+    ->condition('field_content_category', $article_cat);
+    $results = $query->execute();
+    $variables['content']['no-result'] = count($results);
+  }
+
+  if (
+    isset($variables['content']['field_display_recent_articles']) &&
+    !empty($variables['content']['field_display_recent_articles'][0]) && $variables['content']['field_display_recent_articles'][0]['#markup'] == 'On'
+  ) {
+    $variables['content']['result-onempty'] = true;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ * ### Migrated from og_block_related_article module.
+ */
+function og_accelerator_preprocess_node__article__teaser(&$variables)
+{
+  if ($variables['node'] instanceof Node) {
+    $node = $variables['node'];
+    $image_style = ImageStyle::load('accelerator_landscape_crop_4_3');
+    $variables['title'] = $node->title->value;
+    $variables['image_url'] = $image_style->buildUrl($node->field_listing_image->entity->field_media_image->entity->uri->value);
+    if ($node->field_listing_image->entity->field_media_image->first()) {
+      $variables['image_width'] = $node->field_listing_image->entity->field_media_image->first()->width;
+      $variables['image_height'] = $node->field_listing_image->entity->field_media_image->first()->height;
+    }
+    $variables['date'] = $node->field_article_date->date->format('l j F Y');
+    $variables['summary'] = $node->body->summary;
+    $variables['article_url'] = $node->toUrl()->toString();
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ * ### Migrated from og_entity_item module.
+ */
+function og_accelerator_theme_suggestions_item_entity(array $variables)
+{
+  $suggestions = [];
+  $entity = $variables['elements']['#item_entity'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  $suggestions[] = 'item_entity__' . $sanitized_view_mode;
+  $suggestions[] = 'item_entity__' . $entity->bundle();
+  $suggestions[] = 'item_entity__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'item_entity__' . $entity->id();
+  $suggestions[] = 'item_entity__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ * ### Migrated from og_entity_item module.
+ */
+function og_accelerator_entity_type_alter(array &$entity_types)
+{
+  $constraints = $entity_types['item_entity']->getConstraints();
+  unset($constraints['EntityChanged']);
+  $constraints['ItemEntityChanged'] = NULL;
+  $entity_types['item_entity']->setConstraints($constraints);
+}
+
+// Helper and callback functions
+
+/**
+ * Returns youtube id from any youtube url.
+ * Source: https://gist.github.com/ghalusa/6c7f3a00fd2383e5ef33
+ *
+ * @param string $url
+ * @return string|false
+ */
+function og_accelerator_get_youtube_id($url)
+{
+  if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match)) {
+    return $match[1];
+  }
+  return FALSE;
+}
+
+/**
+ * Returns vimeo id from any vimeo url.
+ * Source: https://github.com/lingtalfi/video-ids-and-thumbnails/blob/master/function.video.php
+ *
+ * @param $url
+ * @return string|false
+ */
+function og_accelerator_get_vimeo_id($url)
+{
+  if (preg_match('#(?:https?://)?(?:www.)?(?:player.)?vimeo.com/(?:[a-z]*/)*([0-9]{6,11})[?]?.*#', $url, $match)) {
+    return $match[1];
+  }
+  return FALSE;
+}
+
+/**
+ * Gets embedded url of either youtube or vimeo.
+ *
+ * @param string $any_url
+ * @return string
+ */
+function og_accelerator_get_embed_video_url($url)
+{
+  $embed_url = $url;
+  if (($id = og_accelerator_get_youtube_id($url)) !== FALSE) {
+    $embed_url = 'https://www.youtube.com/embed/' . $id;
+  } else if (($id = og_accelerator_get_vimeo_id($url)) !== FALSE) {
+    $embed_url = 'https://vimeo.com/' . $id;
+  }
+  return $embed_url;
+}
+
+/**
+ * Returns true if role has 'accelerator bypass section role' permission,
+ * otherwise check if current user is in a set of roles.
+ *
+ * @param array $roles The roles to be checked.
+ * @return boolean
+ */
+function og_accelerator_section_role_access($roles)
+{
+  $current_user = Drupal::currentUser();
+  if ($current_user->hasPermission('accelerator bypass section role')) {
+    return true;
+  }
+  $current_roles = $current_user->getRoles();
+  if (!empty(array_intersect($roles, $current_roles))) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Returns array of available background colours for layout builder.
+ *
+ * @return array
+ */
+function og_accelerator_section_background_colour()
+{
+  $entity = \Drupal::entityTypeManager()->getStorage('item_entity');
+  $query = $entity->getQuery()->accessCheck(TRUE);
+  $ids = $query->condition('type', 'background_colour')->sort('field_weight', 'asc')->execute();
+  $backgrounds = $entity->loadMultiple($ids);
+  $available_colors = [];
+  $available_colors['-none-'] = '(None)';
+  foreach ($backgrounds as $background) {
+    if (!empty($background->field_class->value)) {
+      $available_colors[$background->field_class->value] = $background->name->value;
+    }
+  }
+  return $available_colors;
+}
+
+function og_accelerator_page_attachments(&$attachments) {
+  $logged_in = \Drupal::currentUser()->isAuthenticated();
+  if ($logged_in) {
+    $attachments['#attached']['library'][] = 'og_accelerator/admin';
+  }
+}

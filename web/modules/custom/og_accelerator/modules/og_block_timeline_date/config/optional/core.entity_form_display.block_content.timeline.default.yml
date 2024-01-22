@@ -1,0 +1,60 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.timeline
+    - field.field.block_content.timeline.field_orientation
+    - field.field.block_content.timeline.field_timeline_date_filter
+    - field.field.block_content.timeline.field_timeline_date_type
+    - field.field.block_content.timeline.field_timeline_title
+  module:
+    - select2
+id: block_content.timeline.default
+targetEntityType: block_content
+bundle: timeline
+mode: default
+content:
+  field_orientation:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_timeline_date_filter:
+    type: select2_entity_reference
+    weight: 5
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_timeline_date_type:
+    type: select2_entity_reference
+    weight: 4
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_timeline_title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  langcode: true

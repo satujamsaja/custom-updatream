@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel
+    - field.storage.block_content.field_autoplay
+id: block_content.carousel.field_autoplay
+field_name: field_autoplay
+entity_type: block_content
+bundle: carousel
+label: Autoplay
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

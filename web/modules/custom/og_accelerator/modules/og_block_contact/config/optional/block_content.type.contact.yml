@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: contact
+label: Contact Card
+revision: 0
+description: 'Renders a contact card block.'

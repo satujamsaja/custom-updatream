@@ -1,0 +1,40 @@
+{{ attach_library('og_block_icon_card/icon_card') }}
+
+{% set classes = [
+  'block',
+  'block--icon-card',
+  'accelerator-block',
+  'accelerator-icon--card',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+  <div class="icon-card-block {{ class }}">
+    {% if link_url %}
+      <a class="icon-card-link" href="{{ link_url }}" aria-label="{{ link_title }}"></a>
+    {% endif %}
+
+    <div class="icon-card-icon-wrapper">
+      {{ material_icon }}
+    </div>
+    <div class="icon-card-title-wrapper">
+      <h3>{{ title }}</h3>
+    </div>
+    <div class="icon-card-description-wrapper">
+      <p>{{ summary }}</p>
+    </div>
+
+    {% if link_url %}
+      <div class="icon-card-arrow"></div>
+    {% endif %}
+  </div>
+  {% endblock %}
+</div>
+
+

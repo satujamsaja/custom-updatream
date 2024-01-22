@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: rich_text
+label: 'Rich Text'
+revision: 1
+description: 'Renders a basic text component.'

@@ -1,0 +1,57 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.accordion
+    - field.field.block_content.accordion.field_accordion_items
+    - field.field.block_content.accordion.field_allow_multiple_open
+  module:
+    - entity_browser_entity_form
+    - inline_entity_form
+id: block_content.accordion.default
+targetEntityType: block_content
+bundle: accordion
+mode: default
+content:
+  field_accordion_items:
+    type: inline_entity_form_complex
+    weight: 2
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: true
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+  field_allow_multiple_open:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

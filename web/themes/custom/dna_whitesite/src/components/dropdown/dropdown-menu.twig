@@ -1,0 +1,31 @@
+<ul{{create_attribute({'class':['dropdown-menu','dropdown-mega-menu'],'aria-labelledby':id})}}>
+	<li>
+		<ul>
+			{% for item in items %}
+				{% set nav_link_classes = [
+					item.in_active_trail ? 'active'
+				] %}
+				{% if item.url.options.attributes.class is iterable %}
+					{% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+				{% elseif item.url.options.attributes.class %}
+					{% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+				{% endif %}
+				{% if item.title == '---' %}
+					{# a new column #}
+				</ul>
+			</li>
+			<li>
+				<ul>
+					{#end a new column #}
+				{% else %}
+					{% if item.url.toString is empty and item.entity.field_menu_main_rich_text %}
+						<h2 class="h3">{{ item.title }}</h2>
+						{{ item.entity.field_menu_main_rich_text|view }}
+					{% else %}
+						<li>{{ link(item.title, item.url, { 'class': nav_link_classes }) }}</li>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</li>
+</ul>

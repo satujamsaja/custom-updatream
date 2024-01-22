@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  contextual:
+    mode: '0'
+id: accelerator_title_with_schema_org
+label: 'Accelerator: Title with Schema.Org'
+type: twig
+description: 'Custom formatter for rendering title which have the Schema.Org.'
+field_types:
+  - string
+data: "{% for item in items %}\r\n  <h1 property=\"name\" class=\"mb-0 display-3\">{{ item.value }}</h1>\r\n{% endfor %}"

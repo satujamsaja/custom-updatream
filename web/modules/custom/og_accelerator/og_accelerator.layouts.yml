@@ -1,0 +1,63 @@
+bootstrap_one_column:
+  label: 'One column (Bootstrap)'
+  category: 'Accelerator'
+  regions:
+    main:
+      label: 'Main column'
+  template: templates/bootstrap_one_column
+  default_region: main
+  icon_map:
+    - [main]
+  description: 'Single column Bootstrap layout.'
+  class: '\Drupal\og_accelerator\Plugin\Layout\LayoutBootstrapOneColumn'
+
+bootstrap_two_column:
+  label: 'Two column (Bootstrap)'
+  category: 'Accelerator'
+  regions:
+    left:
+      label: 'Left column'
+    right:
+      label: 'Right column'
+  template: templates/bootstrap_two_column
+  default_region: left
+  icon_map:
+    - [left, right]
+  description: 'Two-column Bootstrap layout.'
+  class: '\Drupal\og_accelerator\Plugin\Layout\LayoutBootstrapTwoColumn'
+
+bootstrap_three_column:
+  label: 'Three column (Bootstrap)'
+  category: 'Accelerator'
+  regions:
+    left:
+      label: 'Left column'
+    center:
+      label: 'Center column'
+    right:
+      label: 'Right column'
+  template: templates/bootstrap_three_column
+  default_region: left
+  icon_map:
+    - [left, center, right]
+  description: 'Three-column Bootstrap layout.'
+  class: '\Drupal\og_accelerator\Plugin\Layout\LayoutBootstrapThreeColumn'
+
+bootstrap_four_column:
+  label: 'Four column (Bootstrap)'
+  category: 'Accelerator'
+  regions:
+    first:
+      label: 'First column'
+    second:
+      label: 'Second column'
+    third:
+      label: 'Third column'
+    last:
+      label: 'Last column'
+  template: templates/bootstrap_four_column
+  default_region: first
+  icon_map:
+    - [first, second, third, last]
+  description: 'Four-column Bootstrap layout.'
+  class: '\Drupal\og_accelerator\Plugin\Layout\LayoutBootstrapFourColumn'

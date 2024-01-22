@@ -1,0 +1,33 @@
+.btn.button-block {
+  background-color: transparent;
+  border: 2px solid #b30404;
+  border-radius: 0;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 25px;
+  text-decoration: none;
+}
+
+.btn.button-block:hover {
+  background-color: #b30404;
+  color: #fff;
+  transition: all .2s ease;
+}
+
+.btn.button-block:focus {
+  box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 50%);
+}
+
+header .btn.button-block {
+  border-color: #f8f9fa;
+  color: #f8f9fa;
+  padding: 5px 10px;
+  border: 1px solid;
+  font-weight: 400;
+}
+
+header .btn.button-block:hover {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  color: #000;
+}

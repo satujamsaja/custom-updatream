@@ -1,0 +1,73 @@
+.block--hero {
+  margin-bottom: 1rem;
+  position: relative;
+}
+.inner-hero {
+  position: relative;
+}
+.inner-hero img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  object-position: center center;
+}
+@media (min-width: 768px) {
+  .inner-hero img {
+    max-height: 350px;
+  }
+}
+@media (min-width: 992px) {
+  .inner-hero img {
+    max-height: 450px;
+  }
+}
+.inner-hero h1 {
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+@media (max-width: 767.98px) {
+  .inner-hero h1 {
+    font-size: 3.8rem;
+  }
+}
+.inner-hero:before {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.hero-text {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 3;
+  color: #fff;
+}
+.hero-text h1 {
+  color: #fff;
+}
+iframe {
+  transition: opacity 500ms ease-in-out;
+  transition-delay: 250ms;
+  opacity: 1 !important;
+}
+.youtube-background {
+  display: none;
+}
+@media (min-width: 768px) {
+  .youtube-background {
+    display: block;
+  }
+}

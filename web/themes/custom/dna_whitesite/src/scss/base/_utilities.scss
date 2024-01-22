@@ -1,0 +1,352 @@
+/* Background repeat */
+.bg-repeat {
+  background-repeat: repeat;
+}
+
+.bg-repeat-x {
+  background-repeat: repeat-x;
+}
+
+.bg-repeat-y {
+  background-repeat: repeat-y;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
+}
+
+.bg-space {
+  background-repeat: space;
+}
+
+.bg-round {
+  background-repeat: round;
+}
+
+/* Background position */
+.bg-tl {
+  background-position: top left;
+}
+
+.bg-tc {
+  background-position: top center;
+}
+
+.bg-tr {
+  background-position: top right;
+}
+
+.bg-cl {
+  background-position: center left;
+}
+
+.bg-cc {
+  background-position: center;
+}
+
+.bg-cr {
+  background-position: center right;
+}
+
+.bg-bl {
+  background-position: bottom left;
+}
+
+.bg-bc {
+  background-position: bottom center;
+}
+
+.bg-br {
+  background-position: bottom right;
+}
+
+@include media-breakpoint-up(sm) {
+  .bg-sm-tl {
+    background-position: top left !important;
+  }
+
+  .bg-sm-tc {
+    background-position: top center !important;
+  }
+
+  .bg-sm-tr {
+    background-position: top right !important;
+  }
+
+  .bg-sm-cl {
+    background-position: center left !important;
+  }
+
+  .bg-sm-cc {
+    background-position: center !important;
+  }
+
+  .bg-sm-cr {
+    background-position: center right !important;
+  }
+
+  .bg-sm-bl {
+    background-position: bottom left !important;
+  }
+
+  .bg-sm-bc {
+    background-position: bottom center !important;
+  }
+
+  .bg-sm-br {
+    background-position: bottom right !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .bg-md-tl {
+    background-position: top left !important;
+  }
+
+  .bg-md-tc {
+    background-position: top center !important;
+  }
+
+  .bg-md-tr {
+    background-position: top right !important;
+  }
+
+  .bg-md-cl {
+    background-position: center left !important;
+  }
+
+  .bg-md-cc {
+    background-position: center !important;
+  }
+
+  .bg-md-cr {
+    background-position: center right !important;
+  }
+
+  .bg-md-bl {
+    background-position: bottom left !important;
+  }
+
+  .bg-md-bc {
+    background-position: bottom center !important;
+  }
+
+  .bg-md-br {
+    background-position: bottom right !important;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .bg-lg-tl {
+    background-position: top left !important;
+  }
+
+  .bg-lg-tc {
+    background-position: top center !important;
+  }
+
+  .bg-lg-tr {
+    background-position: top right !important;
+  }
+
+  .bg-lg-cl {
+    background-position: center left !important;
+  }
+
+  .bg-lg-cc {
+    background-position: center !important;
+  }
+
+  .bg-lg-cr {
+    background-position: center right !important;
+  }
+
+  .bg-lg-bl {
+    background-position: bottom left !important;
+  }
+
+  .bg-lg-bc {
+    background-position: bottom center !important;
+  }
+
+  .bg-lg-br {
+    background-position: bottom right !important;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .bg-xl-tl {
+    background-position: top left !important;
+  }
+
+  .bg-xl-tc {
+    background-position: top center !important;
+  }
+
+  .bg-xl-tr {
+    background-position: top right !important;
+  }
+
+  .bg-xl-cl {
+    background-position: center left !important;
+  }
+
+  .bg-xl-cc {
+    background-position: center !important;
+  }
+
+  .bg-xl-cr {
+    background-position: center right !important;
+  }
+
+  .bg-xl-bl {
+    background-position: bottom left !important;
+  }
+
+  .bg-xl-bc {
+    background-position: bottom center !important;
+  }
+
+  .bg-xl-br {
+    background-position: bottom right !important;
+  }
+}
+
+/* Background size */
+.bg-auto {
+  background-size: auto;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-contain {
+  background-size: contain;
+}
+
+.bg-50-auto {
+  background-size: 50%;
+}
+
+.bg-50-50 {
+  background-size: 50% 50%;
+}
+
+.bg-100-auto {
+  background-size: 100%;
+}
+
+.bg-100-100 {
+  background-size: 100% 100%;
+}
+
+/* Block spacing */
+.bs-1 .block .block,
+.bs-2 .block .block,
+.bs-3 .block .block,
+.bs-4 .block .block,
+.bs-5 .block .block {
+  padding-bottom: revert !important;
+}
+
+// .bs-1 .block:not(:last-child) {
+//   @extend .pb-1;
+// }
+// .bs-2 .block:not(:last-child) {
+//   @extend .pb-2;
+// }
+// .bs-3 .block:not(:last-child) {
+//   @extend .pb-3;
+// }
+// .bs-4 .block:not(:last-child) {
+//   @extend .pb-4;
+// }
+// .bs-5 .block:not(:last-child) {
+//   @extend .pb-5;
+// }
+
+$base-padding: 15;
+$base-padding-m: 10;
+
+@for $i from 1 through 5 {
+  .pt-#{$i} {
+    padding-top: #{$base-padding * $i}px !important;
+
+    @media (max-width: 991px) {
+      padding-top: #{$base-padding-m * $i}px !important;
+    }
+  }
+
+  .pb-#{$i} {
+    padding-bottom: #{$base-padding * $i}px !important;
+
+    @media (max-width: 991px) {
+      padding-bottom: #{$base-padding-m * $i}px !important;
+    }
+  }
+
+  .pl-#{$i} {
+    padding-left: #{$base-padding * $i}px !important;
+
+    @media (max-width: 991px) {
+      padding-left: #{$base-padding-m * $i}px !important;
+    }
+  }
+
+  .pr-#{$i} {
+    padding-right: #{$base-padding * $i}px !important;
+
+    @media (max-width: 991px) {
+      padding-right: #{$base-padding-m * $i}px !important;
+    }
+  }
+
+  .bs-#{$i} .block:not(:last-child) {
+    padding-bottom: #{$base-padding * $i}px !important;
+
+    @media (max-width: 991px) {
+      padding-bottom: #{$base-padding-m * $i}px !important;
+    }
+  }
+}
+
+// OGDRUACC-30 Container Standard - the centre 1100px of the screen
+.container {
+  @include media-breakpoint-up(xl) {
+    max-width: 1100px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    max-width: 1100px;
+  }
+
+  // OGDRUACC-30 Container Narrow - the centre 875px of the screen
+  &.container-narrow {
+    @include media-breakpoint-up(lg) {
+      max-width: 875px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      max-width: 875px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      max-width: 875px;
+    }
+  }
+}
+
+// OGDRUACC-30 Full width - is edge to edge of the desktop screen with side gutters disabled
+.container-fluid {
+  max-width: 100%;
+}
+
+//OGIDRUHEA-238 fix media align center
+.align-center.media > .field--name-field-media-image{
+  text-align: center;
+}
+
+.align-center.media.media--view-mode-embedded{
+  display: table;
+}

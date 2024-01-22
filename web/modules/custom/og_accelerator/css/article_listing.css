@@ -1,0 +1,189 @@
+#views-exposed-form-article-listing-block-article-listing fieldset {
+  border: none;
+  margin-top: 30px;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .card-body {
+  padding: 0;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .card-header {
+  display: none;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .fieldset-wrapper .form-radios .form-check {
+  display: inline-flex;
+  padding-left: 10px;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .fieldset-wrapper .form-radios .form-check:first-child {
+  padding-left: 0;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .fieldset-wrapper .form-radios .form-check input[type=radio] {
+  opacity: 0;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .fieldset-wrapper .form-radios .form-check input[type=radio]:focus+label {
+  box-shadow: 0 0 5px #acc1dc;
+  outline: 2px solid #42628b;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .fieldset-wrapper .form-radios .form-check input[type=radio]+label {
+  border: 1px solid #bbb;
+  padding: 7px 14px 9px;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .fieldset-wrapper .form-radios .form-check input[type=radio]+label:hover {
+  cursor: pointer;
+}
+
+#views-exposed-form-article-listing-block-article-listing fieldset .fieldset-wrapper .form-radios .form-check input[type=radio]:checked+label {
+  background: #000;
+  color: #fff;
+}
+
+.article-card--listing {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.article-card--listing #filter-article-heading {
+  display: none;
+}
+
+.article-card--listing .js-pager__items {
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+}
+
+.article-card--listing .js-pager__items .button {
+  border: 1px solid #b30404;
+  color: #000;
+  padding: 10px 25px;
+  text-decoration: none;
+}
+
+.article-card--listing .js-pager__items .button:hover {
+  background-color: #b30404;
+  color: #fff;
+}
+
+.article-card--listing .js-pager__items .button:hover span {
+  filter: brightness(0) invert(1);
+}
+
+.article-card--listing .js-pager__items .button span {
+  background: url('../images/icon-load.svg') no-repeat;
+  background-size: 10px;
+  display: inline-block;
+  height: 16px;
+  margin-left: 12px;
+  width: 16px;
+}
+
+.article-card--listing .article-card {
+  color: #000;
+  display: block;
+  margin-bottom: 4rem;
+  min-height: 100%;
+  outline: none;
+  position: relative;
+}
+
+.article-card--listing .article-card p {
+  line-height: 1.5;
+}
+
+.article-card--listing .article-card:hover {
+  text-decoration: none;
+}
+
+.article-card--listing .article-card:hover .article-card-img img {
+  transform: scale(1.1);
+}
+
+.article-card--listing .article-card:focus {
+  box-shadow: 0 0 5px #acc1dc;
+  outline: 2px solid #42628b;
+}
+
+.article-card--listing .article-card .article-card-title {
+  font-size: 2.4rem;
+  line-height: 2.7rem;
+  padding-top: 2rem;
+}
+
+.article-card--listing .article-card .article-card-title:hover {
+  color: #eb3f43;
+}
+
+.article-card--listing .article-card .article-card-img {
+  max-height: 343px;
+  min-height: 343px;
+  overflow: hidden;
+}
+
+.article-card--listing .article-card .article-card-img img {
+  min-height: 343px;
+  min-width: 515px;
+  transform: scale(1);
+  transition: all .5s ease-in-out;
+}
+
+.article-card--listing .article-card .article-card-description {
+  padding-bottom: 0;
+}
+
+.article-card--listing .article-card .article-card-description p {
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+.article-card--listing .article-card .article-card-cta a {
+  text-decoration: underline;
+}
+
+.article-card--listing .article-card .article-card-cta a.btn {
+  text-decoration: none;
+}
+
+@media (max-width:767.98px) {
+  .article-card--listing .article-card .article-card-img {
+    min-height: auto;
+  }
+
+  .article-card--listing .article-card .article-card-img img {
+    min-height: 100%;
+    min-width: 100%;
+  }
+}
+
+@media (min-width:768px) {
+  .article-card--listing .article-card {
+    margin-bottom: 0;
+  }
+
+  .article-card--listing .article-card .article-card-cta {
+    bottom: 0;
+    position: absolute;
+  }
+
+  .article-card--listing .article-card .article-card-description {
+    padding-bottom: 4rem;
+  }
+}
+
+@media (max-width:991.98px) {
+  .article-card--listing .article-card .article-card-img {
+    min-height: 214px;
+  }
+
+  .article-card--listing .article-card .article-card-img img {
+    min-height: 243px;
+    min-width: 100%;
+  }
+}

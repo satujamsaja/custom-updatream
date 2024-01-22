@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_anchor_nav.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_featured_card_theme() {
+  return [
+    'block__inline_block__featured_card' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'featured-card',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function og_block_featured_card_preprocess_block(&$variables) {
+  if ($variables['elements']['#plugin_id'] == 'inline_block:featured_card') {
+    $variables['#attached']['library'][] = 'og_block_featured_card/featured_card';
+    $block_id = 'featured-card-' . $variables['elements']['#configuration']['block_revision_id'];
+    $variables['block_id'] = $block_id;
+  }
+}

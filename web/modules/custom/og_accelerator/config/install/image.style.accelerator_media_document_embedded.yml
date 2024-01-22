@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: accelerator_media_document_embedded
+label: 'Accelerator: Media document embedded'
+effects:
+  d83cc7d6-c230-4ce9-80d4-0921f91cc94d:
+    uuid: d83cc7d6-c230-4ce9-80d4-0921f91cc94d
+    id: image_scale
+    weight: 1
+    data:
+      width: 320
+      height: null
+      upscale: false

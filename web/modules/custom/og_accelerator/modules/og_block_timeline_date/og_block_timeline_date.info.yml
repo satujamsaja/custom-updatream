@@ -1,0 +1,21 @@
+name: 'Block: Timeline Date'
+description: 'Renders a timeline date block.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - config_pages:config_pages
+  - crop:crop
+  - drupal:block_content
+  - drupal:datetime
+  - drupal:link
+  - drupal:media
+  - drupal:media_library
+  - drupal:options
+  - drupal:path
+  - drupal:taxonomy
+  - drupal:text
+  - drupal:user
+  - og_accelerator:og_accelerator
+  - select2:select2

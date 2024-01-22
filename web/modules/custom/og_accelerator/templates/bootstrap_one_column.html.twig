@@ -1,0 +1,38 @@
+{% if content and content['#access'] %}
+	{% if region_attributes.background|trim %}
+		<div{{region_attributes.background}}>
+		{% endif %}
+		{% if attributes|trim %}
+			<div{{attributes}}>
+			{% endif %}
+			{% set title = content['#settings'].title %}
+			{% if title.title_display and title.title_text %}
+				<div class="{{ title.title_row_class }} section-title">
+					<div class="{{ title.title_column_class }}">
+						<{{title.title_tag|default('span')}} class="{{ title.title_class }}">{{ title.title_text }}
+						</{{title.title_tag|default('span')}}>
+					</div>
+				</div>
+			{% endif %}
+			{% if region_attributes.row|trim %}
+				<div{{region_attributes.row.addClass('section-content')}}>
+				{% endif %}
+				{% if region_attributes.main|trim %}
+					<div{{region_attributes.main}}>
+					{% endif %}
+					{% if content.main %}
+						{{ content.main }}
+					{% endif %}
+					{% if region_attributes.main|trim %}
+					</div>
+				{% endif %}
+				{% if region_attributes.row|trim %}
+				</div>
+			{% endif %}
+			{% if attributes|trim %}
+			</div>
+		{% endif %}
+		{% if region_attributes.background|trim %}
+		</div>
+	{% endif %}
+{% endif %}

@@ -1,0 +1,9 @@
+og_accelerator.article_list_controller:
+  path: '/articles/{clean_url}'
+  defaults:
+    _controller: '\Drupal\og_accelerator\Controller\ArticleListController::content'
+    _title_callback: '\Drupal\og_accelerator\Controller\ArticleListController::getTitle'
+    clean_url: 'All'
+  requirements:
+    _permission: 'access content'
+    clean_url: '.*'

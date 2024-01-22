@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.callout_text
+    - field.field.block_content.callout_text.field_callout_text_accent
+    - field.field.block_content.callout_text.field_callout_text_normal_1
+    - field.field.block_content.callout_text.field_callout_text_normal_2
+id: block_content.callout_text.default
+targetEntityType: block_content
+bundle: callout_text
+mode: default
+content:
+  field_callout_text_accent:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_callout_text_normal_1:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_callout_text_normal_2:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

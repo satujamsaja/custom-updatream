@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.item_entity.timeline_date.field_date
+    - field.field.item_entity.timeline_date.field_description
+    - field.field.item_entity.timeline_date.field_image
+    - field.field.item_entity.timeline_date.field_link
+    - field.field.item_entity.timeline_date.field_quote
+    - field.field.item_entity.timeline_date.field_timeline_date_category
+    - field.field.item_entity.timeline_date.field_timeline_date_type
+    - field.field.item_entity.timeline_date.field_title
+    - og_accelerator.item_entity_type.timeline_date
+  module:
+    - datetime
+    - link
+    - media_library
+    - select2
+id: item_entity.timeline_date.default
+targetEntityType: item_entity
+bundle: timeline_date
+mode: default
+content:
+  field_date:
+    type: datetime_default
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_description:
+    type: string_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 5
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 8
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_quote:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_timeline_date_category:
+    type: select2_entity_reference
+    weight: 3
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_timeline_date_type:
+    type: select2_entity_reference
+    weight: 2
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 9
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  langcode: true

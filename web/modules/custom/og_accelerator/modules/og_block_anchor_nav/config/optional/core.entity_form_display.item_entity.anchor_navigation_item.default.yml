@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.item_entity.anchor_navigation_item.field_row_id
+    - og_accelerator.item_entity_type.anchor_navigation_item
+id: item_entity.anchor_navigation_item.default
+targetEntityType: item_entity
+bundle: anchor_navigation_item
+mode: default
+content:
+  field_row_id:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  user_id: true

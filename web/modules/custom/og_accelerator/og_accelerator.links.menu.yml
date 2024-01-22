@@ -1,0 +1,13 @@
+entity.item_entity.collection:
+  title: 'Items list'
+  route_name: entity.item_entity.collection
+  description: 'List of all Item entities'
+  parent: system.admin_structure
+  enabled: 0
+  weight: 100
+
+entity.item_entity_type.collection:
+  title: 'Item types'
+  route_name: entity.item_entity_type.collection
+  description: 'Manage Item types'
+  parent: system.admin_structure

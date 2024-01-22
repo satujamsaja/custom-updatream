@@ -1,0 +1,58 @@
+{% embed '@dna_whitesite/navbar/navbar.twig' with {
+	container: 'container-fluid',
+	color: 'dark',
+	utility_classes: [],
+} %}
+	{% block navbar_top %}
+		{% if page.navbar_top %}
+			{{ page.navbar_top }}
+		{% endif %}
+	{% endblock %}
+	{% block branding %}
+		{% if page.navbar_branding %}
+			{{ page.navbar_branding }}
+		{% endif %}
+	{% endblock %}
+	{% block left %}
+		{% if page.navbar_left %}
+			{{ page.navbar_left }}
+		{% endif %}
+	{% endblock %}
+	{% block right %}
+		{% if page.navbar_right %}
+			<ul class="d-flex navbar-nav navbar-nav__right my-4 my-lg-0">
+				{{ page.navbar_right }}
+			</ul>
+		{% endif %}
+	{% endblock %}
+{% endembed %}
+
+<main id="main-content">
+	{% if page.header %}
+		<header class="page__header mb-3">
+			<div class="container">
+				{{ page.header }}
+			</div>
+		</header>
+	{% endif %}
+	{% if page.content %}
+		<div class="page__content">
+			{{ page.content }}
+		</div>
+	{% endif %}
+</main>
+
+{% if page.footer %}
+	<footer class="footer pt-5 pb-4">
+		<div class="container">
+			<div class="row">
+				{{ page.footer }}
+			</div>
+			<div class="row">
+				<div class="col-12 pt-5">
+					{{ page.footer_bottom }}
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endif %}

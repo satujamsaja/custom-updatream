@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.article_listing
+    - field.storage.block_content.field_article_heading
+id: block_content.article_listing.field_article_heading
+field_name: field_article_heading
+entity_type: block_content
+bundle: article_listing
+label: 'Article heading'
+description: 'Use <code>[filter-name]</code> to replace it with the selected category.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

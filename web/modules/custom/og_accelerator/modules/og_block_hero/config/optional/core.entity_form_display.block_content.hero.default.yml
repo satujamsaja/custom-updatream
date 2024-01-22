@@ -1,0 +1,98 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero
+    - field.field.block_content.hero.field_display_page_title
+    - field.field.block_content.hero.field_large_background_image
+    - field.field.block_content.hero.field_large_image_alignment
+    - field.field.block_content.hero.field_mobile_background_image
+    - field.field.block_content.hero.field_mobile_image_alignment
+    - field.field.block_content.hero.field_wide_background_image
+    - field.field.block_content.hero.field_wide_image_alignment
+    - field.field.block_content.hero.field_youtube_url
+  module:
+    - media_library
+    - media_library_edit
+id: block_content.hero.default
+targetEntityType: block_content
+bundle: hero
+mode: default
+content:
+  field_display_page_title:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_large_background_image:
+    type: media_library_widget
+    weight: 3
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+  field_large_image_alignment:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_mobile_background_image:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+  field_mobile_image_alignment:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_wide_background_image:
+    type: media_library_widget
+    weight: 5
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+  field_wide_image_alignment:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_youtube_url:
+    type: media_library_widget
+    weight: 7
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_embed_media.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_overlapping_story_theme($existing, $type, $theme, $path) {
+  return [
+    'block__og_block__overlapping_story' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'overlapping-story',
+    ],
+  ];
+}
+
+function og_block_overlapping_story_preprocess_block__og_block__overlapping_story(&$variables) {
+  $block_content = $variables['content']['#block_content'];
+
+  $variables['image_src'] = $block_content->field_os_image->entity->field_media_image->entity->uri->value ?? null;
+  $variables['image_alt'] = $block_content->field_os_image->entity->field_media_image->alt ?? null;
+  $variables['alignment_style'] = $block_content->field_os_image_side->value == 'left' ?: 'flex-md-row-reverse';
+  $variables['content'] = $block_content->body->value;
+  $variables['no_overlap'] = $block_content->field_os_no_overlap->value;
+}

@@ -1,0 +1,37 @@
+name: Drupal Next Accelerator
+description: A theme based on Radix.
+screenshot: screenshot.png
+core_version_requirement: ^8.7.7 || ^9.0 || ^10
+
+# version: VERSION
+engine: twig
+type: theme
+base theme: radix
+
+'interface translation project': dna_whitesite
+'interface translation server pattern': 'themes/custom/dna_whitesite/translations/%language.po'
+
+regions:
+  navbar_top: Navbar top
+  navbar_branding: Navbar branding
+  navbar_left:  Navbar left
+  navbar_right: Navbar right
+  header: Header
+  content: Content
+  page_bottom: Page bottom
+  footer: Footer
+  footer_bottom: Footer Bottom
+
+libraries:
+  - dna_whitesite/style
+
+ckeditor5-stylesheets:
+  - assets/css/main.css
+
+components:
+  namespaces:
+    dna_whitesite: src/components
+
+version: '5.0.0'
+project: 'radix'
+datestamp: 1654473600

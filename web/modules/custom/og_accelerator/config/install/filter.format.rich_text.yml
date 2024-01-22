@@ -1,0 +1,95 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.embedded
+    - core.entity_view_mode.media.extra_wide_landscape
+    - core.entity_view_mode.media.landscape
+    - core.entity_view_mode.media.portrait
+    - core.entity_view_mode.media.square
+  module:
+    - editor
+    - linkit
+    - media
+name: 'Rich text'
+format: rich_text
+weight: 1
+filters:
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: true
+    weight: -47
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: -46
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: -49
+    settings: {  }
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: -44
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -50
+    settings:
+      allowed_html: '<strong> <em> <u> <s> <sup> <sub> <ul type class=""> <ol type start class=""> <li class=""> <cite> <caption> <tbody> <thead> <tfoot> <tr> <td colspan rowspan> <hr> <drupal-media alt data-align data-caption data-entity-type data-entity-uuid data-view-mode title> <h1 id class=""> <h2 id class=""> <h3 id class=""> <h4 id class=""> <h5 id class=""> <h6 id class=""> <pre> <blockquote cite class=" blockquote"> <table class=" table table-striped table-bordered"> <p class=" blockquote-footer lead annotation text-align-left text-align-center text-align-right text-align-justify"> <th colspan rowspan class="w-25 w-50 w-75"> <a data-entity-substitution data-entity-type data-entity-uuid href hreflang id target title rel data-dialog-type data-dialog-options class=" btn btn-link btn-primary btn-secondary btn-success btn-danger btn-warning btn-info btn-light btn-dark link-arrow tag btn-load-more tag-close btn-black use-ajax btn btn-link btn btn-primary btn btn-secondary btn btn-success btn btn-danger btn btn-warning btn btn-info btn btn-light btn btn-dark link-arrow tag tag tag-close btn-black btn-load-more btn-lightbox">'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: false
+    weight: -40
+    settings: {  }
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: false
+    weight: -41
+    settings: {  }
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: true
+    weight: -45
+    settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: false
+    weight: -39
+    settings:
+      filter_url_length: 72
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: -43
+    settings:
+      default_view_mode: embedded
+      allowed_view_modes:
+        extra_wide_landscape: extra_wide_landscape
+        landscape: landscape
+        portrait: portrait
+        square: square
+      allowed_media_types: {  }
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: -48
+    settings:
+      title: true

@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  contextual:
+    mode: '0'
+id: accelerator_main_page_title
+label: 'Accelerator: Main page title'
+type: twig
+description: 'Custom formatter for rendering main page title.'
+field_types:
+  - string
+data: "{% for item in items %}\r\n  <h1 class=\"text-center mb-0 display-3\">{{ item.value }}</h1>\r\n{% endfor %}"

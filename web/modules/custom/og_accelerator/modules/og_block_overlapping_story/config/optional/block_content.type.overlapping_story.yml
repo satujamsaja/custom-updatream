@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: overlapping_story
+label: 'Overlapping Story'
+revision: 1
+description: 'Renders overlapping story block for storytelling.'

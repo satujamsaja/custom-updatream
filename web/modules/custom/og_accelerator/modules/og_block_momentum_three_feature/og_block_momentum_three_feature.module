@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_momentum_three_feature.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function og_block_momentum_three_feature_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the og_block_momentum_three_feature module.
+    case 'help.page.og_block_momentum_three_feature':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Feature cards stylised for the homepage and key landing pages.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_momentum_three_feature_theme() {
+  return [
+    'og_block_momentum_three_feature' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'og-block-momentum-three-feature',
+    ],
+    'block__og_block__momentum_three_feature' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'og-block-momentum-three-feature',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function og_block_momentum_three_feature_preprocess_block(&$variables) {
+  if (isset($variables['content']['#block_content'])) {
+    $variables['#attached']['library'][] = 'og_block_momentum_three_feature/momentum';
+
+    /** @var Drupal\block_content\Entity\BlockContent $block_content */
+    $block_content = $variables['content']['#block_content'];
+
+    if ($block_content->bundle() === 'momentum_three_feature') {
+      $variables['attributes']['class'][] = 'og-block--momentum-three-feature';
+    }
+  }
+}

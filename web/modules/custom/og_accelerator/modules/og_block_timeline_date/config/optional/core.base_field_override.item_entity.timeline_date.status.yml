@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - og_accelerator.item_entity_type.timeline_date
+id: item_entity.timeline_date.status
+field_name: status
+entity_type: item_entity
+bundle: timeline_date
+label: Published
+description: 'A boolean indicating whether the Item is published.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

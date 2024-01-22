@@ -1,0 +1,39 @@
+{%
+set classes = [
+  'node',
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  node.bundle|clean_class,
+  node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+]
+%}
+<a href="{{ url }}" class="search-result-wrapper" aria-label="Navigate to {{ label[0]['#context']['value'] }}">
+	<article{{attributes.addClass(classes)}}>
+		{% block content %}
+			<div class="search-item-wrapper">
+				{% if content.field_listing_image %}
+					<div class="search-result-image">
+						{{ content.field_listing_image }}
+					</div>
+				{% endif %}
+				<div{{content_attributes}} class="search-description-wrapper">
+					{% if not page %}
+						<h3{{title_attributes}}>
+							{{ label }}
+						</h3>
+					{% endif %}
+					{% if display_submitted %}
+						<p>Posted at:
+							{{ date }}</p>
+					{% endif %}
+					{% if content.search_api_excerpt %}
+						<div class="search-result-except">
+							<p>{{ content.search_api_excerpt }}</p>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endblock %}
+	</article>
+</a>

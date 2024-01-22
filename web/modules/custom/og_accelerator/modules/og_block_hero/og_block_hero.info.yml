@@ -1,0 +1,14 @@
+name: 'Block: Hero'
+description: 'Renders a hero banner block.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - crop:crop
+  - drupal:block_content
+  - drupal:media
+  - drupal:media_library
+  - drupal:options
+  - image_effects:image_effects
+  - media_library_edit:media_library_edit

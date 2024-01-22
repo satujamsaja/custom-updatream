@@ -1,0 +1,7 @@
+icon_card:
+  version: '1.0.0'
+  css:
+    theme:
+      css/icon-card.css: {}
+  js:
+    js/icon-card.js: {}

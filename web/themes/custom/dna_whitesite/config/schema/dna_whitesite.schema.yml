@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Drupal Next Accelerator theme.
+
+dna_whitesite.settings:
+  type: theme_settings
+  label: 'Drupal Next Accelerator settings'

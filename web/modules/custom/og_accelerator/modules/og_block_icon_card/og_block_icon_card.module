@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_icon_card.module.
+ */
+
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_icon_card_theme($existing, $type, $theme, $path) {
+  return [
+    'block__og_block__icon_card' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'iconcard',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function og_block_icon_card_preprocess_block__og_block__icon_card(&$variables) {
+  $block = $variables['content']['#block_content'];
+  if ($block instanceof \Drupal\block_content\BlockContentInterface) {
+    $variables['material_icon'] = $block->field_material_icon->first()->view();
+    $variables['title']         = _combine_title_accent(null, $block->field_accent_title->value, $block->field_title->value);
+    $variables['summary']       = $block->field_summary_text->value;
+    $variables['class']         = $block->field_style->value;
+
+    if ($block->field_link_url && !$block->field_link_url->isEmpty()) {
+      $variables['link_url']      = $block->field_link_url->first()->getUrl()->toString();
+      $variables['link_title']    = $block->field_link_url->title;
+      
+      // handle default if no link title
+      if (!$variables['link_title']) {
+        $variables['link_title'] = 'Learn more about ';
+        if ($value = $block->field_accent_title->value) {
+          $variables['link_title'] .= $value.' ';
+        }
+        $variables['link_title'] = rtrim($variables['link_title'].$block->field_title->value);
+      }else{ 
+        $variables['link_title']    = 'Learn more about ' . $block->field_link_url->title;
+      }
+    
+    }
+  }
+}
+
+/**
+ * Get title with accent from param.
+ */
+function _combine_title_accent($normal_1 = null, $accent = null, $normal_2 = null) {
+  $title = [];
+
+  if ($value = $normal_1) {
+    $title[] = [
+      'content' => [
+        '#markup' => $value.' ',
+        '#cache' => ['tags' => ["config:custom_formatters.formatter.accelerator_main_page_title"]],
+      ]
+    ];
+  }
+
+  if ($value = $accent) {
+    $title[] = [
+      'content' => [
+        '#markup' => '<span class="accent">'.$value.'</span> ',
+        '#cache' => ['tags' => ["config:custom_formatters.formatter.accelerator_main_page_title"]],
+      ]
+    ];
+  }
+
+  if ($value = $normal_2) {
+    $title[] = [
+      'content' => [
+        '#markup' => $value,
+        '#cache' => ['tags' => ["config:custom_formatters.formatter.accelerator_main_page_title"]],
+      ]
+    ];
+  }
+
+  return $title;
+}

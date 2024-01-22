@@ -1,0 +1,20 @@
+<div class="collapse navbar-collapse" id="footer-nav-{{ loop.index }}">
+	<ul class="nav flex-column">
+		{% for item in items %}
+			{% set nav_link_classes = [
+				'nav-link', 'px-0',
+				item.in_active_trail ? 'active'
+			] %}
+			{% if item.url.options.attributes.class is iterable %}
+				{% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+			{% elseif item.url.options.attributes.class %}
+				{% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+			{% endif %}
+			<li class="nav-item">
+				{% set nav_link_attribute = create_attribute(item.url.getOption('attributes')) %}
+				{% set nav_link_attribute = nav_link_attribute.setAttribute('href', item.url.toString() is empty ? '#' : item.url.toString()) %}
+				<a{{nav_link_attribute.addClass(nav_link_classes)}}>{{ item.title }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

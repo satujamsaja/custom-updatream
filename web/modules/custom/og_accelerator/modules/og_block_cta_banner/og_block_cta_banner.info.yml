@@ -1,0 +1,13 @@
+name: 'Block: CTA Banner'
+description: 'Renders a clickable call-to-action banner.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - drupal:block_content
+  - drupal:link
+  - drupal:media
+  - drupal:options
+  - entity_browser:entity_browser
+  - field_group:field_group

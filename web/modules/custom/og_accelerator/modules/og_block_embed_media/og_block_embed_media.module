@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_embed_media.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_embed_media_theme($existing, $type, $theme, $path) {
+  return [
+    'block__inline_block__embed_media' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'embed-media',
+    ],
+    'block__og_block__embed_media' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'embed-media',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function og_block_embed_media_preprocess_block(&$variables) {
+  if (isset($variables['content']['#block_content'])) {
+    /** @var Drupal\block_content\Entity\BlockContent $block_content */
+    $block_content = $variables['content']['#block_content'];
+
+    if ($block_content->bundle() === 'embed_media') {
+      $block_id = 'embed-media-' . rand(100000,999999);
+      if (isset($variables['elements']['#configuration']['block_revision_id'])) {
+        $block_id = 'embed-media-' . $variables['elements']['#configuration']['block_revision_id'];
+      }
+      $variables['block_id'] = $block_id;
+
+      if (isset($variables['content']['field_video'][0])) {
+        $video = $variables['content']['field_video'][0]['#media']->field_media_oembed_video->value;
+        $variables['embed_video'] = og_accelerator_get_embed_video_url($video);
+      }
+
+      $variables['image_style'] = $variables['elements']['content']['#block_content']->field_image_style->target_id;
+    }
+  }
+}

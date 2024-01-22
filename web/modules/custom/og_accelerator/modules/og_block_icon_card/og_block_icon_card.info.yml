@@ -1,0 +1,12 @@
+name: 'Block: Icon Card'
+description: 'Renders an icon card block.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - drupal:block_content
+  - drupal:link
+  - drupal:options
+  - field_group:field_group
+  - material_icons:material_icons

@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_hero.module.
+ */
+
+use Drupal\layout_builder\Section;
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_hero_theme($existing, $type, $theme, $path) {
+  return [
+    'block__inline_block__hero' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'hero',
+    ],
+    'block__og_block__hero' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'hero',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block() for debugging.
+ */
+function og_block_hero_preprocess_block(&$variables) {
+  if (isset($variables['content']['#block_content'])) {
+    /** @var Drupal\block_content\Entity\BlockContent $block_content */
+    $block_content = $variables['content']['#block_content'];
+
+    if ($block_content->bundle() === 'hero') {
+      $node = \Drupal::routeMatch()->getParameter('node');
+      $variables['display_page_title'] = false;
+
+      if ($node instanceof \Drupal\node\NodeInterface) {
+        $variables['display_page_title'] = $block_content->field_display_page_title->value == '1';
+        $variables['page_title'] = $node->title->value;
+
+        // Check if above the fold
+        if ($node->hasField('layout_builder__layout') ||
+          $node->get('layout_builder__layout')->isEmpty()) {
+
+          $block_uuid = $block_content->uuid();
+          $layout = $node->get('layout_builder__layout')->getValue();
+          $uuids = [];
+
+          if (is_iterable($layout)) {
+            $check_section_upto_index = 0;
+            foreach ($layout as $index => $item) {
+              if ($index <= $check_section_upto_index) {
+                /** @var Section $section */
+                $section = $item['section'];
+                $section_array = $section->toArray();
+                foreach ($section_array["components"] as $component) {
+                  $id = $component["configuration"]["id"];
+                  if ($id === 'inline_block:hero') {
+                    $revision_id = $component['configuration']['block_revision_id'];
+                    $block_lb =  \Drupal::entityTypeManager()
+                      ->getStorage('block_content')
+                      ->loadRevision($revision_id);
+                    if ($block_lb) {
+                      $uuids[] = $block_lb->uuid();
+                    }
+                  }
+                }
+              }
+              $check_section_upto_index += 1;
+            }
+          }
+
+          if (in_array($block_uuid, $uuids)) {
+            $variables['is_above_the_fold'] = TRUE;
+          }
+        }
+      }
+
+      $variables['embed_video'] = (isset($block_content->field_youtube_url->entity->field_media_oembed_video->value)) ? og_accelerator_get_embed_video_url($block_content->field_youtube_url->entity->field_media_oembed_video->value) : '';
+
+      if ($block_content->field_mobile_background_image->entity->field_media_image->entity) {
+        $variables['mobile_image'] = $block_content->field_mobile_background_image->entity->field_media_image->entity->getFileUri();
+        $variables['mobile_alt'] = $block_content->field_mobile_background_image->entity->field_media_image->alt;
+        $variables['mobile_alignment'] = $block_content->field_mobile_image_alignment->value;
+        if ($block_content->field_mobile_background_image->entity->field_media_image->first()) {
+          $variables['mobile_width'] = $block_content->field_mobile_background_image->entity->field_media_image->first()->width;
+          $variables['mobile_height'] = $block_content->field_mobile_background_image->entity->field_media_image->first()->height;
+        }
+      }
+
+      if ($block_content->field_large_background_image->entity->field_media_image->entity) {
+        $variables['large_image'] = $block_content->field_large_background_image->entity->field_media_image->entity->getFileUri();
+        $variables['large_alt'] = $block_content->field_large_background_image->entity->field_media_image->alt;
+        $variables['large_alignment'] = $block_content->field_large_image_alignment->value;
+      }
+
+      if ($block_content->field_wide_background_image->entity->field_media_image->entity) {
+        $variables['wide_image'] = $block_content->field_wide_background_image->entity->field_media_image->entity->getFileUri();
+        $variables['wide_alt'] = $block_content->field_wide_background_image->entity->field_media_image->alt;
+        $variables['wide_alignment'] = $block_content->field_wide_image_alignment->value;
+      }
+    }
+  }
+}

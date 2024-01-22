@@ -1,0 +1,78 @@
+{#
+/**
+* @file
+* Template for a Nav component.
+*
+* Available config:
+* - alignment: left | right | center | vertical.
+* - style: tabs | pills
+* - fill: fill | justify
+* - utility_classes: An array of utility classes.
+*/
+#}
+{% import _self as menus %}
+{% if alignment == 'right' %}
+	{% set alignment = 'justify-content-end' %}
+{% elseif alignment == 'center' %}
+	{% set alignment = 'justify-content-center' %}
+{% elseif alignment == 'vertical' %}
+	{% set alignment = 'flex-column' %}
+{% else %}
+	{% set alignment = '' %}
+{% endif %}
+{% set style = style ? 'nav-' ~ style : '' %}
+{% set fill = fill ? 'nav-' ~ fill : '' %}
+{% set nav_classes = [ 'navbar-nav', 'navbar-menu mx-auto', style, alignment, fill]|merge(utility_classes ? utility_classes : []) %}
+{% if items %}
+	<ul{{attributes.addClass(nav_classes)}}>
+		{% block items %}
+			{% for item in items %}
+				{% set child_item_list_type = '' %}
+				{% if item.entity.field_child_item_list_type %}
+					{% set child_item_list_type = item.entity.field_child_item_list_type.value %}
+				{% endif %}
+				{% set nav_item_classes = [
+					'nav-item',
+					item.in_active_trail ? 'active',
+					item.is_expanded and item.below ? 'dropdown',
+					child_item_list_type
+				] %}
+				{% set nav_link_classes = ['nav-link'] %}
+				{% if item.url.options.attributes.class is iterable %}
+					{% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+				{% elseif item.url.options.attributes.class %}
+					{% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+				{% endif %}
+				{% set remove_class = ['navbar-text'] %}
+				{{ item.attributes.removeClass(remove_class)}}
+				<li{{item.attributes.addClass(nav_item_classes)}}>
+					{% if item.is_expanded and item.below %}
+						{% set id = 'navbar-' ~ item.title|slug %}
+						{% set nav_link_attribute = create_attribute(item.url.getOption('attributes'))
+										.setAttribute('data-bs-toggle', 'dropdown')
+										.setAttribute('aria-expanded', 'false')
+										.setAttribute('role', 'button')
+										.setAttribute('id', id )
+										.setAttribute('href', item.url.toString() is empty ? '#' : item.url.toString()) %}
+						<a{{nav_link_attribute.addClass(nav_link_classes|merge(['dropdown-toggle']))}}>{{ item.title }}</a>
+						{% if item.below %}
+							{% if child_item_list_type == 'single_list' %}
+								{% include '@dna_whitesite/dropdown/dropdown-single-list.twig' with {
+									items: item.below,
+									id: id
+								} %}
+							{% else %}
+								{% include '@dna_whitesite/dropdown/dropdown-menu.twig' with {
+									items: item.below,
+									id: id
+								} %}
+							{% endif %}
+						{% endif %}
+					{% else %}
+						{{ link(item.title, item.url, { 'class': nav_link_classes }) }}
+					{% endif %}
+				</li>
+			{% endfor %}
+		{% endblock %}
+	</ul>
+{% endif %}

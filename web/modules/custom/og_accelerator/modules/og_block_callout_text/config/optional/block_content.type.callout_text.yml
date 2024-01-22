@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: callout_text
+label: 'Callout Text'
+revision: 1
+description: 'Renders a callout text block.'

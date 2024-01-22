@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.portrait_4_5
+  module:
+    - crop
+name: accelerator_portrait_4_5
+label: 'Accelerator: Portrait 4:5'
+effects:
+  2bb69c13-c498-45a1-ba4c-793a2bbdcf49:
+    uuid: 2bb69c13-c498-45a1-ba4c-793a2bbdcf49
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: portrait_4_5
+      automatic_crop_provider: null
+pipeline: __default__

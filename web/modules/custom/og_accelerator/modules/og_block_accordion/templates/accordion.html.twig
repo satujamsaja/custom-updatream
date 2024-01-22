@@ -1,0 +1,40 @@
+{% set classes = [
+  'block',
+  'block--accordion',
+  'accelerator-block',
+  'accelerator-block--accordion',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+  
+  {% block content %}
+    <div class="accordion" id="{{ block_id }}">
+      {% for index in content.field_accordion_items['#items']|keys %}
+        {% set accordion_item = content.field_accordion_items[index]['#item_entity'] %}
+        <div class="card">
+          <div class="card-header">
+            <a href="#" id="{{ block_id }}-head{{ index }}" class="h5 mb-0 py-3 pl-3" data-bs-toggle="collapse" data-bs-target="#{{ block_id }}-body{{ index }}" aria-expanded="{% if accordion_item.field_open_by_default.value == '1' %}true{% else %}false{% endif %}" aria-controls="{{ block_id }}-body{{ index }}">
+              <h3>{{ accordion_item.label }}</h3>
+            </a>
+          </div>
+          <div id="{{ block_id }}-body{{ index }}" class="collapse {% if accordion_item.field_open_by_default.value == '1' %}show{% endif %}" aria-labelledby="{{ block_id }}-head{{ index }}"{% if content.field_allow_multiple_open['#items'][0].value != '1' %} data-bs-parent="#{{ block_id }}"{% endif %}>
+            <div class="card-body">
+              {% set accordion_text = {
+                '#type': 'processed_text',
+                '#text': accordion_item.field_text.value,
+                '#format': accordion_item.field_text.format,
+              } %}
+              {{ accordion_text }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endblock %}
+</div>

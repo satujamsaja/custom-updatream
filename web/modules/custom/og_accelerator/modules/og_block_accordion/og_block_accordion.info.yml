@@ -1,0 +1,14 @@
+name: 'Block: Accordion'
+description: 'Renders an accordion block.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - drupal:block_content
+  - drupal:text
+  - drupal:user
+  - entity_browser:entity_browser_entity_form
+  - entity_reference_revisions:entity_reference_revisions
+  - inline_entity_form:inline_entity_form
+  - og_accelerator:og_accelerator

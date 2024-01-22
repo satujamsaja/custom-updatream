@@ -1,0 +1,7 @@
+featured_card:
+  version: '1.0.0'
+  css:
+    theme:
+      css/featured_card.css: {}
+  js:
+    js/featured_card.js: {}

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.anchor_navigation
+    - field.storage.block_content.field_anchor_navigation_items
+    - og_accelerator.item_entity_type.anchor_navigation_item
+id: block_content.anchor_navigation.field_anchor_navigation_items
+field_name: field_anchor_navigation_items
+entity_type: block_content
+bundle: anchor_navigation
+label: 'Anchor navigation items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:item_entity'
+  handler_settings:
+    target_bundles:
+      anchor_navigation_item: anchor_navigation_item
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

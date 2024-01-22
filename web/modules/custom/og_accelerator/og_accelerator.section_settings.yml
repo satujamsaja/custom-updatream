@@ -1,0 +1,476 @@
+basic_settings:
+  title:
+    type: details
+    title: 'Title'
+  title_display:
+    title: 'Display title'
+    type: checkbox
+    __region: title
+    __parent: title
+  title_text:
+    title: 'Title text'
+    type: textfield
+    __region: title
+    __parent: title
+  title_tag:
+    title: 'Title tag'
+    type: select
+    options:
+      h1: 'H1'
+      h2: 'H2'
+      h3: 'H3'
+      h4: 'H4'
+      h5: 'H5'
+      h6: 'H6'
+    __default: h3
+    __region: title
+    __parent: title
+  title_row_class:
+    title: 'Title row class'
+    type: textfield
+    __default: row
+    __region: title
+    __parent: title
+  title_column_class:
+    title: 'Title column class'
+    type: textfield
+    __default: col-md-12
+    __region: title
+    __parent: title
+  title_class:
+    title: 'Title class'
+    type: textfield
+    __region: title
+    __parent: title
+  visibility:
+    type: details
+    title: 'Visibility'
+  visibility_role:
+    title: 'Role'
+    type: checkboxes
+    options: user_role_names
+    __visibility: og_accelerator_section_role_access
+    __default:
+      anonymous: anonymous
+      authenticated: authenticated
+    __parent: visibility
+  background:
+    type: details
+    title: 'Background'
+  background_colour:
+    title: 'Background colour'
+    type: select
+    options: og_accelerator_section_background_colour
+    __default: -none-
+    __attributes: class
+    __region: background
+    __parent: background
+  background_dark:
+    title: 'Is background dark?'
+    type: checkbox
+    __checked: 'text-white dark-bg'
+    __attributes: class
+    __region: background
+    __parent: background
+  background_repeat:
+    title: 'Background repeat'
+    type: select
+    options:
+      -none-: 'None'
+      bg-repeat: 'Repeat X and Y'
+      bg-repeat-x: 'Repeat X'
+      bg-repeat-y: 'Repeat Y'
+      bg-no-repeat: 'No repeat'
+      bg-space: 'Space'
+      bg-round: 'Round'
+    __default: bg-no-repeat
+    __attributes: class
+    __region: background
+    __parent: background
+  background_image:
+    title: 'Background image'
+    type: callback
+    __callback_widget: [ '\Drupal\og_accelerator\Plugin\Layout\LayoutBase', 'fieldEntityBrowserImageBrowser' ]
+    __callback_render: [ '\Drupal\og_accelerator\Plugin\Layout\LayoutBase', 'renderEntityBrowserImageBrowser' ]
+    __attributes: style
+    __property:
+      name: background-image
+      prefix: 'url('
+      suffix: ')'
+    __region: background
+    __parent: background
+  background_image_position:
+    title: 'Background image position'
+    type: select
+    options:
+      -none-: 'None'
+      bg-cc: 'Centre'
+      bg-tl: 'Top left'
+      bg-tc: 'Top middle'
+      bg-tr: 'Top right'
+      bg-cl: 'Middle left'
+      bg-cr: 'Middle right'
+      bg-bl: 'Bottom left'
+      bg-bc: 'Bottom middle'
+      bg-br: 'Bottom right'
+      __default: bg-cc
+    __attributes: class
+    __region: background
+    __parent: background
+  background_size:
+    title: 'Background size'
+    type: select
+    options:
+      -none-: 'None'
+      bg-auto: 'Auto'
+      bg-cover: 'Cover'
+      bg-contain: 'Contain'
+      bg-50-auto: '50% width'
+      bg-50-50: '50% width and height'
+      bg-100-auto: '100% width'
+      bg-100-100: '100% width and height'
+    __default: bg-cover
+    __attributes: class
+    __region: background
+    __parent: background
+  background_class:
+    title: 'Custom background class'
+    type: textfield
+    __attributes: class
+    __region: background
+    __parent: background
+  container:
+    type: details
+    title: 'Container'
+  container_width:
+    title: 'Width'
+    type: select
+    options:
+      -none-: 'None'
+      'container container-narrow': Narrow
+      container: Default
+      'container container-wider': Wider
+      container-fluid: 'Full width'
+    __attributes: class
+    __default: container
+    __parent: container
+  container_margin_top:
+    title: 'Top margin'
+    type: select
+    options:
+      -none-: 'None'
+      pt-1: 'Extra small'
+      pt-2: 'Small'
+      pt-3: 'Medium'
+      pt-4: 'Large'
+      pt-5: 'Extra large'
+    __default: pt-3
+    __attributes: class
+    __parent: container
+  container_margin_right:
+    title: 'Right margin'
+    type: select
+    options:
+      -none-: 'None'
+      pr-1: 'Extra small'
+      pr-2: 'Small'
+      pr-3: 'Medium'
+      pr-4: 'Large'
+      pr-5: 'Extra large'
+    __default: -none-
+    __attributes: class
+    __parent: container
+  container_margin_bottom:
+    title: 'Bottom margin'
+    type: select
+    options:
+      -none-: 'None'
+      pb-1: 'Extra small'
+      pb-2: 'Small'
+      pb-3: 'Medium'
+      pb-4: 'Large'
+      pb-5: 'Extra large'
+    __default: pb-3
+    __attributes: class
+    __parent: container
+  container_margin_left:
+    title: 'Left margin'
+    type: select
+    options:
+      -none-: 'None'
+      pl-1: 'Extra small'
+      pl-2: 'Small'
+      pl-3: 'Medium'
+      pl-4: 'Large'
+      pl-5: 'Extra large'
+    __default: -none-
+    __attributes: class
+    __parent: container
+  container_class:
+    title: 'Custom container class'
+    type: textfield
+    __attributes: class
+    __parent: container
+  container_id:
+    type: textfield
+    title: 'Container ID'
+    __attributes: id
+    __parent: container
+  row:
+    type: details
+    title: 'Row'
+  row_bootstrap:
+    title: 'Row class'
+    type: select
+    options:
+      -none-: ''
+      row: 'Row'
+    __default: row
+    __attributes: class
+    __region: row
+    __parent: row
+  row_gutters:
+    title: 'Disable gutters'
+    type: checkbox
+    __checked: g-0
+    __attributes: class
+    __region: row
+    __parent: row
+  row_vertical_center:
+    title: 'Vertical center'
+    type: checkbox
+    __checked: align-items-center
+    __attributes: class
+    __region: row
+    __parent: row
+  row_carousel:
+    title: 'Carousel on mobile'
+    type: checkbox
+    __checked: carousel-on-mobile
+    __attributes: class
+    __region: row
+    __parent: row
+  row_block_spacing:
+    title: 'Block spacing'
+    type: select
+    options:
+      -none-: 'None'
+      bs-1: 'Extra small'
+      bs-2: 'Small'
+      bs-3: 'Medium'
+      bs-4: 'Large'
+      bs-5: 'Extra large'
+    __default: -none-
+    __attributes: class
+    __region: row
+    __parent: row
+  row_class:
+    title: 'Custom row class'
+    type: textfield
+    __attributes: class
+    __region: row
+    __parent: row
+  row_id:
+    type: textfield
+    title: 'Row ID'
+    __attributes: id
+    __region: row
+    __parent: row
+
+bootstrap_one_column_settings:
+  column:
+    type: details
+    open: TRUE
+    title: 'Column'
+  column_width:
+    title: 'Column width'
+    type: select
+    options:
+      _0: ''
+      _100: 'Full'
+    __selected:
+      _0:
+        main: ''
+      _100:
+        main: col-md-12
+    __default: _100
+    __attributes: class-region
+    __parent: column
+  main_column_class:
+    title: 'Main column class'
+    type: textfield
+    __attributes: class
+    __region: main
+    __parent: column
+
+bootstrap_two_column_settings:
+  column:
+    type: details
+    open: TRUE
+    title: 'Column'
+  column_width:
+    title: 'Column width'
+    type: select
+    options:
+      _0_0: ''
+      _auto: 'Auto'
+      _50_50: '50% / 50%'
+      _33_67: '33% / 66%'
+      _67_33: '66% / 33%'
+      _25_75: '25% / 75%'
+      _75_25: '75% / 25%'
+    __selected:
+      _0_0:
+        left: ''
+        right: ''
+      _auto:
+        left: col-md
+        right: col-md
+      _50_50:
+        left: col-md-6
+        right: col-md-6
+      _33_67:
+        left: col-md-4
+        right: col-md-8
+      _67_33:
+        left: col-md-8
+        right: col-md-4
+      _25_75:
+        left: col-md-3
+        right: col-md-9
+      _75_25:
+        left: col-md-9
+        right: col-md-3
+    __default: _50_50
+    __attributes: class-region
+    __parent: column
+  left_column_class:
+    title: 'Left column class'
+    type: textfield
+    __attributes: class
+    __region: left
+    __parent: column
+  right_column_class:
+    title: 'Right column class'
+    type: textfield
+    __attributes: class
+    __region: right
+    __parent: column
+
+bootstrap_three_column_settings:
+  column:
+    type: details
+    open: TRUE
+    title: 'Column'
+  column_width:
+    title: 'Column width'
+    type: select
+    options:
+      _0_0_0: ''
+      _auto: 'Auto'
+      _25_50_25: '25% / 50% / 25%'
+      _33_33_33: '33% / 34% / 33%'
+      _25_25_50: '25% / 25% / 50%'
+      _50_25_25: '50% / 25% / 25%'
+    __selected:
+      _0_0_0:
+        left: ''
+        center: ''
+        right: ''
+      _auto:
+        left: col-md
+        center: col-md
+        right: col-md
+      _25_50_25:
+        left: col-md-3
+        center: col-md-6
+        right: col-md-3
+      _33_33_33:
+        left: col-md-4
+        center: col-md-4
+        right: col-md-4
+      _25_25_50:
+        left: col-md-3
+        center: col-md-3
+        right: col-md-6
+      _50_25_25:
+        left: col-md-6
+        center: col-md-3
+        right: col-md-3
+    __default: _33_33_33
+    __attributes: class-region
+    __parent: column
+  left_column_class:
+    title: 'Left column class'
+    type: textfield
+    __attributes: class
+    __region: left
+    __parent: column
+  center_column_class:
+    title: 'Center column class'
+    type: textfield
+    __attributes: class
+    __region: center
+    __parent: column
+  right_column_class:
+    title: 'Right column class'
+    type: textfield
+    __attributes: class
+    __region: right
+    __parent: column
+
+bootstrap_four_column_settings:
+  column:
+    type: details
+    open: TRUE
+    title: 'Column'
+  column_width:
+    title: 'Column width'
+    type: select
+    options:
+      _0_0_0_0: ''
+      _auto: 'Auto'
+      _25_25_25_25: '25 % / 25% / 25% / 25%'
+    __selected:
+      _0_0_0_0:
+        first: ''
+        second: ''
+        third: ''
+        last: ''
+      _auto:
+        first: col-md
+        second: col-md
+        third: col-md
+        last: col-md
+      _25_25_25_25:
+        first: col-md-3
+        second: col-md-3
+        third: col-md-3
+        last: col-md-3
+    __default: _25_25_25_25
+    __attributes: class-region
+    __parent: column
+  first_column_class:
+    title: 'First column class'
+    type: textfield
+    __attributes: class
+    __region: first
+    __parent: column
+  second_column_class:
+    title: 'Second column class'
+    type: textfield
+    __attributes: class
+    __region: second
+    __parent: column
+  third_column_class:
+    title: 'Third column class'
+    type: textfield
+    __attributes: class
+    __region: third
+    __parent: column
+  last_column_class:
+    title: 'Last column class'
+    type: textfield
+    __attributes: class
+    __region: last
+    __parent: column

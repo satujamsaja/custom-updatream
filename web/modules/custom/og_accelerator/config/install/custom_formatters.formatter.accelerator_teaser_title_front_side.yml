@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  contextual:
+    mode: '0'
+id: accelerator_teaser_title_front_side
+label: 'Accelerator: Teaser title (Front side)'
+type: twig
+description: 'Custom formatter for rendering content title in ''teaser'' display mode (front side card).'
+field_types:
+  - string
+data: "{% for item in items %}\r\n  <div class=\"p-0 card-img-overlay d-flex flex-column\">\r\n    <h5 class=\"p-2 bg-secondary text-white opacity-4\">{{ item.value }}</h5>\r\n  </div>\r\n{% endfor %}"

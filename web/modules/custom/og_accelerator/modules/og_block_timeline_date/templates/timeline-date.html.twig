@@ -1,0 +1,65 @@
+{{ attach_library('og_block_timeline_date/timeline_date') }}
+
+{% set classes = [
+  'block',
+  'block--timeline-date',
+  'accelerator-block',
+  'accelerator-block--timeline-date ',
+  orientation ~ '-timeline-block-wrapper',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+    <div class="timeline-title">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="year-filter">
+      {% for key, value in json %}
+        {% set filter_attributes = create_attribute({
+          'class': loop.first ? 'first-active',
+          'href': '#',
+          'role': 'button',
+          'tabindex': 0,
+          'data-year': key,
+          'aria-label': 'Filter timeline to ' ~ key,
+        }) %}
+
+        <a{{ filter_attributes }}>{{ key }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="vertical-timeline-previous-block">
+      <p class="see-previous"><a  href="#" tabindex="0" aria-label="Navigate to the previous set of events" role="button" tabindex="0">{{ previous_label }}</a></p>
+      <p class="year-tag active-year">active year placeholder</p>
+
+      <div class="line"></div>
+    </div>
+
+    {# TEMPLATING FOR JSON TO HTML #}
+    <div class="vertical-timeline-block">
+      <div class="item template init">
+        <h3 class="timeline-item-title">timeline title placeholder</h3>
+        <img width='300' height='400' src="data:," alt="timeline image" class="timeline-item-image" />
+        <blockquote><p>blockqoute</p></blockquote>
+        <p class="timeline-item-description">timeline title placeholder</p>
+        <p class="timeline-item-link"><a class="btn btn-secondary" href="#">timeline link placeholder</a></p>
+      </div>
+    </div>
+    {# END OF TEMPLATING FOR JSON TO HTML #}
+
+    <div class="vertical-timeline-next-block">
+      <p class="see-next"><a href="#" tabindex="0" aria-label="Navigate to the next set of events" role="button">{{ next_label }}</a></p>
+      <div class="line"></div>
+    </div>
+
+    <div class="timeline-data" data-json="{{ json|json_encode }}"></div>
+  {% endblock %}
+
+</div>

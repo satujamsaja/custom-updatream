@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel
+    - field.storage.block_content.field_enable_pause_btn
+id: block_content.carousel.field_enable_pause_btn
+field_name: field_enable_pause_btn
+entity_type: block_content
+bundle: carousel
+label: 'Enable pause button'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

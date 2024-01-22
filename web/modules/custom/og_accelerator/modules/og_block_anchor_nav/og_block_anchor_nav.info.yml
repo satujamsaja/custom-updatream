@@ -1,0 +1,10 @@
+name: 'Block: Anchor Navigation'
+description: 'Generates a list of anchor navigation in the layout builder.'
+package: 'Accelerator'
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10
+php: 8.0
+dependencies:
+  - drupal:block_content
+  - inline_entity_form:inline_entity_form
+  - og_accelerator:og_accelerator

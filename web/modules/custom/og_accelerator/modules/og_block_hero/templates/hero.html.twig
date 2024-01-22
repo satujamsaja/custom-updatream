@@ -1,0 +1,45 @@
+{{ attach_library('og_block_hero/hero') }}
+
+{% set classes = [
+  'block',
+  'block--hero',
+  'accelerator-block',
+  'accelerator-block--hero ',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+
+    {% set loading_attr = ' loading="lazy"' %}
+    {% if is_above_the_fold %}
+      {% set loading_attr = '' %}
+    {% endif %}
+
+    <div class="inner-hero">
+      {% if wide_image and large_image and mobile_image %}
+      <picture data-align-large="{{ large_alignment }}" data-align-wide="{{ wide_alignment }}" data-align-mobile="{{ mobile_alignment }}">
+        <source media="(min-width:1200px)" srcset="{{ wide_image|image_style('hero_desktop') }}" alt="{{ wide_alt }}">
+        <source media="(min-width:720px)" srcset="{{ large_image|image_style('hero_desktop') }}" alt="{{ large_alt }}">
+        <img src="{{ mobile_image|image_style('hero_mobile') }}" alt="{{ mobile_alt }}" style="object-position: center center" width="{{ mobile_width }}" height="{{ mobile_height }}" {{ loading_attr }}>
+
+      </picture>
+      {% endif %}
+      <div data-vbg-play-button="false" fit-box="true" data-vbg="{{ embed_video }}"></div>
+    </div>
+    {% if display_page_title %}
+    <div class="hero-text">
+      <div class="container">
+        <h1>{{ page_title }}</h1>
+      </div>
+    </div>
+    {% endif %}
+  {% endblock %}
+
+</div>

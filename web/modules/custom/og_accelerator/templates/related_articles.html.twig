@@ -1,0 +1,45 @@
+{{ attach_library('og_accelerator/related_articles') }}
+{% set classes = [
+'block',
+'block--article-listing',
+'accelerator-block',
+'accelerator-block--article-listing',
+] %}
+<div {{ attributes.addClass(classes) }}>
+	{{ title_prefix }}
+	{% if label %}
+		<h3{{title_attributes}}>{{ label }}</h3>
+	{% endif %}
+	{{ title_suffix }}
+	{% block content %}
+		{% set title = content.field_title[0]['#context']['value'] %}
+		{% set link = content.field_view_all_link[0] %}
+		<div class="related-article-wrapper">
+			<div class="related-article-heading hidden">
+				{% if title %}
+					<div class="related-article-tittle">
+						<h2>{{ title }}</h2>
+					</div>
+				{% endif %}
+				{% if link %}
+					<div class="related-article-view-all">
+						<a href="{{ link['#url']|render }}" id="view-all-article-link">{{ link['#title'] }}</a>
+					</div>
+				{% endif %}
+			</div>
+			<div class="related-article-items" data-article-count="{{ content['no-result'] }}" data-load-all="{{ content['result-onempty'] }}">
+				{% if content['category'] != '0' %}
+					{% if content['no-result'] and content['no-result'] > 0 %}
+						{{ drupal_view('related_articles', 'block_related_article') }}
+					{% elseif content['result-onempty'] == '1' %}
+						{{ drupal_view('related_articles', 'block_related_article_all') }}
+					{% endif %}
+				{% else %}
+					{% if content['result-onempty'] == '1' %}
+						{{ drupal_view('related_articles', 'block_related_article_all') }}
+					{% endif %}
+				{% endif %}
+			</div>
+		</div>
+	{% endblock %}
+</div>

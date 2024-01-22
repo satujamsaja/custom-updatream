@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero
+    - field.storage.block_content.field_youtube_url
+    - media.type.remote_video
+id: block_content.hero.field_youtube_url
+field_name: field_youtube_url
+entity_type: block_content
+bundle: hero
+label: 'Youtube URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      remote_video: remote_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

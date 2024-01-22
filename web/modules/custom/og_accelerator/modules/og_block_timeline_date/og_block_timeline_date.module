@@ -1,0 +1,104 @@
+<?php
+
+use Drupal\config_pages\Entity\ConfigPages;
+
+/**
+ * @file
+ * Contains og_block_timeline_date.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_timeline_date_theme($existing, $type, $theme, $path) {
+  return [
+    'block__og_block__timeline' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'timeline-date',
+    ],
+  ];
+}
+
+function og_block_timeline_date_preprocess_block__og_block__timeline(&$variables) {
+  $siteSettings = ConfigPages::config('site_settings');
+  $block = $variables['content']['#block_content'];
+
+  $view = \Drupal\views\Views::getView('timeline');
+
+  $timeline_date_filter = array_column($block->field_timeline_date_filter->getValue(), 'target_id');
+
+  $view->setArguments([
+    implode('+', $timeline_date_filter) ?: null,
+  ]);
+
+  $view->setExposedInput([
+    'field_timeline_date_type_target_id' => array_column($block->field_timeline_date_type->getValue(), 'target_id'),
+  ]);
+
+  $view->execute();
+
+  $result = [];
+  if (isset($view->preview()['#rows'][0])) {
+    $result = $view->preview()['#rows'][0]['#rows'];
+  }
+
+  $variables['title'] = $block->field_timeline_title->value;
+  $variables['previous_label'] = $siteSettings->field_timeline_previous_label->value;
+  $variables['next_label'] = $siteSettings->field_timeline_next_label->value;
+  $variables['orientation'] = $block->field_orientation->value;
+
+  $tids = array_column($block->field_timeline_date_filter->getValue(), 'target_id');
+
+  // Get the term storage.
+  $entity_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  // Query the terms sorted by weight.
+  $query_result = $entity_storage->getQuery();
+
+  if ($tids) {
+    $query_result->condition('tid', $tids, 'in');
+  }
+
+  $query_result = $query_result->sort('weight', 'ASC')
+                               ->accessCheck(TRUE)
+                               ->execute();
+
+  // Load the terms.
+  foreach ($entity_storage->loadMultiple($query_result) as $term) {
+    $json[$term->name->value] = [];
+  }
+
+  if ($result) {
+    $image_style = \Drupal::entityTypeManager()->getStorage('image_style')->load('accelerator_portrait_300_400');
+
+    foreach ($result as $row) {
+      $item = $row['#item_entity'];
+
+      foreach ($item->field_timeline_date_category as $category) {
+        if (in_array($category->entity->tid->value, $timeline_date_filter) || $timeline_date_filter === []) {
+          $json[$category->entity->name->value][] = [
+            'title' => $item->field_title->value,
+            'image' => $item->field_image->entity && $item->field_image->entity->field_media_image->entity ? $image_style->buildUrl($item->field_image->entity->field_media_image->entity->uri->value) : null,
+            'width' => $item->field_image->entity && $item->field_image->entity->field_media_image->entity ? $item->field_image->entity->field_media_image->first()->width : null,
+            'height' => $item->field_image->entity && $item->field_image->entity->field_media_image->entity ? $item->field_image->entity->field_media_image->first()->height : null,
+            'description' => $item->field_description->value,
+            'link_url' => $item->field_link->first() ? $item->field_link->first()->getUrl()->toString() : null,
+            'link_text'  => $item->field_link->title,
+            'quote' => $item->field_quote->value,
+          ];
+        }
+      }
+    }
+
+    $variables['#cache']['tags'][] = 'item_entity_view';
+    foreach($result as $row) {
+      $variables['#cache']['tags'][] = $row['#cache']['tags'][1];
+    }
+
+    // make sure sort arrsay ascending
+    ksort($json);
+
+    $variables['json'] = array_filter($json);
+  }
+}

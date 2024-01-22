@@ -1,0 +1,43 @@
+// OGDRUACC-4 Fade in with css transition
+// Usage: @include fade-in(.4s, ease)
+@mixin fade-in($length, $timing) {
+  -webkit-animation: fadeIn $length $timing; // Safari, Chrome and Opera > 12.1
+  -moz-animation: fadeIn $length $timing; // Firefox < 16
+  -ms-animation: fadeIn $length $timing; // Internet Explorer
+  -o-animation: fadeIn $length $timing; // Opera < 12.1
+  animation: fadeIn $length $timing;
+}
+
+// Usage: @include fade-out(.4s, ease)
+@mixin fade-out($length, $timing) {
+  -webkit-animation: fadeOut $length $timing; // Safari, Chrome and Opera > 12.1
+  -moz-animation: fadeOut $length $timing; // Firefox < 16
+  -ms-animation: fadeOut $length $timing; // Internet Explorer
+  -o-animation: fadeOut $length $timing; // Opera < 12.1
+  animation: fadeOut $length $timing;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@mixin border-midblue() {
+  outline: 2px solid $midblue;
+  box-shadow: 0 0 5px $lightblue;
+}

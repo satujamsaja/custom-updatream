@@ -1,0 +1,6 @@
+status: 2
+pattern: '[item_entity:field_street_address]'
+escape: false
+preserve_titles: false
+save: 0
+chunk: '50'

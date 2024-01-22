@@ -1,0 +1,8 @@
+{% embed '@dna_whitesite/block/block.twig' with {
+  html_tag: 'div',
+} %}
+	{% block content %}
+		<div id="article-listing-title"></div>
+		{{ content }}
+	{% endblock %}
+{% endembed %}

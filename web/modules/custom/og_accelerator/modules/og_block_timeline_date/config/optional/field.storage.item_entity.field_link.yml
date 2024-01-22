@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - og_accelerator
+_core:
+  default_config_hash: l9QS_lKfEf7MTWfTP_HmhAxn1P9Ql2iE3OtGyd-ryHo
+id: item_entity.field_link
+field_name: field_link
+entity_type: item_entity
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

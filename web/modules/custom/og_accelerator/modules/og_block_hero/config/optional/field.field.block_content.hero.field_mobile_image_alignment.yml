@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero
+    - field.storage.block_content.field_mobile_image_alignment
+  module:
+    - options
+id: block_content.hero.field_mobile_image_alignment
+field_name: field_mobile_image_alignment
+entity_type: block_content
+bundle: hero
+label: 'Mobile image alignment'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 'center center'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

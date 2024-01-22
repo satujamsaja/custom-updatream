@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.item_entity.field_description
+    - og_accelerator.item_entity_type.timeline_date
+id: item_entity.timeline_date.field_description
+field_name: field_description
+entity_type: item_entity
+bundle: timeline_date
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

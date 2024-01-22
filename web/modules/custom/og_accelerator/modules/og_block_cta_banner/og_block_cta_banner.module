@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_embed_media.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_cta_banner_theme($existing, $type, $theme, $path) {
+  return [
+    'block__og_block__cta_banner' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'ctabanner',
+    ],
+  ];
+}
+
+function og_block_cta_banner_preprocess_block__og_block__cta_banner(&$variables) {
+  $block_content = $variables['content']['#block_content'];
+
+  $variables['cta_signpost_label'] = $block_content->field_cta_signpost_label->value;
+  $variables['cta_link_url'] = $block_content->field_cta_link->first()->getUrl()->toString();
+  $variables['cta_link_text'] = $block_content->field_cta_link->first()->title;
+  $variables['cta_title'] = $block_content->field_cta_title->value;
+  $variables['cta_summary'] = $block_content->field_cta_summary->value;
+  $variables['cta_height_class_name'] = 'cta-banner-block--'. $block_content->field_cta_height->value;
+  $variables['cta_image_alignment_class_name'] = 'bg-'. $block_content->field_cta_background_alignment->value;
+  $variables['cta_alignment_class_name'] = 'cta-banner-block--'. $block_content->field_cta_alignment->value;
+
+  // media image
+  if (!$block_content->field_cta_background_image->isEmpty()) {
+    $img_src = $block_content->field_cta_background_image->entity->field_media_image->entity->getFileUri();
+    $img_style_desktop = $block_content->field_cta_height->value == 'lg' ? 'accelerator_landscape_crop_16_9' : 'accelerator_panoramic_crop_4_1';
+    $style_mobile = \Drupal::entityTypeManager()->getStorage('image_style')->load('accelerator_square_crop');
+    $style_desktop = \Drupal::entityTypeManager()->getStorage('image_style')->load($img_style_desktop);
+    $variables['cta_image_url_mobile'] = \Drupal::service('file_url_generator')->transformRelative($style_mobile->buildUrl($img_src));
+    $variables['cta_image_url_desktop'] = \Drupal::service('file_url_generator')->transformRelative($style_desktop->buildUrl($img_src));
+  }
+}

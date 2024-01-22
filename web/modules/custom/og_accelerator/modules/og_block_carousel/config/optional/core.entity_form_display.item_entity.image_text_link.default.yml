@@ -1,0 +1,62 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.item_entity.image_text_link.field_image
+    - field.field.item_entity.image_text_link.field_link
+    - field.field.item_entity.image_text_link.field_text
+    - field.field.item_entity.image_text_link.field_video
+    - og_accelerator.item_entity_type.image_text_link
+  module:
+    - link
+    - media_library
+    - media_library_edit
+id: item_entity.image_text_link.default
+targetEntityType: item_entity
+bundle: image_text_link
+mode: default
+content:
+  field_image:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+  field_link:
+    type: link_default
+    weight: 4
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_video:
+    type: media_library_widget
+    weight: 3
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_text: true
+  user_id: true

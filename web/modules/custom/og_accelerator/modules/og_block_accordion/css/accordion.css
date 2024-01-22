@@ -1,0 +1,47 @@
+.accordion {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.accordion .card-header a {
+  color: #000;
+  display: block;
+  padding-right: 4.5rem;
+  text-decoration: none;
+}
+
+.accordion .card-header a:after {
+  content: "";
+  width: 22px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  height: 22px;
+  background-image: url("../images/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: 22px;
+}
+
+.accordion .card-header a[aria-expanded="true"]:after {
+  transform: rotate(180deg);
+}
+
+.accordion .card-header a:hover {
+  text-decoration: none;
+}
+
+.accordion .card {
+  border-top: 1px solid rgba(0,0,0,.125);
+  border-left: 1px solid rgba(0,0,0,.125);
+  border-right: 1px solid rgba(0,0,0,.125);
+  border-bottom: 0;
+}
+
+.accordion .card:nth-last-child(1) {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.accordion .card-header {
+  border: 0;
+}

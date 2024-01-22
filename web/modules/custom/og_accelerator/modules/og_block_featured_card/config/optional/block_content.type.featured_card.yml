@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: featured_card
+label: 'Featured Card'
+revision: 1
+description: 'Renders a featured card block.'

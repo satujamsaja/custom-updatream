@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Timeline Date Category'
+vid: timeline_date_category
+description: 'Timeline grouping by category'
+weight: 0

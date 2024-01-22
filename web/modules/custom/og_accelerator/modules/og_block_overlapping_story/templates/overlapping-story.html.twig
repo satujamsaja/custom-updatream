@@ -1,0 +1,68 @@
+{{ attach_library('og_block_overlapping_story/overlapping_story') }}
+
+{% set classes = [
+  'block',
+  'block--overlapping-story',
+  'accelerator-block',
+  'accelerator-block--overlapping-story ',
+  'block--overlap',
+  'block-overlap',
+  no_overlap ? 'no-overlap' : ''
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {%
+    set row_attrs = create_attribute({
+      class: [
+        'row align-items-end section-content',
+        alignment_style
+      ]
+    })
+  %}
+  {%
+    set col_one_attrs = create_attribute({
+      class: [
+        'col-xs-12 col-md-5 col-lg-4',
+        alignment_style == 1 ? 'offset-lg-1' : 'offset-md-1 offset-lg-1'
+      ]
+    })
+  %}
+  {%
+    set col_two_attrs = create_attribute({
+      class: [
+        'col-xs-12 col-md-6 col-lg-5 align-self-center',
+        alignment_style == 1 ? 'offset-md-1 offset-lg-1' : 'offset-lg-1'
+      ]
+    })
+  %}
+
+  {% block content %}
+    <div{{ row_attrs }}>
+        <div{{ col_one_attrs }}>
+          <div class="block block--embed-media accelerator-block accelerator-block--embed-media">
+              <div class="media-image-video">
+                {% if image_src %}
+                  {{ drupal_image(image_src, 'accelerator_portrait_crop_9_16', {
+                    alt: image_alt,
+                    class: 'img-fluid'
+                  }) }}
+                {% endif %}
+              </div>
+          </div>
+        </div>
+        <div{{ col_two_attrs }}>
+          <div class="block rich-text-block">
+            {{ content | raw }}
+          </div>
+        </div>
+    </div>
+  {% endblock %}
+
+</div>

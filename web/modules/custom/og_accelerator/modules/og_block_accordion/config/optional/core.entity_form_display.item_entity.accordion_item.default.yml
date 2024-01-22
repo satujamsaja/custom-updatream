@@ -1,0 +1,46 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.item_entity.accordion_item.field_open_by_default
+    - field.field.item_entity.accordion_item.field_text
+    - og_accelerator.item_entity_type.accordion_item
+  module:
+    - text
+id: item_entity.accordion_item.default
+targetEntityType: item_entity
+bundle: accordion_item
+mode: default
+content:
+  field_open_by_default:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_text:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  user_id: true

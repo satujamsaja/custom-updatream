@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains og_block_carousel.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function og_block_carousel_theme() {
+  return [
+    'block__inline_block__carousel' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'carousel',
+    ],
+    'block__og_block__carousel' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'carousel',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function og_block_carousel_preprocess_block(&$variables) {
+  if (isset($variables['content']['#block_content'])) {
+    /** @var Drupal\block_content\Entity\BlockContent $block_content */
+    $block_content = $variables['content']['#block_content'];
+
+    if ($block_content->bundle() === 'carousel') {
+      $block_id = 'carousel-' . $block_content->getRevisionId();
+      $variables['block_id'] = $block_id;
+      $variables['carousel_settings'] = json_encode([
+        'autoplay' => (bool) $block_content->field_autoplay->value,
+        'interval' => (int) $block_content->field_autoplay_interval->value,
+      ]);
+      $variables['autoplay'] = (bool) $block_content->field_autoplay->value;
+      $variables['enable_pause_btn'] = $block_content->field_enable_pause_btn->value === "1";
+    }
+  }
+}

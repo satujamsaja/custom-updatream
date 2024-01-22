@@ -1,0 +1,55 @@
+{#
+/**
+* @file
+* Template for a Nav component.
+*
+* Available config:
+* - alignment: left | right | center | vertical.
+* - style: tabs | pills
+* - fill: fill | justify
+* - utility_classes: An array of utility classes.
+*/
+#}
+{% import _self as menus %}
+{% if alignment == 'right' %}
+	{% set alignment = 'justify-content-end' %}
+{% elseif alignment == 'center' %}
+	{% set alignment = 'justify-content-center' %}
+{% elseif alignment == 'vertical' %}
+	{% set alignment = 'flex-column' %}
+{% else %}
+	{% set alignment = '' %}
+{% endif %}
+{% set style = style ? 'nav-' ~ style : '' %}
+{% set fill = fill ? 'nav-' ~ fill : '' %}
+{% set nav_classes = [style, alignment, fill]|merge(utility_classes ? utility_classes : []) %}
+{% if items %}
+	{% block items %}
+		{% for item in items %}
+			{% set nav_item_classes = [
+				'navbar-expand-md',
+				item.in_active_trail ? 'active',
+				item.is_expanded and item.below ? 'dropdown has-megamenu'
+			] %}
+			{% set nav_link_classes = ['nav-link'] %}
+			{% if item.url.options.attributes.class is iterable %}
+				{% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+			{% elseif item.url.options.attributes.class %}
+				{% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+			{% endif %}
+			<div class="col-md-3 py-2">
+				{% set remove_class = ['navbar-text'] %}
+				{{ item.attributes.removeClass(remove_class)}}
+				<div{{item.attributes.addClass(nav_item_classes)}}>
+					<h2 class="footer-nav-heading">{{ item.title }}</h2>
+					{% if item.below %}
+						{% include '@dna_whitesite/dropdown/dropdown-footer.twig' with {
+							items: item.below,
+							loop: loop
+						} %}
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	{% endblock %}
+{% endif %}

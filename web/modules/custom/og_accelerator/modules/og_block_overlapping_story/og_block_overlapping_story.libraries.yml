@@ -1,0 +1,7 @@
+overlapping_story:
+  version: '1.0.0'
+  css:
+    theme:
+      css/overlapping_story.css: {}
+  js:
+    js/overlapping_story.js: {}

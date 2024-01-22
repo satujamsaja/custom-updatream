@@ -1,0 +1,91 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.contact
+    - field.field.block_content.contact.field_contact_address
+    - field.field.block_content.contact.field_contact_email
+    - field.field.block_content.contact.field_contact_image
+    - field.field.block_content.contact.field_contact_mobile
+    - field.field.block_content.contact.field_contact_name
+    - field.field.block_content.contact.field_contact_phone
+    - field.field.block_content.contact.field_contact_title
+    - field.field.block_content.contact.field_contact_web
+  module:
+    - address
+    - link
+id: block_content.contact.default
+targetEntityType: block_content
+bundle: contact
+mode: default
+content:
+  field_contact_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_contact_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_contact_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_contact_mobile:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_contact_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_contact_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_contact_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_contact_web:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

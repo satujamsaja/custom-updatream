@@ -1,0 +1,68 @@
+article_listing:
+  css:
+    theme:
+      css/article_listing.css: {}
+  js:
+    js/article_listing.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+button_block:
+  css:
+    theme:
+      css/button_block.css: {}
+
+layout_builder:
+  css:
+    theme:
+      css/layout_builder.css: {}
+  js:
+    js/layout_builder.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+related_articles:
+  css:
+    theme:
+      css/related_articles.css: {}
+  js:
+    js/related_articles.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+search_results:
+  js:
+    js/lib/mark.min.js: {}
+    js/search_results.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+tooltip:
+  css:
+    theme:
+      css/tooltip.css: {}
+  js:
+    js/tooltip.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+admin:
+  css:
+    theme:
+      css/admin.css: {}
+  js:
+    js/admin.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

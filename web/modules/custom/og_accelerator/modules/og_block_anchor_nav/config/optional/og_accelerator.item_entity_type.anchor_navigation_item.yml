@@ -1,0 +1,5 @@
+langcode: en
+status: true
+dependencies: {  }
+id: anchor_navigation_item
+label: 'Anchor navigation item'
