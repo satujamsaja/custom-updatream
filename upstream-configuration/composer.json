@@ -6,15 +6,9 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
-        "bower-asset/jquery-simple-color": "^1.2",
-        "bower-asset/spectrum": "^1.8",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.7",
         "drupal/address": "^1.11",
@@ -114,46 +108,51 @@
         "oomphinc/composer-installers-extender": "^2.0",
         "wikimedia/composer-merge-plugin": "^2.0"
     },
-    "patches": {
-        "drupal/autosave_form": {
-            "3270955 - Disable autosaving for layout builder pages": "https://www.drupal.org/files/issues/2022-03-22/3270955-2-layout_builder.patch"
-        },
-        "drupal/custom_formatters": {
-            "3188668 - Formatter entity failing to load properties.": "https://www.drupal.org/files/issues/2020-12-16/3188668-2.patch"
-        },
-        "drupal/decoupled_router": {
-            "3111456 - Unable to resolve path on node in other language than default": "https://www.drupal.org/files/issues/2022-12-01/decouple_router-3111456-resolve-language-issue-58--get-translation.patch"
-        },
-        "drupal/image_widget_crop": {
-            "2865396 - Provide option to apply default crop if user doesn't select any": "https://www.drupal.org/files/issues/2022-01-11/2865396-63.patch",
-            "3214365 - Crop widget not adjusting crop box when crop is applied": "https://www.drupal.org/files/issues/2021-06-09/crop_widget_not_adjusting_to_existing_crop-3214365-9.patch"
-        },
-        "drupal/inline_entity_form": {
-            "3033241 - Cannot update the order weight using complex form widget": "https://www.drupal.org/files/issues/2021-02-15/cannot-update-weight-order-complex-widget-3033241-4.patch"
-        },
-        "drupal/subrequests": {
-            "3049395 - Page Cache causes different subrequests to return the same responses": "https://www.drupal.org/files/issues/2019-07-18/change_request_type-63049395-09.patch"
-        },
-        "drupal/jsonapi_menu_items": {
-            "3276561 - Add support for the Menu Item Extras module": "https://www.drupal.org/files/issues/2022-08-01/3276561-05-menu_item_extras_support.patch"
-        },
-        "drupal/jsonapi_include_lb": {
-            "3304559 - Add support for reusable blocks": "https://www.drupal.org/files/issues/2022-12-07/jsonapi_include_lb-reusable_blocks-3304559-8.patch"
-        },
-        "drupal/metatag": {
-            "2945817 - Support JSON API, REST, GraphQL and custom normalizations": "https://www.drupal.org/files/issues/2020-02-29/2945817-93.patch"
-        },
-        "drupal/seckit": {
-            "Change feature policy to permission policy": "patches/permission-policy.diff"
-        },
-        "drupal/remove_http_headers": {
-            "Add back X-Content-Type-Options nosniff": "patches/remove-header.diff"
-        }
-    },
-    "patchLevel": {
-        "drupal/core": "-p2"
-    },
     "extra": {
-        "_README": "To make a custom upstream, clone this repository and add any dependencies to be provided by this upstream to this composer.json file. Leave the root-level composer.json file for the exclusive use of each individual site; do not modify it after your custom upstream has been published. See https://pantheon.io/docs/create-custom-upstream for more information."
+        "patches": {
+            "drupal/autosave_form": {
+                "3270955 - Disable autosaving for layout builder pages": "https://www.drupal.org/files/issues/2022-03-22/3270955-2-layout_builder.patch"
+            },
+            "drupal/custom_formatters": {
+                "3188668 - Formatter entity failing to load properties.": "https://www.drupal.org/files/issues/2020-12-16/3188668-2.patch"
+            },
+            "drupal/decoupled_router": {
+                "3111456 - Unable to resolve path on node in other language than default": "https://www.drupal.org/files/issues/2022-12-01/decouple_router-3111456-resolve-language-issue-58--get-translation.patch"
+            },
+            "drupal/image_widget_crop": {
+                "2865396 - Provide option to apply default crop if user doesn't select any": "https://www.drupal.org/files/issues/2022-01-11/2865396-63.patch",
+                "3214365 - Crop widget not adjusting crop box when crop is applied": "https://www.drupal.org/files/issues/2021-06-09/crop_widget_not_adjusting_to_existing_crop-3214365-9.patch"
+            },
+            "drupal/inline_entity_form": {
+                "3033241 - Cannot update the order weight using complex form widget": "https://www.drupal.org/files/issues/2021-02-15/cannot-update-weight-order-complex-widget-3033241-4.patch"
+            },
+            "drupal/subrequests": {
+                "3049395 - Page Cache causes different subrequests to return the same responses": "https://www.drupal.org/files/issues/2019-07-18/change_request_type-63049395-09.patch"
+            },
+            "drupal/jsonapi_menu_items": {
+                "3276561 - Add support for the Menu Item Extras module": "https://www.drupal.org/files/issues/2022-08-01/3276561-05-menu_item_extras_support.patch"
+            },
+            "drupal/jsonapi_include_lb": {
+                "3304559 - Add support for reusable blocks": "https://www.drupal.org/files/issues/2022-12-07/jsonapi_include_lb-reusable_blocks-3304559-8.patch"
+            },
+            "drupal/metatag": {
+                "2945817 - Support JSON API, REST, GraphQL and custom normalizations": "https://www.drupal.org/files/issues/2020-02-29/2945817-93.patch"
+            },
+            "drupal/seckit": {
+                "Change feature policy to permission policy": "patches/permission-policy.diff"
+            },
+            "drupal/remove_http_headers": {
+                "Add back X-Content-Type-Options nosniff": "patches/remove-header.diff"
+            }
+        },
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "merge-plugin": {
+            "include": [
+                "web/modules/contrib/media_directories/composer.libraries.json",
+                "web/modules/contrib/webform/composer.libraries.json"
+            ]
+        }
     }
 }

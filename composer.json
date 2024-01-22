@@ -11,6 +11,10 @@
         {
             "type": "path",
             "url": "upstream-configuration"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
@@ -33,7 +37,7 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
         "drupal-scaffold": {
@@ -47,9 +51,18 @@
                 "[project-root]/.gitattributes": false
             }
         },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset",
+            "drupal-drush",
+            "drupal-theme",
+            "drupal-profile",
+            "drupal-module",
+            "drupal-core"
+        ],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": ["type:drupal-library", "type:bower-asset", "type:npm-asset"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
@@ -84,7 +97,10 @@
             "drupal/core-composer-scaffold": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpstan/extension-installer": true,
-            "pantheon-systems/upstream-management": true
+            "pantheon-systems/upstream-management": true,
+            "php-http/discovery": true,
+            "wikimedia/composer-merge-plugin": true,
+            "oomphinc/composer-installers-extender": true
         }
     }
 }
