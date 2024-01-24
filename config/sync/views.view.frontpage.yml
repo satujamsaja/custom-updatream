@@ -1,3 +1,4 @@
+uuid: 842b059a-640e-4173-afa6-54dabf74d2b2
 langcode: en
 status: true
 dependencies:
@@ -7,6 +8,8 @@ dependencies:
   module:
     - node
     - user
+_core:
+  default_config_hash: 6eeliKIydPjqyv5V__QqTfahvJMWkHjOVUUuUIdB1ik
 id: frontpage
 label: Frontpage
 module: node
@@ -72,8 +75,19 @@ display:
           plugin_id: text_custom
           label: ''
           empty: true
-          content: "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-sm my-5\">\r\n      <h1 class=\"text-center\">Welcome to <u>[site:name]</u></h1>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-4\">\r\n      <h2>What's Next?</h2>\r\n      <ul>\r\n        <li>Configure the site's <a href=\"/admin/content/site-settings\" target=\"_blank\">global settings</a>.</li>\r\n        <li>Add <a href=\"/admin/content/background-colour\" target=\"_blank\">background colours</a> for your layout.</li>\r\n        <li>Adjust the <a href=\"/admin/structure/menu/manage/main\" target=\"_blank\">Main</a>, <a href=\"/admin/structure/menu/manage/footer\" target=\"_blank\">Footer</a>, <a href=\"/admin/structure/menu/manage/social-media\" target=\"_blank\">Social Media</a>, and <a href=\"/admin/structure/menu/manage/copyright\" target=\"_blank\">Copyright</a> menus.</li>\r\n        <li>Organise your media files into <a href=\"/admin/structure/taxonomy/manage/directory/overview\" target=\"_blank\">directories</a>.</li>\r\n        <li>Add terms to <a href=\"/admin/structure/taxonomy/manage/article_tags/overview\" target=\"_blank\">article tags</a> and <a href=\"/admin/structure/taxonomy/manage/category/overview\" target=\"_blank\">category</a>.</li>\r\n        <li>Enable <a href=\"/admin/modules\" target=\"_blank\">Accelerator's block modules</a>.</li>\r\n        <li>Configure the site <a href=\"/admin/config/search/search-api\" target=\"_blank\">search</a> behaviour.</li>\r\n        <li>Register <a href=\"/admin/people\" target=\"_blank\">new users</a> with specific roles.</li>\r\n        <li>Edit <a href=\"/articles\" target=\"_blank\">Articles</a> landing page.</li>\r\n        <li>Start creating new <a href=\"/node/add/page\" target=\"_blank\">pages</a> and <a href=\"/node/add/article\" target=\"_blank\">articles</a>.</li>\r\n        <li>Assign a proper <a href=\"/admin/config/system/site-information\" target=\"_blank\">front-page</a> to your site.</li>\r\n      </ul>\r\n    </div>\r\n    <div class=\"col-sm-4\">\r\n      <h2>External Resources</h2>\r\n      <ul>\r\n        <li>Follow the <a target=\"_blank\" href=\"https://www.drupal.org/docs/user_guide/en/index.html\">User Guide</a> to start building your site.</li>\r\n        <li>Extend your new Drupal site with <a target=\"_blank\" href=\"https://www.drupal.org/docs/contributed-modules\">contributed modules</a>.</li>\r\n        <li>Consult the <a target=\"_blank\" href=\"https://www.drupal.org/docs/8/core/modules/layout-builder/layout-builder-overview\">Layout Builder overview</a> article to learn more about layout building.</li>\r\n        <li>Refer to <a target=\"_blank\" href=\"https://docs.radixtheme.org/en/latest/\">Radix Documentation</a> for the sub-theming guide.</li>\r\n        <li>Contribute back to the <a target=\"_blank\" href=\"https://www.drupal.org/community/contributor-guide/contribution-areas/community\">Drupal community</a>.</li>\r\n      </ul>\r\n      <p class=\"h2 pt-1 text-center\"><img src=\"/themes/custom/dna_whitesite/logo.svg\" class=\"img-fluid\" alt=\"Drupal logo\" width=\"40\" height=\"40\"></p>\r\n    </div>\r\n    <div class=\"col-sm-4\">\r\n      <img src=\"/themes/custom/dna_whitesite/screenshot.png\" class=\"img-fluid\" alt=\"Drupal Next Accelerator brand logo\">\r\n    </div>\r\n  </div>\r\n</div>"
+          content: 'No front page content has been created yet.<br/>Follow the <a target="_blank" href="https://www.drupal.org/docs/user_guide/en/index.html">User Guide</a> to start building your site.'
           tokenize: false
+        node_listing_empty:
+          id: node_listing_empty
+          table: node
+          field: node_listing_empty
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: node_listing_empty
+          label: ''
+          empty: true
         title:
           id: title
           table: views
@@ -84,7 +98,7 @@ display:
           plugin_id: title
           label: ''
           empty: true
-          title: 'Welcome to [site:name]'
+          title: Welcome!
       sorts:
         sticky:
           id: sticky
@@ -251,7 +265,6 @@ display:
     display_plugin: feed
     position: 2
     display_options:
-      enabled: false
       pager:
         type: some
         options:

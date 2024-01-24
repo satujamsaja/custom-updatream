@@ -1,6 +1,9 @@
+_core:
+  default_config_hash: VDJxTZtQR21qB4lvOq8zszJZLvLKrSPQpdn2E3T71Ww
 langcode: en
-name: 'Drupal Next Accelerator'
-mail: ario.jatmiko@bullseye-digital.com
+uuid: 4b352ecb-e7bd-428f-a351-2e5a7fde0675
+name: Acc
+mail: deni.saputra@ogilvy.com
 slogan: ''
 page:
   403: ''

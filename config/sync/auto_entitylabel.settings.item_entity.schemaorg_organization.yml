@@ -1,6 +1,0 @@
-status: 2
-pattern: '[item_entity:field_organization_name]'
-escape: false
-preserve_titles: false
-save: 0
-chunk: '50'

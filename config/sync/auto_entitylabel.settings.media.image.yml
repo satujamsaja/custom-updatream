@@ -1,9 +1,0 @@
-status: 1
-pattern: '[media:field_media_image:alt]'
-escape: false
-preserve_titles: false
-dependencies:
-  config:
-    - media.type.image
-save: 0
-chunk: '50'

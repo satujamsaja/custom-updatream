@@ -1,8 +1,11 @@
+uuid: 8beee24d-7d54-4009-93a8-9c118cff1ece
 langcode: en
 status: true
 dependencies:
   config:
     - node.type.page
+_core:
+  default_config_hash: fPUEnm4T5zfZRr3ttDUqq7yCDd2uW3clWD-pvos4tlQ
 id: node.page.promote
 field_name: promote
 entity_type: node
@@ -10,7 +13,7 @@ bundle: page
 label: 'Promoted to front page'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     value: 0

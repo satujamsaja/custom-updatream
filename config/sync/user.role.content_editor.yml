@@ -1,111 +1,47 @@
+uuid: bc365a89-a284-487b-8ea8-f83c66dcc576
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.node.page.full
-    - filter.format.rich_text
-    - media.type.image
-    - media.type.remote_video
     - node.type.article
     - node.type.page
-    - workflows.workflow.editorial
+    - taxonomy.vocabulary.tags
   module:
-    - admin_toolbar_search
-    - content_moderation
+    - comment
     - contextual
-    - entity_browser
     - file
-    - filter
-    - layout_builder
-    - media
-    - media_directories_ui
-    - menu_admin_per_menu
-    - moderation_sidebar
     - node
-    - og_accelerator
     - path
-    - site_alert
     - system
     - taxonomy
     - toolbar
-    - webform
+_core:
+  default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
 id: content_editor
 label: 'Content editor'
-weight: -6
-is_admin: null
+weight: 2
+is_admin: false
 permissions:
   - 'access administration pages'
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
-  - 'access image_browser entity browser pages'
-  - 'access media directories ui browser'
-  - 'access media overview'
-  - 'access media_directories_modal entity browser pages'
-  - 'access media_directories_overview entity browser pages'
-  - 'access site in maintenance mode'
-  - 'access taxonomy overview'
   - 'access toolbar'
-  - 'access user profiles'
-  - 'access webform overview'
-  - 'add item entities'
-  - 'add site alerts'
-  - 'administer footer menu items'
-  - 'administer main menu items'
-  - 'configure editable article node layout overrides'
-  - 'configure editable page node layout overrides'
-  - 'create and edit custom blocks'
+  - 'administer url aliases'
   - 'create article content'
-  - 'create audio media'
-  - 'create document media'
-  - 'create image media'
-  - 'create media'
   - 'create page content'
-  - 'create remote_video media'
+  - 'create terms in tags'
   - 'create url aliases'
-  - 'create video media'
-  - 'create webform'
-  - 'delete all item revisions'
-  - 'delete item entities'
-  - 'delete media'
+  - 'delete article revisions'
   - 'delete own article content'
-  - 'delete own audio media'
-  - 'delete own document media'
-  - 'delete own image media'
+  - 'delete own files'
   - 'delete own page content'
-  - 'delete own remote_video media'
-  - 'delete own video media'
-  - 'delete own webform'
-  - 'delete own webform submission'
-  - 'delete site alerts'
-  - 'edit item entities'
+  - 'delete page revisions'
   - 'edit own article content'
-  - 'edit own audio media'
-  - 'edit own document media'
-  - 'edit own image media'
+  - 'edit own comments'
   - 'edit own page content'
-  - 'edit own remote_video media'
-  - 'edit own video media'
-  - 'edit own webform'
-  - 'edit own webform submission'
-  - 'revert all item revisions'
-  - 'update media'
-  - 'update site alerts'
-  - 'use admin toolbar search'
-  - 'use editorial transition create_new_draft'
-  - 'use editorial transition submit_for_review'
-  - 'use moderation sidebar'
-  - 'use text format rich_text'
-  - 'view all item revisions'
-  - 'view all media revisions'
+  - 'edit terms in tags'
+  - 'revert all revisions'
   - 'view all revisions'
-  - 'view any unpublished content'
-  - 'view article revisions'
-  - 'view latest version'
   - 'view own unpublished content'
-  - 'view own unpublished media'
-  - 'view own webform submission'
-  - 'view page revisions'
-  - 'view published item entities'
   - 'view the administration theme'
-  - 'view unpublished item entities'

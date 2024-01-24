@@ -1,3 +1,4 @@
+uuid: e0901fb9-a915-4f01-8a7d-b7c139447382
 langcode: en
 status: true
 dependencies:
@@ -7,6 +8,8 @@ dependencies:
     - node
     - taxonomy
     - user
+_core:
+  default_config_hash: z9csC6m3M65M2JczdNul_lMUrVg8ZO66pbSq8jPCBKs
 id: taxonomy_term
 label: 'Taxonomy term'
 module: taxonomy
@@ -105,7 +108,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true

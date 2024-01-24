@@ -1,3 +1,4 @@
+uuid: 7bf5a4b2-7000-4bc7-a6cc-4739a506b928
 langcode: en
 status: true
 dependencies:
@@ -6,17 +7,20 @@ dependencies:
     - node.type.article
   module:
     - text
+_core:
+  default_config_hash: 4Wxs1LseZ8JsNwD9uJVIbzZqG35yQXN8Eo1Hub6NMuI
 id: node.article.body
 field_name: body
 entity_type: node
 bundle: article
 label: Body
-description: 'A brief and concise summary of this page is required with preferably 150 characters or less. The summary may be used by search engines to display a snippet about the page in search results.'
-required: true
+description: ''
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   display_summary: true
-  required_summary: true
+  required_summary: false
+  allowed_formats: {  }
 field_type: text_with_summary

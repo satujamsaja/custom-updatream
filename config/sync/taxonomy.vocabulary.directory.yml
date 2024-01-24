@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: Directory
-vid: directory
-description: 'Media library directory structure'
-weight: 0

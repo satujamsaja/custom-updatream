@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: article_listing
-label: 'Article Listing'
-revision: 1
-description: 'Display articles with specified filters and load more button.'

@@ -1,6 +1,6 @@
-display_extenders:
-  - library_in_views_display_extender
-skip_cache: false
+_core:
+  default_config_hash: 8oDr9oPVb_ostrNnVV6V7VdphwoH_u-NqTS0u7SE7qc
+display_extenders: {  }
 sql_signature: false
 ui:
   show:
